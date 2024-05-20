@@ -1,0 +1,143 @@
+version: '3'
+services:
+  nacos:
+    image: nacos/nacos-server:v2.3.0
+    container_name: nacos
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    privileged: true
+    volumes:
+      - ./config/nacos/conf:/home/nacos/conf
+      - ./config/nacos/logs:/home/nacos/logs
+    environment:
+      MODE: standalone
+
+  mysql:
+    image: mysql:8.2.0
+    container_name: mysql
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "3306:3306"
+    privileged: true
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./config/mysql/conf.d:/etc/mysql/conf.d
+      - ./config/mysql/log:/var/log/mysql
+      - ./config/mysql/data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+  # 网关
+  gateway:
+    build: server/online-hospital-gateway
+    image: xftxyz/onlinehospital-gateway:0.0.1
+    container_name: gateway
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "80:80"
+    privileged: true
+    volumes:
+      - ./config/gateway:/app/config
+
+  # 微服务s
+  user:
+    build: server/online-hospital-user
+    image: xftxyz/onlinehospital-user:0.0.1
+    container_name: user
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "8210:8210"
+    privileged: true
+    volumes:
+      - ./config/user:/app/config
+  
+  hospital:
+    build: server/online-hospital-hospital
+    image: xftxyz/onlinehospital-hospital:0.0.1
+    container_name: hospital
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "8220:8220"
+    privileged: true
+    volumes:
+      - ./config/hospital:/app/config
+
+  registration:
+    build: server/online-hospital-registration
+    image: xftxyz/onlinehospital-registration:0.0.1
+    container_name: registration
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "8230:8230"
+    privileged: true
+    volumes:
+      - ./config/registration:/app/config
+  
+  inquiry:
+    build: server/online-hospital-inquiry
+    image: xftxyz/onlinehospital-inquiry:0.0.1
+    container_name: inquiry
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "8240:8240"
+    privileged: true
+    volumes:
+      - ./config/inquiry:/app/config
+  
+  system:
+    build: server/online-hospital-system
+    image: xftxyz/onlinehospital-system:0.0.1
+    container_name: system
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "8280:8280"
+    privileged: true
+    volumes:
+      - ./config/system:/app/config
+
+  # 医生端
+  site-doctor:
+    build: site-doctor
+    image: xftxyz/onlinehospital-doctor:0.0.1
+    container_name: site-doctor
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "3000:3000"
+
+  # 后台管理
+  site-admin:
+    build: site-admin
+    image: xftxyz/onlinehospital-admin:0.0.1
+    container_name: site-admin
+    restart: unless-stopped
+    networks:
+      - onlinehospital-network
+    ports:
+      - "3001:3001"
+
+networks:
+  onlinehospital-network:
+    name: onlinehospital-network
+    driver: bridge

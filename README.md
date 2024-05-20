@@ -1,2 +1,1 @@
-# online-hospital
-网上医院
+# 网上医院

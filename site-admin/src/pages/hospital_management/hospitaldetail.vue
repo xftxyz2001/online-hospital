@@ -211,7 +211,6 @@ import { ElMessage } from "element-plus";
 const dialogImageUrl = ref("");
 const dialogVisible = ref(false);
 const disabled = ref(false);
-const uploadUrl = ref("");
 const headerObj = ref({ token: store.getters.managerLoginToken });
 const imageUrl = ref("");
 const imgUrlList = ref([]);
@@ -251,7 +250,6 @@ onMounted(() => {
 
   queryHospitalInfo();
   querySpecialInfo();
-  uploadUrl.value = import.meta.env.VITE_SYSTEM_BASE_URL;
 });
 //查询医院信息
 const queryHospitalInfo = async () => {

@@ -5,4 +5,6 @@ import request from "@/utils/request";
 enum API {
   DICTIONARY_URL = "/system/dictionary/"
 }
-export const reqDictionary = (code: Number) => request.get(API.DICTIONARY_URL + `${code}`);
+export const reqDictionary = (code: String) => request.get(API.DICTIONARY_URL + `${code}`);
+
+export const reqUserStatusDictionary = () => reqDictionary("000");

@@ -164,9 +164,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive } from "vue";
-import { reqDictionary } from "@/api/system/system";
+import { reqUserStatusDictionary } from "@/api/system/system";
 import { queryUserInfo, deleteUserById, enableUserById, disenableUserById } from "@/api/user/user";
-import request from "@/utils/request";
 import { ElMessage } from "element-plus";
 import { useRouter, useRoute } from "vue-router";
 import store from "@/vuex";
@@ -198,8 +197,6 @@ const enableUserId = ref(-1);
 const disenableDialogVisible = ref(false);
 //要禁用的用户id
 const disenableUserId = ref(-1);
-//用户状态数据字典的请求参数
-const dictionaryCodeUser = import.meta.env.VITE_DICTIONARY_USER_STATUS;
 //路由跳转
 const router = useRouter();
 const route = useRoute();
@@ -209,7 +206,7 @@ onMounted(() => {
 });
 //查询用户状态字典
 const getUserStatusDictionary = async () => {
-  let result = await reqDictionary(dictionaryCodeUser);
+  let result = await reqUserStatusDictionary();
   if (result.code == 1) {
     //将Json数据转换为对象，传给statusDictionary
     statusDictionary.value = JSON.parse(result.data.itemValues);

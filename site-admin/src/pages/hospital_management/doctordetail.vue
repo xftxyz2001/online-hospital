@@ -220,7 +220,6 @@ import { ElMessage } from "element-plus";
 const dialogImageUrl = ref("");
 const dialogVisible = ref(false);
 const disabled = ref(false);
-const uploadUrl = ref("");
 const headerObj = ref({ token: store.getters.managerLoginToken });
 const imageUrl = ref("");
 const imgUrlList = ref([]);
@@ -280,7 +279,6 @@ onMounted(() => {
   doctorId.value = store.getters.doctorDetailId;
 
   queryDoctorInfo();
-  uploadUrl.value = import.meta.env.VITE_SYSTEM_BASE_URL;
 });
 //查询医生信息
 const queryDoctorInfo = async () => {

@@ -104,7 +104,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive } from "vue";
-import { reqDictionary } from "@/api/system/system";
+import { reqUserStatusDictionary } from "@/api/system/system";
 import { queryPatientInfo, deletePatientById } from "@/api/user/patient";
 import { ElMessage } from "element-plus";
 import { useRouter, useRoute } from "vue-router";
@@ -138,8 +138,6 @@ const tableData = ref([]);
 const deleteDialogVisible = ref(false);
 //要删除就诊人的id
 const deletePatientId = ref(-1);
-//就诊人状态数据字典的请求参数
-const dictionaryCodePatient = import.meta.env.VITE_DICTIONARY_USER_STATUS;
 //路由跳转
 const router = useRouter();
 const route = useRoute();
@@ -149,7 +147,7 @@ onMounted(() => {
 });
 //查询就诊人状态字典
 const getPatientStatusDictionary = async () => {
-  let result = await reqDictionary(dictionaryCodePatient);
+  let result = await reqUserStatusDictionary();
   if (result.code == 1) {
     //将Json数据转换为对象，传给statusDictionary
     statusDictionary.value = JSON.parse(result.data.itemValues);

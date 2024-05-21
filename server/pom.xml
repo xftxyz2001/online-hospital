@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.1.6</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.nwu</groupId>
     <artifactId>online-hospital-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>网上医院</name>
+
+    <modules>
+        <module>online-hospital-base</module>
+        <module>online-hospital-gateway</module>
+        <module>online-hospital-user</module>
+        <module>online-hospital-hospital</module>
+        <module>online-hospital-registration</module>
+        <module>online-hospital-inquiry</module>
+        <module>online-hospital-system</module>
+    </modules>
+
     <properties>
         <cloud.version>2022.0.4</cloud.version>
         <alibaba.version>2022.0.0.0</alibaba.version>
@@ -20,6 +33,10 @@
         <swagger.version>2.2.0</swagger.version>
         <jwt.version>4.4.0</jwt.version>
         <oss.version>3.10.2</oss.version>
+
+        <fastjson.version>1.2.83</fastjson.version>
+        <swagger-annotations.version>1.5.20</swagger-annotations.version>
+        <pinyin4j.version>2.5.0</pinyin4j.version>
     </properties>
 
     <!-- 依赖管理 -->
@@ -49,6 +66,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
 
             <!-- Swagger -->
             <dependency>
@@ -69,6 +91,27 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${oss.version}</version>
+            </dependency>
+
+            <!-- FastJson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- Swagger Annotations -->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+
+            <!-- Pinyin4j -->
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>${pinyin4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,128 @@
+/* pages/inquiry/in-progress/in-progress.wxss */
+.word1 {
+  /* ref: https://blog.csdn.net/weixin_30379911/article/details/99922923 */
+  left: 3px;
+  min-width: 20px;
+  max-width: 240px;
+  background: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: black;
+  word-break: break-word;
+  position: relative;
+  padding: 10px 14px;
+  float: left;
+  margin-left: 5px;
+}
+.word1::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -12px;
+  top: 15px;
+  border: 6px solid;
+  border-color: transparent white transparent transparent;
+}
+.word2 {
+  right: 3px;
+  min-width: 20px;
+  max-width: 240px;
+  background: rgb(150 237 107);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: black;
+  word-break: break-word;
+  position: relative;
+  padding: 10px 14px;
+  float: left;
+  margin-right: 5px;
+}
+.word2::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -12px;
+  top: 12px;
+  border: 6px solid;
+  border-color: transparent transparent transparent rgb(150 237 107);
+}
+.dialog1 {
+  /* 左边儿的对话框 */
+  margin: 5px 3px;
+  float: left;
+  clear: both;
+  display: flex;
+}
+.dialog2 {
+  /* 右边儿的对话框 */
+  margin: 5px 3px;
+  float: right;
+  clear: both;
+  display: flex;
+}
+.chat {
+  background-color: rgb(236, 236, 236);
+  height: 350px;
+  padding: 5px 0 0 0;
+  
+}
+.chat:after{/*伪元素是行内元素 正常浏览器清除浮动方法*/
+  content: "";
+  display: block;
+  height: 0;
+  clear:both;
+  visibility: hidden;
+}
+
+.button {
+	background-color: #1E90FF;
+	width: 60px;
+	height: 30px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-left: 20rpx;
+}
+ 
+.buttonText {
+	font-size: 14px;
+	color: white;
+}
+
+.sendBar {
+	width: 100%;
+	height: 10vh;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	
+}
+ 
+.input {
+	background-color: white;
+  border: 2px solid #1E90FF;
+  width: 80%;
+}
+.avatar2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.avatar1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

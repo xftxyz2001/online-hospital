@@ -1,0 +1,12 @@
+<!--pages/report/list/list.wxml-->
+<view style="width:100%;background-color: #EEE;min-height:1500rpx;padding-top: 20rpx;overflow:hidden">
+  <view style="margin-bottom: 20rpx;" wx:for="{{reportList}}">
+    <van-cell-group inset>
+      <van-cell title="就诊人" value="{{item.patientName}}" />
+      <van-cell title="报告名" value="{{item.reportName}}"  />
+      <van-cell title="时间" value="{{item.sendTime}}"  />
+      <van-cell title="查看"  is-link bind:tap="openFile" data-url="{{item.fileUrl}}" data-name="{{item.reportName}}"></van-cell>
+    </van-cell-group>
+  </view>
+
+</view>

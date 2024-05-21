@@ -1,0 +1,18 @@
+<!--pages/login/index.wxml-->
+<view style="margin:50% 5% 0 5%;display: flex;flex-direction: column;">
+  <text style="width: 100%;text-align: center;margin-bottom: 20px;font-size: 17px;font-weight: 700;">请先登录</text>
+  <van-button type="primary" size="large" bind:tap="login" icon="chat-o">微信登录</van-button>
+</view>
+<van-toast id="van-toast" />
+<van-action-sheet show="{{ show }}" title="请设置头像与用户名">
+ <form bindsubmit="submitUserInfo">
+  <view style="display: flex;flex-direction: column;align-items: center;margin:15px 0 10px 0">
+    <button style="width: 50px;height: 50px;padding: 0;" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image style="width: 50px;height: 50px;" src="{{avatarUrl}}"></image>
+    </button>
+    <view style="display: flex; flex-direction: row;width: 100%;justify-content: center;margin:15px 0;"><view >用户名：</view><view style="width: 30%;"> <input  type="nickname" placeholder="请输入用户名" model:value="{{userName}}"/></view></view>
+   <view style="width: 50%;"> <van-button type="primary" form-type="submit" block>确定</van-button></view>
+  </view>
+ </form>
+</van-action-sheet>
+<van-notify id="van-notify" />

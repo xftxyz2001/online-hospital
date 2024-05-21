@@ -1,0 +1,22 @@
+/* pages/registration/detail/detail.wxss */
+.date{
+ white-space: nowrap;
+  height: 50px;
+  width: 100%;
+}
+.dateitem{
+  display: inline-block;
+  width: 50px;
+  height:50px;
+  background-color:#E9F7FC ;
+  line-height: 50px;
+  margin:0 5px
+
+}
+
+.item{
+height: 60px;
+display: flex;
+align-items: center;
+
+}

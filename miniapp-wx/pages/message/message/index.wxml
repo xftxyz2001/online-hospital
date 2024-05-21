@@ -1,0 +1,31 @@
+<!--pages/message/message/index.wxml-->
+<van-empty description="暂无消息" style="width: 100%;" wx:if="{{chatList.length==0}}" />
+<view style="width: 100%;min-height: 1500rpx;background-color: #EEE;overflow: hidden;" wx:else="">
+  <view wx:for="{{chatList}}" style="display: flex;background-color: white;width: 100%;margin-top:10rpx;height: 130rpx;align-items: center;" bind:tap="toDetail" data-id="{{item.linkId}}">
+    <view style="margin-left: 5rpx;">
+      <van-image round width="90rpx" height="90rpx" src="{{item.toUserPicture}}" />
+    </view>
+    <view style="display: flex;justify-content: space-between; width: 100%;">
+      <view style="margin-left: 15rpx;">
+        <view>{{item.toUserName}}</view>
+        <view style="color: gray;font-size:25rpx;margin-top:10rpx">
+          <view style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:500rpx" wx:if="{{item.type==0}}">
+            {{item.lastMessage}}
+          </view>
+          <view style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:500rpx" wx:if="{{item.type==1}}">
+            [图片]
+          </view>
+        </view>
+
+      </view>
+      <view style="margin-right: 10rpx;">
+        <view style="margin-bottom: 20rpx;">
+          <van-tag round type="danger" wx:if="{{item.unread!=0}}">{{item.unread}}</van-tag>
+        </view>
+        <view>{{item.lastTime}}</view>
+      </view>
+    </view>
+
+
+  </view>
+</view>

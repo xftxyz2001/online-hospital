@@ -1,0 +1,8 @@
+<!--pages/outpatientInfo/outpatient/outpatient.wxml-->
+<van-index-bar index-list="{{ letterList }}">
+  <view wx:for="{{letterList}}">
+    <van-index-anchor index="{{item}}"></van-index-anchor>
+    <van-cell title="{{item.name}}"  wx:for="{{outpatientList[index]}}" bind:tap="selectOutpatient" data-outpatientId="{{item.id}}"/>
+ 
+  </view>
+</van-index-bar>

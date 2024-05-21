@@ -1,0 +1,29 @@
+<!--pages/inquiry/waiting/waiting.wxml-->
+<view style="width: 100%;min-height: 600px;background-color: #F7F8FA;display: flex;flex-direction: column;align-items: center;">
+
+<view style="width: 80%;height: 200px;margin-top:100px">
+<view  style="margin-bottom: 20px;background-color: white;"><van-notice-bar
+  scrollable
+ 
+  text="排队中 前方排队人数：{{inquiryApplicationDetail.waitingNum}}"
+/></view>
+  <view style="background-color: white;"> <van-cell-group >
+  <van-cell title="就诊人" value="{{inquiryApplicationDetail.patientName}}" />
+  <van-cell title="门诊" value="{{inquiryApplicationDetail.outpatientName}}" />
+  <van-cell title="医生" value="{{inquiryApplicationDetail.doctorName}}" />
+  <van-cell title="操作时间" value="{{inquiryApplicationDetail.createTime}}" />
+  <van-field
+    value="{{inquiryApplicationDetail.description}}"
+    label="病情描述"
+    type="textarea"
+    readonly="true"
+    autosize
+    input-align="right"
+    border="{{ false }}"
+  />
+</van-cell-group></view>
+ 
+
+</view>
+</view>
+

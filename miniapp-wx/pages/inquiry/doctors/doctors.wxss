@@ -1,0 +1,7 @@
+/* pages/inquiry/doctors/doctors.wxss */
+.item{
+  height: 60px;
+  display: flex;
+  align-items: center;
+
+  }

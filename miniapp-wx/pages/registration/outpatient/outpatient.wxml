@@ -1,0 +1,10 @@
+<!--pages/registration/outpatient/outpatient.wxml-->
+<van-tree-select
+  items="{{ treeInfo }}"
+  main-active-index="{{ selectSpecialistId }}"
+  active-id="{{ activeId }}"
+  bind:click-nav="onClickNav"
+  bind:click-item="onClickItem"
+  height="100%"
+  selected-icon=""
+/>

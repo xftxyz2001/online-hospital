@@ -1,0 +1,39 @@
+<!--pages/registration/detail/detail.wxml-->
+
+<scroll-view scroll-x="true" class="date">
+  <view wx:for="{{dateList}}" class="dateitem" bind:tap="selectDate" data-selectDate="{{item.yearDateString}}">
+    {{item.dateString}}
+  </view>
+</scroll-view>
+<van-cell-group>
+  <van-cell title="上午" />
+  <view class="item" wx:for="{{morningDoctorList}}"  wx:key="{{item.doctorId}}"  bind:tap="selectDoctor" data-doctorId="{{item.doctorId}}" data-half="{{item.workHalf}}">
+    <image src="{{item.picture}}" style="width: 50px;height:50px;background-color:#DEF0FC;border-radius:30px;margin-left:10px"></image>
+    <view style="margin-left:15px">
+      <view> <text style="font-weight: 700;">{{item.doctorName}}</text> <text style="font-size: 14px;color: #82CDE4;margin-left:15px">{{item.professionalTitle}}</text></view>
+      <view> <text style="font-size: 14px;">已预约数：{{item.hasReservedNumber}}</text> <text style="font-size: 14px;margin-left:15px">剩余号数：{{item.availableNumber}}</text></view>
+    </view>
+    <view style="margin-left: 60px;" wx:if="{{item.availableNumber>0}}">
+      <van-tag round type="primary">有号</van-tag>
+    </view>
+    <view style="margin-left: 60px;" wx:else="">
+      <van-tag round type="warning">无号</van-tag>
+    </view>
+  </view>
+</van-cell-group>
+<van-cell-group>
+  <van-cell title="下午" />
+  <view class="item" wx:for="{{afternoonDoctorList}}"  wx:key="{{item.doctorId}}" bind:tap="selectDoctor" data-doctorId="{{item.doctorId}}" data-half="{{item.workHalf}}">
+    <image src="{{item.picture}}" style="width: 50px;height:50px;background-color:#DEF0FC;border-radius:30px;margin-left:10px"></image>
+    <view style="margin-left:15px">
+      <view> <text style="font-weight: 700;">{{item.doctorName}}</text> <text style="font-size: 14px;color: #82CDE4;margin-left:15px">{{item.professionalTitle}}</text></view>
+      <view> <text style="font-size: 14px;">已预约数：{{item.hasReservedNumber}}</text> <text style="font-size: 14px;margin-left:15px">剩余号数：{{item.availableNumber}}</text></view>
+    </view>
+    <view style="margin-left: 60px;" wx:if="{{item.availableNumber>0}}">
+      <van-tag round type="primary">有号</van-tag>
+    </view>
+    <view style="margin-left: 60px;" wx:else="">
+      <van-tag round type="warning">无号</van-tag>
+    </view>
+  </view>
+</van-cell-group>

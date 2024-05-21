@@ -1,0 +1,17 @@
+<!--pages/patient/list/list.wxml-->
+
+<view style="width: 100%;display: flex;flex-direction: column;align-items: center;min-height: 1500rpx;background-color: #EEE;">
+  <van-empty description="暂无就诊人" wx:if="{{patientList.length==0}}"/>
+  <view style="width: 100%;margin-top: 20rpx;" wx:else="">
+    <van-cell-group>
+    <view style="margin-bottom: 20rpx;"  wx:for="{{patientList}}" bind:tap="patientDetail" data-id="{{item.id}}">
+      <van-cell title="{{item.name}}" value="卡号:{{item.cardNo}}"   />
+    </view>
+      
+
+    </van-cell-group>
+  </view>
+  <view style="width: 95%;">
+    <van-button type="primary" block bind:tap="addPatient">新建就诊人</van-button>
+  </view>
+</view>

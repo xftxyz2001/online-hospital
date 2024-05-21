@@ -1,0 +1,7 @@
+/* pages/patient/add/add.wxss */
+.item{
+  margin-top: 3px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}

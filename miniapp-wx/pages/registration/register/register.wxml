@@ -1,0 +1,56 @@
+<!--pages/registration/register/register.wxml-->
+<scroll-view class="body" scroll-y="true">
+  <view class="item">
+    <image src="{{doctorInfo.picture}}" style="width: 50px;height:50px;background-color:#DEF0FC;border-radius:30px;margin-left:10px"></image>
+    <view> <text style="font-weight: 700;"></text> {{doctorInfo.name}}<text style="font-size: 14px;color: #82CDE4;margin-left:15px">{{doctorInfo.professionalTitle}}</text></view>
+  </view>
+  <van-collapse value="{{ activeNames }}" bind:change="Detail" style="width: 100%;">
+    <van-collapse-item title="医生介绍" name="1" icon="orders-o">
+      {{doctorInfo.introduce}}
+    </van-collapse-item>
+    <van-collapse-item title="医生擅长" name="2" icon="aim">
+
+    </van-collapse-item>
+    <view style="width: 96%;background-color: white;height: 350px;margin-left: 2%;margin-top: 10px;padding: 5px;">
+      <text>日期</text>
+      <view style="margin-top: 15px;">
+        <van-radio-group value="{{ time }}" bind:change="selectTime">
+          <van-cell-group>
+            <van-cell clickable data-name="{{item.name}}" bind:click="onClick" wx:for="{{timeList}}">
+              <view style="width: 100%;display: flex;justify-content: space-between;">
+                <view> {{(half==0?morningTimeString[item.workTime-1]:afternoonTimeString[item.workTime-1])}} </view>
+                <view style="margin-right: 20rpx;">剩余:{{item.availableNumber}}</view>
+              </view>
+              <van-radio slot="right-icon" name="{{item.workTime}}" disabled="{{item.availableNumber<=0}}" bind:tap="changeTime" data-id="{{item.id}}"/>
+            </van-cell>
+          </van-cell-group>
+        </van-radio-group>
+
+
+        <!-- <van-radio-group value="{{ time }}" bind:change="selectTime">
+          <van-radio name="{{item.workTime}}" disabled="{{item.availableNumber<=0}}" wx:for="{{timeList}}" bind:tap="changeTime" data-id="{{item.id}}">
+            <view style="width: 210px;height: 30px;border-style: solid;border-width: 1px;border-color: aqua;border-radius: 10px;margin-top: 10px;line-height:30px ;text-justify: auto;text-align: center;">{{ half==0?morningTimeString[item.workTime-1]:afternoonTimeString[item.workTime-1]}}<text style="margin-left:20px;font-size:14px;">剩余：{{item.availableNumber}}</text></view>
+          </van-radio>
+        </van-radio-group> -->
+      </view>
+
+    </view>
+
+  </van-collapse>
+  <view style="width: 96%;background-color: white;margin-left: 2%;margin-top: 10px;padding: 5px;margin-bottom: 10px;">
+    <view style="margin:10px 0"> <text>请选择就诊人</text></view>
+
+    <van-radio-group value="{{ patientId }}" bind:change="changePatient">
+      <van-cell-group>
+        <van-cell title="{{item.name +'     卡号:'+item.cardNo}}" clickable data-name="{{item.name}}" bind:click="onClick" wx:for="{{patientList}}">
+          <van-radio slot="right-icon" name="{{item.id}}" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </view>
+
+  <view style="width:100%;margin-top:10px">
+    <van-button type="primary" block bind:tap="submit">立即预约</van-button>
+  </view>
+</scroll-view>
+<van-notify id="van-notify" />

@@ -1,0 +1,17 @@
+<!--pages/doctorInfo/detial/detial.wxml-->
+<view class="item">
+    <image src="{{doctorInfo.picture}}" style="width: 50px;height:50px;background-color:#DEF0FC;border-radius:30px;margin-left:10px" bindtap="previewImage" data-url="{{doctorInfo.picture}}"></image>
+    <view> <text style="font-weight: 700;"></text> {{doctorInfo.name}}<text style="font-size: 14px;color: #82CDE4;margin-left:15px">{{doctorInfo.professionalTitle}} </text></view>
+  </view>
+  <van-cell title="院区" value="{{doctorInfo.hospitalName}}" />
+<van-cell title="门诊" value="{{doctorInfo.outpatientName}}" />
+
+  <van-collapse value="{{ activeNames }}" bind:change="Detail" style="width: 100%;">
+    <van-collapse-item title="医生介绍" name="1" icon="orders-o">
+    {{doctorInfo.introduce}}
+    </van-collapse-item>
+    <van-collapse-item title="医生擅长" name="2" icon="aim">
+      
+    </van-collapse-item>
+    </van-collapse>
+    

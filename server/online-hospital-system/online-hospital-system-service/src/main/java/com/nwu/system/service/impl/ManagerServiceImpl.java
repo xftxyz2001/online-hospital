@@ -1,20 +1,18 @@
 package com.nwu.system.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.constant.MessageConstant;
 import com.nwu.base.model.Result;
-import com.nwu.base.utils.UserJwtUtils;
+import com.nwu.base.utils.JwtHelper;
+import com.nwu.base.utils.JwtHelper.UserInfo;
 import com.nwu.system.mapper.ManagerMapper;
 import com.nwu.system.model.dto.ManagerLoginDto;
 import com.nwu.system.model.po.Manager;
 import com.nwu.system.service.IManagerService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * <p>
@@ -37,12 +35,8 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager> impl
         Manager manager = managerMapper.selectOne(managerLambdaQueryWrapper);
         if (manager == null) {
             return Result.error(MessageConstant.LOGIN_FAILED);
-        } else {
-            Map<String, Object> hashMap = new HashMap<>();
-            hashMap.put("id", manager.getId());
-            hashMap.put("identity", 2);
-            String jwt = UserJwtUtils.generateJwt(hashMap);
-            return Result.success(jwt);
         }
+        String jwt = JwtHelper.generateToken(UserInfo.builder().id(manager.getId().longValue()).identity(2).build());
+        return Result.success(jwt);
     }
 }

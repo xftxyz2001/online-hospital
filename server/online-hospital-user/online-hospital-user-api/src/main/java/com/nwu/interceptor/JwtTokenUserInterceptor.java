@@ -1,14 +1,16 @@
 package com.nwu.interceptor;
 
-import com.nwu.base.context.BaseContext;
-import com.nwu.base.utils.UserJwtUtils;
-import io.jsonwebtoken.Claims;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import com.nwu.base.context.BaseContext;
+import com.nwu.base.utils.JwtHelper;
+import com.nwu.base.utils.JwtHelper.UserInfo;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * jwt令牌校验的拦截器
@@ -26,29 +28,26 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
      * @return
      * @throws Exception
      */
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //判断当前拦截到的是Controller的方法还是其他资源
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
+        // 判断当前拦截到的是Controller的方法还是其他资源
         if (!(handler instanceof HandlerMethod)) {
-            //当前拦截到的不是动态方法，直接放行
+            // 当前拦截到的不是动态方法，直接放行
             return true;
         }
 
-        //1、从请求头中获取令牌
+        // 1、从请求头中获取令牌
         String token = request.getHeader("token");
-        //2、校验令牌
+        log.info("jwt校验:{}", token);
+        // 2、校验令牌
         try {
-            log.info("jwt校验:{}", token);
-            Claims claims = UserJwtUtils.parseJwt(token);
-
-            Long userId = Long.valueOf(claims.get("id").toString());
-            Integer identity = Integer.valueOf(claims.get("identity").toString());
-            log.info("当前用户的id：{}", userId);
-            BaseContext.setCurrentId(userId);
-            BaseContext.setCurrentIdentity(identity);
-            //3、通过，放行
+            UserInfo userInfo = JwtHelper.parseToken(token);
+            log.info("当前用户的id：{}", userInfo.getId());
+            BaseContext.setCurrentId(userInfo.getId());
+            // 3、通过，放行
             return true;
         } catch (Exception ex) {
-            //4、不通过，响应401状态码
+            // 4、不通过，响应401状态码
             log.info(ex.getMessage());
             response.setStatus(401);
             return false;

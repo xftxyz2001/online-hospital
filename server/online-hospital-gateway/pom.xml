@@ -18,14 +18,24 @@
     </properties>
 
     <dependencies>
+        <!-- Spring Cloud Gateway -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Alibaba Nacos Discovery -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
+        <!-- Load Balancer -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.nwu</groupId>
             <artifactId>online-hospital-base</artifactId>

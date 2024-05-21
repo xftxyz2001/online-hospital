@@ -1,22 +1,20 @@
 package com.nwu.user.api.web;
 
-
-import com.nwu.base.model.Result;
-import com.nwu.base.utils.UserJwtUtils;
-import com.nwu.user.model.dto.doctoraccount.DoctorAccountLoginDto;
-import com.nwu.user.model.po.DoctorAccount;
-import com.nwu.user.model.vo.doctoraccount.DoctorLoginVo;
-import com.nwu.user.service.IDoctorAccountService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.nwu.base.model.Result;
+import com.nwu.base.utils.JwtHelper;
+import com.nwu.user.model.dto.doctoraccount.DoctorAccountLoginDto;
+import com.nwu.user.model.po.DoctorAccount;
+import com.nwu.user.model.vo.doctoraccount.DoctorLoginVo;
+import com.nwu.user.service.IDoctorAccountService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * <p>
@@ -37,11 +35,10 @@ public class WebDoctorAccountController {
     @PostMapping("/login")
     public Result<DoctorLoginVo> login(@RequestBody DoctorAccountLoginDto doctorAccountLoginDto) {
         DoctorAccount doctorAccount = iDoctorAccountService.login(doctorAccountLoginDto);
-        if (doctorAccount == null) return Result.error("登陆失败");
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", doctorAccount.getId());
-        map.put("identity", 1);
-        String token = UserJwtUtils.generateJwt(map);
+        if (doctorAccount == null)
+            return Result.error("登陆失败");
+        String token = JwtHelper
+                .generateToken(JwtHelper.UserInfo.builder().id(doctorAccount.getId()).identity(1).build());
         DoctorLoginVo doctorLoginVo = DoctorLoginVo.builder().id(doctorAccount.getId()).token(token).build();
         return Result.success(doctorLoginVo);
     }

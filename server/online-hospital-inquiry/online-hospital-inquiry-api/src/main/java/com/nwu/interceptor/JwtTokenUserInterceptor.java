@@ -1,8 +1,8 @@
 package com.nwu.interceptor;
 
 import com.nwu.base.context.BaseContext;
-import com.nwu.base.utils.UserJwtUtils;
-import io.jsonwebtoken.Claims;
+import com.nwu.base.utils.JwtHelper;
+import com.nwu.base.utils.JwtHelper.UserInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -35,14 +35,12 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
 
         //1、从请求头中获取令牌
         String token = request.getHeader("token");
+        log.info("jwt校验:{}", token);
         //2、校验令牌
         try {
-            log.info("jwt校验:{}", token);
-            Claims claims = UserJwtUtils.parseJwt(token);
-
-            Long userId = Long.valueOf(claims.get("id").toString());
-            log.info("当前用户的id：{}", userId);
-            BaseContext.setCurrentId(userId);
+            UserInfo userInfo = JwtHelper.parseToken(token);
+            log.info("当前用户的id：{}", userInfo.getId());
+            BaseContext.setCurrentId(userInfo.getId());
             //3、通过，放行
             return true;
         } catch (Exception ex) {

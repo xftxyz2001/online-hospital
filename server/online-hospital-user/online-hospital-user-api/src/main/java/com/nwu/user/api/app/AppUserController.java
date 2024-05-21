@@ -1,10 +1,21 @@
 package com.nwu.user.api.app;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.nwu.base.model.Result;
 import com.nwu.base.utils.HttpClientUtil;
-import com.nwu.base.utils.UserJwtUtils;
+import com.nwu.base.utils.JwtHelper;
 import com.nwu.properties.WeChatProperties;
 import com.nwu.user.model.dto.user.AppQueryUserInfoVo;
 import com.nwu.user.model.dto.user.AppUpdateUserInfoDto;
@@ -13,14 +24,10 @@ import com.nwu.user.model.po.UserInfo;
 import com.nwu.user.model.vo.user.QueryUsernameVo;
 import com.nwu.user.model.vo.user.UserLoginVo;
 import com.nwu.user.service.IUserInfoService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @version 1.0
@@ -46,7 +53,7 @@ public class AppUserController {
     @PostMapping("/login")
     @ApiOperation("用户登录接口")
     public Result<UserLoginVo> userLogin(@RequestBody UserLoginDto userLoginDto) {
-        //发送微信登录请求
+        // 发送微信登录请求
 
         Map<String, String> map = new HashMap<>();
         map.put("appid", weChatProperties.getAppid());
@@ -56,23 +63,21 @@ public class AppUserController {
         String json = HttpClientUtil.doGet(WX_LOGIN, map);
         JSONObject jsonObject = JSON.parseObject(json);
         String openid = jsonObject.getString("openid");
-        if (openid == null) return Result.error("登陆失败");
+        if (openid == null)
+            return Result.error("登陆失败");
 
         UserLoginVo userLoginVo = new UserLoginVo();
-        userLoginVo.setIsFirst(0);//不是第一次登录
-        //判断是否第一次登录
+        userLoginVo.setIsFirst(0);// 不是第一次登录
+        // 判断是否第一次登录
         UserInfo userInfo = iUserInfoService.isFirstLogin(openid);
         if (userInfo == null) {
-            //第一次登录
+            // 第一次登录
             userInfo = iUserInfoService.appUserLogin(openid);
             userLoginVo.setIsFirst(1);
         }
 
-        //生成jwt令牌
-        Map<String, Object> jwtMap = new HashMap<>();
-        jwtMap.put("id", userInfo.getId());
-        jwtMap.put("identity", 0);
-        String token = UserJwtUtils.generateJwt(jwtMap);
+        // 生成jwt令牌
+        String token = JwtHelper.generateToken(JwtHelper.UserInfo.builder().id(userInfo.getId()).identity(0).build());
         userLoginVo.setToken(token);
         return Result.success(userLoginVo);
     }
@@ -98,6 +103,5 @@ public class AppUserController {
         iUserInfoService.appUpdateUserInfo(appUpdateUserInfoDto);
         return Result.success();
     }
-
 
 }

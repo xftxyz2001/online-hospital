@@ -1,4 +1,4 @@
-# Dockerfile for admin
+# Dockerfile for doctor
 FROM nginx:1.25.5
 
 WORKDIR /app

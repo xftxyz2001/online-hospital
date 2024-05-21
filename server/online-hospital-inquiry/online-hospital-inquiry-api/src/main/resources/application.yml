@@ -1,0 +1,22 @@
+server:
+  port: 8240
+  servlet:
+    context-path: /inquiry
+
+spring:
+  application:
+    name: inquiry-api
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/online_hospital_inquiry?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+
+logging:
+  config: classpath:log4j2-dev.xml

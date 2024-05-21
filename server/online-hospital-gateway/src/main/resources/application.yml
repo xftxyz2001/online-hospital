@@ -1,0 +1,60 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            maxAge: 3600
+
+      discovery:
+        locator:
+          enabled: true
+
+      # 参考文档 https://springdoc.cn/spring-cloud-gateway/
+      routes:
+        - id: user
+          uri: lb://user-api
+          predicates:
+            - Path=/user/**
+        - id: hospital
+          uri: lb://hospital-api
+          predicates:
+            - Path=/hospital/**
+        - id: registration
+          uri: lb://registration-api
+          predicates:
+            - Path=/registration/**
+        - id: inquiry
+          uri: lb://inquiry-api
+          predicates:
+            - Path=/inquiry/**
+        - id: system
+          uri: lb://system-api
+          predicates:
+            - Path=/system/**
+        
+        - id: doctor
+          uri: http://site-doctor:3000
+          predicates:
+            - Path=/doctor/**
+          filters:
+            - StripPrefix=1
+        - id: admin
+          uri: http://site-admin:3001
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1

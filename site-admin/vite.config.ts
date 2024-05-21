@@ -13,6 +13,7 @@ export default ({ command, mode }) => {
       }
     },
     server: {
+      port: 3001,
       proxy: {
         '/system': {
           //使用环境变量

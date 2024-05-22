@@ -8,7 +8,7 @@ import store from "@/vuex";
 export default {
   // 初始化webSocket
   webSocketInit() {
-    const webSocketUrl = "/inquiry/chat"
+    const webSocketUrl = "/inquiry/chat";
     const useToken = store.getters.doctorLoginToken.token;
     if (useToken != "") {
       this.webSocket = new WebSocket(webSocketUrl + "/" + useToken);

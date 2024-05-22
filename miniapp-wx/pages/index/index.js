@@ -57,7 +57,7 @@ Page({
         WebsocketHeartbeat({
            miniprogram: wx,
            connectSocketParams: {
-             url: `ws://47.98.244.192:40011/inquiry/chat/`+res.data
+             url: `ws://localhost/inquiry/chat/`+res.data
            },
            pingTimeout: that.heartTime,
            pongTimeout: that.closeTime,

@@ -26,6 +26,11 @@ import java.time.LocalDateTime;
 @Schema(description = "UserInfo对象")
 public class UserInfo implements Serializable {
 
+    public static final Integer IS_DELETED = 1;//被逻辑删除
+    public static final Integer NOT_DELETED = 0;//没有被逻辑删除
+    public static final Integer ENABLE = 1;//启用
+    public static final Integer DISABLE = 0;//禁用
+
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)

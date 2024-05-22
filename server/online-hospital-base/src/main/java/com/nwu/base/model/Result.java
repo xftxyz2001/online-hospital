@@ -1,6 +1,5 @@
 package com.nwu.base.model;
 
-import com.nwu.base.constant.ResultCodeConstant;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,27 +12,30 @@ import java.io.Serializable;
 @Data
 public class Result<T> implements Serializable {
 
+    private static final Integer SUCCESS = 1;
+    private static final Integer FAILED = 0;
+
     private Integer code; //编码：1成功，0和其它数字为失败
     private String msg; //错误信息
     private T data; //数据
 
     public static Result<?> success() {
         Result<?> result = new Result<>();
-        result.code = ResultCodeConstant.RESULT_SUCCESS;
+        result.code = SUCCESS;
         return result;
     }
 
     public static <T> Result<T> success(T object) {
         Result<T> result = new Result<T>();
+        result.code = SUCCESS;
         result.data = object;
-        result.code = ResultCodeConstant.RESULT_SUCCESS;
         return result;
     }
 
     public static Result<?> error(String msg) {
         Result<?> result = new Result<>();
+        result.code = FAILED;
         result.msg = msg;
-        result.code = ResultCodeConstant.RESULT_FAILED;
         return result;
     }
 

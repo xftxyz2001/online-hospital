@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.nwu.base.constant.MessageConstant;
-import com.nwu.base.constant.UserConstant;
+import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.context.BaseContext;
 import com.nwu.base.model.PageParams;
 import com.nwu.base.model.PageResult;
@@ -49,7 +48,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfoLambdaQueryWrapper.like(StringUtils.isNotEmpty(queryUserInfoDto.getUserName()), UserInfo::getUsername, queryUserInfoDto.getUserName())
                 .like(StringUtils.isNotEmpty(queryUserInfoDto.getPhone()), UserInfo::getPhone, queryUserInfoDto.getPhone())
                 .eq(StringUtils.isNotEmpty(queryUserInfoDto.getStatus()), UserInfo::getStatus, queryUserInfoDto.getStatus())
-                .eq(UserInfo::getIsDeleted, UserConstant.NOT_DELETED);
+                .eq(UserInfo::getIsDeleted, UserInfo.NOT_DELETED);
         Page<UserInfo> userInfoPage = userInfoMapper.selectPage(page, userInfoLambdaQueryWrapper);
         List<UserInfo> userInfoList = userInfoPage.getRecords();
         Long counts = userInfoPage.getTotal();
@@ -60,7 +59,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result<?> deleteUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getIsDeleted, UserConstant.IS_DELETED);
+        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getIsDeleted, UserInfo.IS_DELETED);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
         return Result.success();
     }
@@ -68,7 +67,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result<?> enableUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserConstant.ENABLE);
+        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserInfo.ENABLE);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
         return Result.success();
     }
@@ -76,7 +75,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result<?> disenableUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserConstant.DISABLE);
+        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserInfo.DISABLE);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
         return Result.success();
     }
@@ -84,7 +83,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result<?> getUserInfoById(Long id) {
         UserInfo userInfo = userInfoMapper.selectById(id);
-        return userInfo == null ? Result.error(MessageConstant.QUERY_FAILED) : Result.success(userInfo);
+        return userInfo == null ? Result.error(ErrorMessages.QUERY_FAILED) : Result.success(userInfo);
     }
 
     @Override
@@ -106,8 +105,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         newUser.setCreateTime(LocalDateTime.now())
                 .setModifiedTime(LocalDateTime.now())
                 .setOpenId(openid)
-                .setStatus(UserConstant.ENABLE)
-                .setIsDeleted(UserConstant.NOT_DELETED)
+                .setStatus(UserInfo.ENABLE)
+                .setIsDeleted(UserInfo.NOT_DELETED)
                 .setUsername("微信用户")
                 .setAvatar("https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0");
         userInfoMapper.insert(newUser);

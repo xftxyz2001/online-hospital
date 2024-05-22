@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.nwu.base.constant.MessageConstant;
-import com.nwu.base.constant.PatientConstant;
+import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.context.BaseContext;
 import com.nwu.base.model.PageParams;
 import com.nwu.base.model.PageResult;
@@ -44,7 +43,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
         Page<PatientInfo> page = new Page<>(pageParams.getPageNo(), pageParams.getPageSize());
         LambdaQueryWrapper<PatientInfo> patientInfoLambdaQueryWrapper = new LambdaQueryWrapper<>();
         patientInfoLambdaQueryWrapper.eq(PatientInfo::getUserId, userId);
-        patientInfoLambdaQueryWrapper.eq(PatientInfo::getIsDeleted, PatientConstant.NOT_DELETED);
+        patientInfoLambdaQueryWrapper.eq(PatientInfo::getIsDeleted, PatientInfo.NOT_DELETED);
         Page<PatientInfo> patientInfoPage = patientInfoMapper.selectPage(page, patientInfoLambdaQueryWrapper);
         List<PatientInfo> patientInfoList = patientInfoPage.getRecords();
         Long counts = patientInfoPage.getTotal();
@@ -56,7 +55,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
     public Result<?> deletePatientById(Long id) {
         LambdaUpdateWrapper<PatientInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(PatientInfo::getId, id);
-        lambdaUpdateWrapper.set(PatientInfo::getIsDeleted, PatientConstant.IS_DELETED);
+        lambdaUpdateWrapper.set(PatientInfo::getIsDeleted, PatientInfo.IS_DELETED);
         patientInfoMapper.update(null, lambdaUpdateWrapper);
         return Result.success();
     }
@@ -64,7 +63,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
     @Override
     public Result<?> getPatientInfoById(Long id) {
         PatientInfo patientInfo = patientInfoMapper.selectById(id);
-        return patientInfo == null ? Result.error(MessageConstant.QUERY_FAILED) : Result.success(patientInfo);
+        return patientInfo == null ? Result.error(ErrorMessages.QUERY_FAILED) : Result.success(patientInfo);
     }
 
     @Override
@@ -84,7 +83,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
         patientInfoLambdaQueryWrapper.like(StringUtils.isNotEmpty(queryPatientInfoDto.getName()), PatientInfo::getName, queryPatientInfoDto.getName())
                 .like(StringUtils.isNotEmpty(queryPatientInfoDto.getPhone()), PatientInfo::getPhone, queryPatientInfoDto.getPhone())
                 .eq(StringUtils.isNotEmpty(queryPatientInfoDto.getSex()), PatientInfo::getSex, queryPatientInfoDto.getSex())
-                .eq(PatientInfo::getIsDeleted, PatientConstant.NOT_DELETED);
+                .eq(PatientInfo::getIsDeleted, PatientInfo.NOT_DELETED);
         Page<PatientInfo> patientInfoPage = patientInfoMapper.selectPage(page, patientInfoLambdaQueryWrapper);
         List<PatientInfo> patientInfoList = patientInfoPage.getRecords();
         Long counts = patientInfoPage.getTotal();

@@ -2,7 +2,7 @@ package com.nwu.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.nwu.base.constant.MessageConstant;
+import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.base.model.Result;
@@ -33,7 +33,7 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager> impl
         managerLambdaQueryWrapper.eq(Manager::getPassword, managerLoginDto.getPassword());
         Manager manager = managerMapper.selectOne(managerLambdaQueryWrapper);
         if (manager == null) {
-            return Result.error(MessageConstant.LOGIN_FAILED);
+            return Result.error(ErrorMessages.LOGIN_FAILED);
         }
         String jwt = JwtHelper.generateToken(UserIdAndIdentity.builder().id(manager.getId().longValue()).identity(2).build());
         return Result.success(jwt);

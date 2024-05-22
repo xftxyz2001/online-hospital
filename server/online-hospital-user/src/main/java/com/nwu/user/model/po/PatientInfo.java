@@ -27,6 +27,9 @@ import java.time.LocalDateTime;
 @Schema(description = "PatientInfo对象-就诊人表")
 public class PatientInfo implements Serializable {
 
+    public static final Integer IS_DELETED = 1;//被逻辑删除
+    public static final Integer NOT_DELETED = 0;//没有被逻辑删除
+
     private static final long serialVersionUID = 1L;
 
     @Schema(description = "编号")

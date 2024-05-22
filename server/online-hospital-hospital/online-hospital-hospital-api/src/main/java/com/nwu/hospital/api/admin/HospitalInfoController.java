@@ -10,7 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,7 +33,7 @@ public class HospitalInfoController {
     @ApiOperation(value = "获取全部医院信息")
     public Result<List<HospitalInfo>> getAllHospitalInfo() {
 
-        return Result.success((ArrayList) iHospitalInfoService.list());
+        return Result.success(iHospitalInfoService.list());
     }
 
     @ApiOperation(value = "根据id查询医院")
@@ -45,7 +44,7 @@ public class HospitalInfoController {
 
     @ApiOperation(value = "更新医院信息")
     @PutMapping("/update")
-    public Result update(@RequestBody UpdateHospitalDto updateHospitalDto) {
+    public Result<?> update(@RequestBody UpdateHospitalDto updateHospitalDto) {
         iHospitalInfoService.updateHospital(updateHospitalDto);
         return Result.success();
 

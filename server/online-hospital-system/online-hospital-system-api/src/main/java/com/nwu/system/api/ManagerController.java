@@ -9,7 +9,6 @@ import com.nwu.system.model.vo.ManagerQueryUsernameVo;
 import com.nwu.system.service.IManagerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
  * @since 2024-03-13
  */
 @RestController
-@Slf4j
 @Api(tags = "管理员接口")
 @RequestMapping("/manager")
 public class ManagerController {
@@ -31,7 +29,7 @@ public class ManagerController {
 
     @ApiOperation("管理员登录接口")
     @PostMapping("/login")
-    public Result login(@RequestBody ManagerLoginDto managerLoginDto) {
+    public Result<?> login(@RequestBody ManagerLoginDto managerLoginDto) {
         return iManagerService.login(managerLoginDto);
     }
 

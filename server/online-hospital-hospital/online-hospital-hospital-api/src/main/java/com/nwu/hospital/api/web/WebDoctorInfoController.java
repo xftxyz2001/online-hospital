@@ -24,7 +24,7 @@ public class WebDoctorInfoController {
 
     @ApiOperation("医生登录接口")
     @PostMapping("/login")
-    public Result<DoctorLoginVo> login(@RequestBody DoctorLoginDto doctorLoginDto) {
+    public Result<?> login(@RequestBody DoctorLoginDto doctorLoginDto) {
         DoctorInfo doctorInfo = iDoctorInfoService.login(doctorLoginDto);
         if (doctorInfo == null)
             return Result.error("登陆失败");

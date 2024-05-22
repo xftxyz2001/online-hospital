@@ -16,5 +16,5 @@ import com.nwu.system.model.po.Manager;
  */
 public interface IManagerService extends IService<Manager> {
 
-    Result login(ManagerLoginDto managerLoginDto);
+    Result<?> login(ManagerLoginDto managerLoginDto);
 }

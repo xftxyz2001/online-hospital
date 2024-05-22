@@ -26,7 +26,7 @@ public class AppChatMessageController {
 
     @ApiOperation(value = "发送消息")
     @PostMapping("/send-message")
-    public Result sendMessage(@RequestBody AppAddChatMessageDto appAddChatMessageDto) {
+    public Result<?> sendMessage(@RequestBody AppAddChatMessageDto appAddChatMessageDto) {
         iChatMessageService.appAddChatMessage(appAddChatMessageDto);
         return Result.success();
     }

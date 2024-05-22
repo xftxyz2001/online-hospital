@@ -53,7 +53,7 @@ public class WebInquiryApplicationController {
 
     @ApiOperation(value = "接诊")
     @GetMapping("/reception")
-    public Result reception(Long id) {
+    public Result<?> reception(Long id) {
         iInquiryApplicationService.changeWaitingToDoing(id);
         return Result.success();
     }

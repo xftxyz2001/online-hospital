@@ -9,7 +9,6 @@ import com.nwu.user.model.vo.patient.AppQueryOnePatientVo;
 import com.nwu.user.service.IPatientInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,6 @@ import java.util.List;
  * @DateTime 2024/3/23 22:30
  **/
 @RestController
-@Slf4j
 @Api(tags = "App就诊人接口")
 @RequestMapping("/app/patient")
 public class AppPatientController {
@@ -32,7 +30,7 @@ public class AppPatientController {
 
     @ApiOperation(value = "添加就诊人")
     @PostMapping("/add")
-    public Result addPatient(@RequestBody AddPatientDto addPatientDto) {
+    public Result<?> addPatient(@RequestBody AddPatientDto addPatientDto) {
         iPatientInfoService.addPatient(addPatientDto);
         return Result.success();
     }
@@ -63,14 +61,14 @@ public class AppPatientController {
 
     @ApiOperation(value = "修改就诊人")
     @PutMapping("/update")
-    public Result updatePatient(@RequestBody UpdatePatientDto updatePatientDto) {
+    public Result<?> updatePatient(@RequestBody UpdatePatientDto updatePatientDto) {
         iPatientInfoService.appUpdate(updatePatientDto);
         return Result.success();
     }
 
     @ApiOperation(value = "删除就诊人")
     @DeleteMapping("/delete")
-    public Result deletePatient(Long patientId) {
+    public Result<?> deletePatient(Long patientId) {
         iPatientInfoService.appDelete(patientId);
         return Result.success();
     }

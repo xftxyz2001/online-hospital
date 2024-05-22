@@ -42,6 +42,9 @@ public class AliOSSUtils {
         InputStream inputStream = file.getInputStream();
         // 避免文件覆盖
         String originalFileName = file.getOriginalFilename();
+        if (originalFileName == null) {
+            originalFileName = "";
+        }
         String fileName = new StringBuffer(String.valueOf(new Date().getTime())).reverse().toString() + Math.random() + originalFileName.substring(originalFileName.lastIndexOf("."));
 
         //上传文件到 OSS

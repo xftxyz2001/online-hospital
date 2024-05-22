@@ -53,7 +53,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
     }
 
     @Override
-    public Result deletePatientById(Long id) {
+    public Result<?> deletePatientById(Long id) {
         LambdaUpdateWrapper<PatientInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(PatientInfo::getId, id);
         lambdaUpdateWrapper.set(PatientInfo::getIsDeleted, PatientConstant.IS_DELETED);
@@ -68,7 +68,7 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
     }
 
     @Override
-    public Result updatePatientInfo(UpdatePatientInfoDto updatePatientInfoDto) {
+    public Result<?> updatePatientInfo(UpdatePatientInfoDto updatePatientInfoDto) {
         updatePatientInfoDto.setUpdateTime(LocalDateTime.now());
         PatientInfo patientInfo = new PatientInfo();
         BeanUtils.copyProperties(updatePatientInfoDto, patientInfo);

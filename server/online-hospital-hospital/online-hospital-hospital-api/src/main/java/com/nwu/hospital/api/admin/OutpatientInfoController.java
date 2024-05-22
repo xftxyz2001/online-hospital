@@ -57,7 +57,7 @@ public class OutpatientInfoController {
 
     @PostMapping("/add")
     @ApiOperation(value = "添加门诊")
-    public Result add(@RequestBody AddOutpatientDto addOutpatientDto) throws BadHanyuPinyinOutputFormatCombination {
+    public Result<?> add(@RequestBody AddOutpatientDto addOutpatientDto) throws BadHanyuPinyinOutputFormatCombination {
         OutpatientInfo outpatientInfo = new OutpatientInfo();
         BeanUtils.copyProperties(addOutpatientDto, outpatientInfo);
         outpatientInfo.setCreateTime(LocalDateTime.now())
@@ -77,7 +77,7 @@ public class OutpatientInfoController {
 
     @PutMapping("/update")
     @ApiOperation(value = "修改门诊")
-    public Result update(@RequestBody UpdateOutpatientDto updateOutpatientDto) {
+    public Result<?> update(@RequestBody UpdateOutpatientDto updateOutpatientDto) {
         LambdaUpdateWrapper<OutpatientInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(OutpatientInfo::getId, updateOutpatientDto.getId())
                 .set(StringUtils.isNotEmpty(updateOutpatientDto.getName()), OutpatientInfo::getName, updateOutpatientDto.getName())

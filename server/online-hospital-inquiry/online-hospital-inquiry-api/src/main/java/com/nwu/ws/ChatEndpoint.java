@@ -6,7 +6,6 @@ import com.nwu.base.utils.JwtHelper.UserInfo;
 import com.nwu.config.GetHttpSessionConfig;
 import com.nwu.inquiry.model.ws.UserIdentity;
 import com.nwu.inquiry.model.ws.WsMessage;
-import com.nwu.inquiry.service.IChatListService;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 
 @ServerEndpoint(value = "/chat/{param}", configurator = GetHttpSessionConfig.class)
 @Component
@@ -24,10 +22,6 @@ public class ChatEndpoint {
     private static final Map<String, Session> onlineUsers = new ConcurrentHashMap<>();
 
     private UserIdentity userIdentity;
-
-    // 当前用户的session
-    private Session session;
-    private IChatListService iChatListService;
 
     /**
      * 建立websocket连接后，被调用
@@ -46,8 +40,6 @@ public class ChatEndpoint {
         // 2.将对象的字符串格式和websocket的session作为键值对存入onlineUsers中
         onlineUsers.put(this.userIdentity.toString(), session);
         // System.err.println(this.userIdentity.toString());
-        // 保存session
-        this.session = session;
     }
 
     /**
@@ -74,21 +66,6 @@ public class ChatEndpoint {
             Session toSession = onlineUsers.get(userIdentity.toString());
             toSession.getAsyncRemote().sendText("update");
         }
-
-        // try {
-        // //将消息推送给指定的用户
-        // Message msg = JSON.parseObject(message, Message.class);
-        // //获取 消息接收方的用户名
-        // String toName = msg.getToName();
-        // String mess = msg.getMessage();
-        // //获取消息接收方用户对象的session对象
-        // Session session = onlineUsers.get(toName);
-        // String user = (String) this.httpSession.getAttribute("user");
-        // String msg1 = MessageUtils.getMessage(false, user, mess);
-        // session.getBasicRemote().sendText(msg1);
-        // } catch (Exception e) {
-        // //记录日志
-        // }
     }
 
     /**
@@ -98,15 +75,7 @@ public class ChatEndpoint {
      */
     @OnClose
     public void onClose(Session session) {
-        // //1,从onlineUsers中剔除当前用户的session对象
-        // String user = (String) this.httpSession.getAttribute("user");
-        // onlineUsers.remove(user);
-        // //2,通知其他所有的用户，当前用户下线了
-        // String message = MessageUtils.getMessage(true,null,getFriends());
-        // broadcastAllUsers(message);
-
-        // System.err.println("断开："+this.userIdentity.toString());
-        // onlineUsers.remove(this.userIdentity.toString());
+        onlineUsers.remove(this.userIdentity.toString());
     }
 
     @OnError

@@ -31,7 +31,7 @@ public class WebDoctorAccountController {
 
     @ApiOperation("医生登录接口")
     @PostMapping("/login")
-    public Result<DoctorLoginVo> login(@RequestBody DoctorAccountLoginDto doctorAccountLoginDto) {
+    public Result<?> login(@RequestBody DoctorAccountLoginDto doctorAccountLoginDto) {
         DoctorAccount doctorAccount = iDoctorAccountService.login(doctorAccountLoginDto);
         if (doctorAccount == null)
             return Result.error("登陆失败");

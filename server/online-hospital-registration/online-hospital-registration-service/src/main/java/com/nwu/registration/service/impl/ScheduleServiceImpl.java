@@ -51,8 +51,8 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
         for (int i = 0; i < schedules.size(); i++) {
             ScheduleVo scheduleVo = new ScheduleVo();
             BeanUtils.copyProperties(schedules.get(i), scheduleVo);
-            Result doctorInfoResult = hospitalClient.queryDoctorById(schedules.get(i).getDoctorId());
-            DoctorInfo doctorInfo = (DoctorInfo) doctorInfoResult.getData();
+            Result<DoctorInfo> doctorInfoResult = hospitalClient.queryDoctorById(schedules.get(i).getDoctorId());
+            DoctorInfo doctorInfo = doctorInfoResult.getData();
             scheduleVo.setDoctorName(doctorInfo.getName());
             scheduleVo.setDoctorIntroduce(doctorInfo.getIntroduce());
             scheduleVo.setProfessionalTitle(doctorInfo.getProfessionalTitle());
@@ -62,7 +62,7 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
     }
 
     @Override
-    public Result insertSchedule(InsertScheduleDto insertScheduleDto) {
+    public Result<?> insertSchedule(InsertScheduleDto insertScheduleDto) {
         Schedule schedule = new Schedule();
         BeanUtils.copyProperties(insertScheduleDto, schedule);
         schedule.setCreateTime(LocalDateTime.now());
@@ -83,8 +83,8 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
         for (int i = 0; i < schedules.size(); i++) {
             ScheduleVo scheduleVo = new ScheduleVo();
             BeanUtils.copyProperties(schedules.get(i), scheduleVo);
-            Result doctorInfoResult = hospitalClient.queryDoctorById(schedules.get(i).getDoctorId());
-            DoctorInfo doctorInfo = (DoctorInfo) doctorInfoResult.getData();
+            Result<DoctorInfo> doctorInfoResult = hospitalClient.queryDoctorById(schedules.get(i).getDoctorId());
+            DoctorInfo doctorInfo = doctorInfoResult.getData();
             scheduleVo.setDoctorName(doctorInfo.getName());
             scheduleVo.setDoctorIntroduce(doctorInfo.getIntroduce());
             scheduleVo.setProfessionalTitle(doctorInfo.getProfessionalTitle());

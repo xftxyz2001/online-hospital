@@ -24,15 +24,15 @@ public interface IUserInfoService extends IService<UserInfo> {
 
     Result<PageResult<UserInfo>> queryUserInfoList(PageParams pageParams, QueryUserInfoDto queryUserInfoDto);
 
-    Result deleteUserById(Long id);
+    Result<?> deleteUserById(Long id);
 
-    Result enableUserById(Long id);
+    Result<?> enableUserById(Long id);
 
-    Result disenableUserById(Long id);
+    Result<?> disenableUserById(Long id);
 
-    Result<UserInfo> getUserInfoById(Long id);
+    Result<?> getUserInfoById(Long id);
 
-    Result updateUserInfo(UpdateUserInfoDto updateUserInfoDto);
+    Result<?> updateUserInfo(UpdateUserInfoDto updateUserInfoDto);
 
     UserInfo appUserLogin(String openid);
 

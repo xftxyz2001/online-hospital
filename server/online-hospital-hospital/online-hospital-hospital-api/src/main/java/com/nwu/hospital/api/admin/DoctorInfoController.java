@@ -50,7 +50,7 @@ public class DoctorInfoController {
 
     @ApiOperation(value = "添加医生")
     @PostMapping("/add")
-    public Result add(@RequestBody AddDoctorDto addDoctorDto) {
+    public Result<?> add(@RequestBody AddDoctorDto addDoctorDto) {
         DoctorInfo doctorInfo = new DoctorInfo();
         BeanUtils.copyProperties(addDoctorDto, doctorInfo);
         doctorInfo.setCreateTime(LocalDateTime.now())
@@ -68,7 +68,7 @@ public class DoctorInfoController {
 
     @ApiOperation(value = "修改医生")
     @PutMapping("/update")
-    public Result update(@RequestBody UpdateDoctorDto updateDoctorDto) {
+    public Result<?> update(@RequestBody UpdateDoctorDto updateDoctorDto) {
         LambdaUpdateWrapper<DoctorInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(DoctorInfo::getId, updateDoctorDto.getId())
                 .set(StringUtils.isNotEmpty(updateDoctorDto.getName()), DoctorInfo::getName, updateDoctorDto.getName())

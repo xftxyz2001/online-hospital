@@ -30,21 +30,21 @@ public class AppChatListController {
 
     @ApiOperation(value = "设置上线")
     @PutMapping("/in-window")
-    public Result inWindow(Long linkId) {
+    public Result<?> inWindow(Long linkId) {
         iChatListService.appInWindow(linkId);
         return Result.success();
     }
 
     @ApiOperation(value = "设置下线")
     @PutMapping("/out-window")
-    public Result outWindow(Long linkId) {
+    public Result<?> outWindow(Long linkId) {
         iChatListService.appOutWindow(linkId);
         return Result.success();
     }
 
     @ApiOperation(value = "未读数设为0")
     @PutMapping("/clear-unread")
-    public Result clearUnread(Long linkId) {
+    public Result<?> clearUnread(Long linkId) {
         iChatListService.appClearUnread(linkId);
         return Result.success();
     }

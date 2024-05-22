@@ -24,7 +24,7 @@ public interface IScheduleService extends IService<Schedule> {
 
     Result<List<ScheduleVo>> getSchedules(QueryScheduleDto queryScheduleDto);
 
-    Result insertSchedule(InsertScheduleDto insertScheduleDto);
+    Result<?> insertSchedule(InsertScheduleDto insertScheduleDto);
 
     Result<List<AppScheduleVo>> getAppSchedules(QueryScheduleDto queryScheduleDto);
 

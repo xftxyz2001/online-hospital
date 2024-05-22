@@ -61,7 +61,7 @@ public class SpecialistInfoController {
 
     @ApiOperation(value = "添加专科")
     @PostMapping("/add")
-    public Result add(@RequestBody AddSpecialistDto addSpecialistDto) {
+    public Result<?> add(@RequestBody AddSpecialistDto addSpecialistDto) {
         SpecialistInfo specialistInfo = new SpecialistInfo();
         BeanUtils.copyProperties(addSpecialistDto, specialistInfo);
         specialistInfo.setCreateTime(LocalDateTime.now())
@@ -72,7 +72,7 @@ public class SpecialistInfoController {
 
     @ApiOperation(value = "修改专科")
     @PutMapping("/update")
-    public Result update(@RequestBody UpdateSpecialistDto updateSpecialistDto) {
+    public Result<?> update(@RequestBody UpdateSpecialistDto updateSpecialistDto) {
         LambdaUpdateWrapper<SpecialistInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(SpecialistInfo::getId, updateSpecialistDto.getId())
                 .set(StringUtils.isNotEmpty(updateSpecialistDto.getName()), SpecialistInfo::getName, updateSpecialistDto.getName())

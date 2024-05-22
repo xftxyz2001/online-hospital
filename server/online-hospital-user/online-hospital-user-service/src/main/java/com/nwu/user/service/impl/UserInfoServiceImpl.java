@@ -58,7 +58,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public Result deleteUserById(Long id) {
+    public Result<?> deleteUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getIsDeleted, UserConstant.IS_DELETED);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
@@ -66,7 +66,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public Result enableUserById(Long id) {
+    public Result<?> enableUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserConstant.ENABLE);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
@@ -74,7 +74,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public Result disenableUserById(Long id) {
+    public Result<?> disenableUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserConstant.DISENABLE);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
@@ -82,13 +82,13 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public Result<UserInfo> getUserInfoById(Long id) {
+    public Result<?> getUserInfoById(Long id) {
         UserInfo userInfo = userInfoMapper.selectById(id);
         return userInfo == null ? Result.error(MessageConstant.QUERY_FAILED) : Result.success(userInfo);
     }
 
     @Override
-    public Result updateUserInfo(UpdateUserInfoDto updateUserInfoDto) {
+    public Result<?> updateUserInfo(UpdateUserInfoDto updateUserInfoDto) {
         updateUserInfoDto.setModifiedTime(LocalDateTime.now());
         UserInfo userInfo = new UserInfo();
         BeanUtils.copyProperties(updateUserInfoDto, userInfo);

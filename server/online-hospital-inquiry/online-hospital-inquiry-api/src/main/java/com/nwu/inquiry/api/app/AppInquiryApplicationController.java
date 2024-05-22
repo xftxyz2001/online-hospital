@@ -31,7 +31,7 @@ public class AppInquiryApplicationController {
 
     @ApiOperation(value = "新增问诊申请")
     @PostMapping("/add")
-    public Result addInquiryApplication(@RequestBody AddInquiryApplicationDto addInquiryApplicationDto) {
+    public Result<?> addInquiryApplication(@RequestBody AddInquiryApplicationDto addInquiryApplicationDto) {
         iInquiryApplicationService.appAddInquiryApplication(addInquiryApplicationDto);
         return Result.success();
     }
@@ -60,7 +60,7 @@ public class AppInquiryApplicationController {
 
     @ApiOperation(value = "取消问诊申请")
     @PutMapping("/cancel")
-    public Result cancel(Long id) {
+    public Result<?> cancel(Long id) {
         LambdaUpdateWrapper<InquiryApplication> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(InquiryApplication::getId, id)
                 .eq(InquiryApplication::getStatus, 0)

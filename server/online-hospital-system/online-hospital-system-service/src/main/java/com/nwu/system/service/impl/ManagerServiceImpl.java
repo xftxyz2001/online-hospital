@@ -27,7 +27,7 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager> impl
     ManagerMapper managerMapper;
 
     @Override
-    public Result login(ManagerLoginDto managerLoginDto) {
+    public Result<?> login(ManagerLoginDto managerLoginDto) {
         LambdaQueryWrapper<Manager> managerLambdaQueryWrapper = new LambdaQueryWrapper<>();
         managerLambdaQueryWrapper.eq(Manager::getUsername, managerLoginDto.getUsername());
         managerLambdaQueryWrapper.eq(Manager::getPassword, managerLoginDto.getPassword());

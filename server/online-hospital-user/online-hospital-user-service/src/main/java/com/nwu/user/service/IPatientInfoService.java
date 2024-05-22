@@ -25,11 +25,11 @@ public interface IPatientInfoService extends IService<PatientInfo> {
 
     Result<PageResult<PatientInfo>> getPatientListByUserId(Long userId, PageParams pageParams);
 
-    Result deletePatientById(Long id);
+    Result<?> deletePatientById(Long id);
 
     Result<PatientInfo> getPatientInfoById(Long id);
 
-    Result updatePatientInfo(UpdatePatientInfoDto updatePatientInfoDto);
+    Result<?> updatePatientInfo(UpdatePatientInfoDto updatePatientInfoDto);
 
     Result<PageResult<PatientInfo>> queryPatientInfoList(PageParams pageParams, QueryPatientInfoDto queryPatientInfoDto);
 

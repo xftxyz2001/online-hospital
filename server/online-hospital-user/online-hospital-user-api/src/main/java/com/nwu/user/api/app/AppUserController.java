@@ -15,7 +15,6 @@ import com.nwu.user.model.vo.user.UserLoginVo;
 import com.nwu.user.service.IUserInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +27,6 @@ import java.util.Map;
  * @DateTime 2024/3/21 0:45
  **/
 @RestController
-@Slf4j
 @Api(tags = "App用户接口")
 @RequestMapping("/app/user")
 public class AppUserController {
@@ -38,13 +36,13 @@ public class AppUserController {
     @Autowired
     WeChatProperties weChatProperties;
 
-    public Result isFirstLogin() {
+    public Result<?> isFirstLogin() {
         return null;
     }
 
     @PostMapping("/login")
     @ApiOperation("用户登录接口")
-    public Result<UserLoginVo> userLogin(@RequestBody UserLoginDto userLoginDto) {
+    public Result<?> userLogin(@RequestBody UserLoginDto userLoginDto) {
         // 发送微信登录请求
 
         Map<String, String> map = new HashMap<>();
@@ -91,7 +89,7 @@ public class AppUserController {
 
     @PutMapping("/updateUserInfo")
     @ApiOperation("修改用户信息")
-    public Result updateUserInfo(@RequestBody AppUpdateUserInfoDto appUpdateUserInfoDto) {
+    public Result<?> updateUserInfo(@RequestBody AppUpdateUserInfoDto appUpdateUserInfoDto) {
         iUserInfoService.appUpdateUserInfo(appUpdateUserInfoDto);
         return Result.success();
     }

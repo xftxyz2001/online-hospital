@@ -39,13 +39,13 @@ public class ScheduleController {
 
     @ApiOperation(value = "新增排班")
     @PostMapping("/insert")
-    public Result insertSchedule(@RequestBody InsertScheduleDto insertScheduleDto) {
+    public Result<?> insertSchedule(@RequestBody InsertScheduleDto insertScheduleDto) {
         return iScheduleService.insertSchedule(insertScheduleDto);
     }
 
     @ApiOperation(value = "根据id删除排班")
     @DeleteMapping("/delete")
-    public Result deleteSchedule(Long scheduleId) {
+    public Result<?> deleteSchedule(Long scheduleId) {
         return iScheduleService.removeById(scheduleId) ? Result.success() : Result.error(MessageConstant.DELETE_FAILED);
     }
 

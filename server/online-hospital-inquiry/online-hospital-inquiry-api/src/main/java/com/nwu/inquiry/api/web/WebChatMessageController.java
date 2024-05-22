@@ -36,7 +36,7 @@ public class WebChatMessageController {
 
     @ApiOperation(value = "发送消息")
     @PostMapping("/send-message")
-    public Result sendMessage(@RequestBody WebAddChatMessageDto webAddChatMessageDto) {
+    public Result<?> sendMessage(@RequestBody WebAddChatMessageDto webAddChatMessageDto) {
         iChatMessageService.webAddChatMessage(webAddChatMessageDto);
         return Result.success();
     }

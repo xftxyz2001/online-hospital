@@ -36,7 +36,7 @@ public class PatientInfoController {
 
     @ApiOperation(value = "删除就诊人")
     @DeleteMapping("")
-    public Result deletePatientById(Long id) {
+    public Result<?> deletePatientById(Long id) {
         return iPatientInfoService.deletePatientById(id);
     }
 
@@ -48,7 +48,7 @@ public class PatientInfoController {
 
     @PutMapping("")
     @ApiOperation("修改就诊人")
-    public Result updatePatientInfo(@RequestBody(required = false) UpdatePatientInfoDto updatePatientInfoDto) {
+    public Result<?> updatePatientInfo(@RequestBody(required = false) UpdatePatientInfoDto updatePatientInfoDto) {
 
         return iPatientInfoService.updatePatientInfo(updatePatientInfoDto);
     }

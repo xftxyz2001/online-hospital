@@ -4,7 +4,7 @@
       active-text-color="#ffd04b"
       background-color="#324157"
       class="el-menu-vertical-demo"
-      default-active="2"
+      default-active="1"
       text-color="#fff"
       style="height: 700px"
     >

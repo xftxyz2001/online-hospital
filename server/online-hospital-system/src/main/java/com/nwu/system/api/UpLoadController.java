@@ -1,7 +1,7 @@
 package com.nwu.system.api;
 
 import com.nwu.base.model.Result;
-import com.nwu.base.utils.AliOSSUtils;
+import com.nwu.system.service.IFileService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,11 @@ import java.io.IOException;
 @RequestMapping("/upload")
 public class UpLoadController {
     @Autowired
-    AliOSSUtils aliOSSUtils;
+    IFileService iFileService;
 
     @PostMapping("")
-    public Result upload(MultipartFile image) throws IOException {
-
-        System.err.println(image);
-        String url = aliOSSUtils.upload(image);
+    public Result<String> upload(MultipartFile image) throws IOException {
+        String url = iFileService.upload(image);
         return Result.success(url);
     }
 

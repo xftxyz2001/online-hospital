@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 
 public class OpenAPIConfig {
 
-    String[] contextPaths = { "/user", "/hospital", "/registration", "/inquiry", "/system" };
-    String[] descriptions = { "用户接口", "医院接口", "挂号接口", "问诊接口", "系统接口" };
+    String[] contextPaths = {"/user", "/hospital", "/registration", "/inquiry", "/system"};
+    String[] descriptions = {"用户接口", "医院接口", "挂号接口", "问诊接口", "系统接口"};
 
     @Bean
     public OpenAPI customOpenAPI() {

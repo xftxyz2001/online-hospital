@@ -1,20 +1,16 @@
-package com.nwu.hospital.config;
+package com.nwu.base.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description 分页拦截器
- * @DateTime 2024/3/5 18:17
- **/
-@Configuration
-@MapperScan("com.nwu.hospital.mapper")
+@MapperScan({"com.nwu.user.mapper",
+        "com.nwu.hospital.mapper",
+        "com.nwu.registration.mapper",
+        "com.nwu.inquiry.mapper",
+        "com.nwu.system.mapper"})
 public class MybatisPlusConfig {
     /**
      * 定义分页拦截器
@@ -26,5 +22,5 @@ public class MybatisPlusConfig {
         return interceptor;
     }
 
-
 }
+

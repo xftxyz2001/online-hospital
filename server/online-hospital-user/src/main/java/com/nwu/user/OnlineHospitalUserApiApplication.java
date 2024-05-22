@@ -1,6 +1,7 @@
 package com.nwu.user;
 
 import com.nwu.base.config.JacksonConfig;
+import com.nwu.base.config.MybatisPlusConfig;
 import com.nwu.base.config.OpenAPIConfig;
 import com.nwu.base.config.WebMvcConfig;
 import com.nwu.base.jwt.JwtInterceptor;
@@ -9,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import({JacksonConfig.class, OpenAPIConfig.class, JwtInterceptor.class, WebMvcConfig.class})
+@Import({JacksonConfig.class, OpenAPIConfig.class, JwtInterceptor.class, WebMvcConfig.class, MybatisPlusConfig.class})
 public class OnlineHospitalUserApiApplication {
 
     public static void main(String[] args) {

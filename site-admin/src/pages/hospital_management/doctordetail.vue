@@ -209,13 +209,12 @@
   </el-dialog>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from "vue";
 import { updateDoctor, queryDoctorById } from "@/api/hospital/doctor";
 import { useRouter, useRoute } from "vue-router";
 import store from "@/vuex";
 import { Delete, Download, Plus, ZoomIn } from "@element-plus/icons-vue";
-import type { UploadFile } from "element-plus";
 import { ElMessage } from "element-plus";
 const dialogImageUrl = ref("");
 const dialogVisible = ref(false);
@@ -226,11 +225,11 @@ const imgUrlList = ref([]);
 const addFormVisible = ref(false);
 const specialistName = ref("");
 const specialistIntroduction = ref("");
-const handleAvatarSuccess: UploadProps["onSuccess"] = (response, uploadFile) => {
+const handleAvatarSuccess = (response, uploadFile) => {
   newPicture.value = response.data;
 };
 
-const beforeAvatarUpload: UploadProps["beforeUpload"] = rawFile => {
+const beforeAvatarUpload = rawFile => {
   if (rawFile.type !== "image/jpeg") {
     ElMessage.error("Avatar picture must be JPG format!");
     return false;

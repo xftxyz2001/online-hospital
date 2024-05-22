@@ -337,7 +337,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from "vue";
 import store from "@/vuex";
 import { querySpecialistTree, querySchedule, addSchedule, deleteScheduleById } from "@/api/hospital/schedule";
@@ -402,13 +402,8 @@ onMounted(() => {
     queryScheduleInfo();
   });
 });
-interface Tree {
-  label: string;
-  value: number;
-  children?: Tree[];
-}
 
-const handleNodeClick = (treeData: Tree) => {
+const handleNodeClick = treeData => {
   if (treeData.value != undefined) {
     outpatientName.value = treeData.label;
     outpatientId.value = treeData.value;

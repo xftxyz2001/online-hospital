@@ -193,7 +193,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import store from "@/vuex";
 import { ref, onMounted, reactive, computed } from "vue";
 import { queryUserInfoById, editUserInfo } from "@/api/user/user";

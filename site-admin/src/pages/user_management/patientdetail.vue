@@ -222,7 +222,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import store from "@/vuex";
 import { ref, onMounted, reactive, computed } from "vue";
 import { queryPatientInfoById, editPatientInfo } from "@/api/user/patient";

@@ -15,10 +15,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue";
 import store from "@/vuex";
-import { managerLogin } from "@/api/system/manager.ts";
+import { managerLogin } from "@/api/system/manager";
 import { ElMessage } from "element-plus";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();

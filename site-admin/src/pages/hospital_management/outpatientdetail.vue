@@ -164,7 +164,7 @@
   </el-dialog>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from "vue";
 import store from "@/vuex";
 import { queryOutpatientById, updateOutpatient } from "@/api/hospital/outpatient";
@@ -212,11 +212,11 @@ const isInquirys = [
     label: "否"
   }
 ];
-const handleAvatarSuccess: UploadProps["onSuccess"] = (response, uploadFile) => {
+const handleAvatarSuccess = (response, uploadFile) => {
   picture.value = response.data;
 };
 
-const beforeAvatarUpload: UploadProps["beforeUpload"] = rawFile => {
+const beforeAvatarUpload = rawFile => {
   if (rawFile.type !== "image/jpeg") {
     ElMessage.error("Avatar picture must be JPG format!");
     return false;

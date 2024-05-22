@@ -41,15 +41,15 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { Document, Menu as IconMenu, Location, Setting } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();
-const handleOpen = (key: string, keyPath: string[]) => {
+const handleOpen = (key, keyPath) => {
   console.log(key, keyPath);
 };
-const handleClose = (key: string, keyPath: string[]) => {
+const handleClose = (key, keyPath) => {
   console.log(key, keyPath);
 };
 const userManagement = () => {

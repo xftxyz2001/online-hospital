@@ -138,7 +138,7 @@
   </el-dialog>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted } from "vue";
 import store from "@/vuex";
 import { querySpecialistInfoById, updateSpecialist } from "@/api/hospital/specialist";

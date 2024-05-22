@@ -162,7 +162,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, reactive } from "vue";
 import { reqUserStatusDictionary } from "@/api/system/system";
 import { queryUserInfo, deleteUserById, enableUserById, disenableUserById } from "@/api/user/user";

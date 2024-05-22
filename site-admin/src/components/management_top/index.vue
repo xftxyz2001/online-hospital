@@ -22,8 +22,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { managerQueryUsername } from "@/api/system/manager.ts";
+<script setup>
+import { managerQueryUsername } from "@/api/system/manager";
 import { ref, onMounted } from "vue";
 import store from "@/vuex";
 import { useRouter } from "vue-router";

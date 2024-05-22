@@ -18,7 +18,6 @@ import springfox.documentation.spring.web.plugins.Docket;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/3/1 20:38
  **/
 @Configuration

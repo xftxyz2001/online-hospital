@@ -8,7 +8,6 @@ import lombok.ToString;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/4/6 18:02
  **/
 @ApiModel(value = "app查询未读数Vo")

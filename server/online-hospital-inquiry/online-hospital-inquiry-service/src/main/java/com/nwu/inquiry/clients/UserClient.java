@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/3/24 17:20
  **/
 @FeignClient(value = "user-api")

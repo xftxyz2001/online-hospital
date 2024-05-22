@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/3/9 1:03
  **/
 @FeignClient(value = "hospital-api")

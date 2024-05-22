@@ -3,7 +3,6 @@ package com.nwu.base.constant;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/3/7 14:38
  **/
 public class PatientConstant {

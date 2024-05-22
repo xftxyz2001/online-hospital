@@ -8,7 +8,6 @@ import lombok.ToString;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/3/7 17:09
  **/
 @ApiModel(value = "请求就诊人查询参数")

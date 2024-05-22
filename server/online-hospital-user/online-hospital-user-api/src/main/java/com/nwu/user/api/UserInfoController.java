@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @version 1.0
  * @Author lcy
- * @Description TODO
  * @DateTime 2024/3/1 15:39
  **/
 @RestController

@@ -59,7 +59,7 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     @Override
     public List<WebQueryChatListVo> webQueryChatList() {
         LambdaQueryWrapper<ChatList> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaQueryWrapper.eq(ChatList::getFromUserIdentity, 1);
         lambdaQueryWrapper.eq(ChatList::getStatus, 0);//未完成
         lambdaQueryWrapper.orderByDesc(ChatList::getLastMessageTime);
@@ -118,14 +118,14 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     public void webInWindow(Long linkId) {
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper1 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, 1);
-        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper1.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper1.set(ChatList::getFromWindow, 1);
         chatListMapper.update(null, lambdaUpdateWrapper1);
 
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper2 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, 1);
-        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper2.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper2.set(ChatList::getToWindow, 1);
         chatListMapper.update(null, lambdaUpdateWrapper2);
@@ -136,14 +136,14 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
 
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper1 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, 1);
-        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper1.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper1.set(ChatList::getFromWindow, 0);
         chatListMapper.update(null, lambdaUpdateWrapper1);
 
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper2 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, 1);
-        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper2.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper2.set(ChatList::getToWindow, 0);
         chatListMapper.update(null, lambdaUpdateWrapper2);
@@ -153,7 +153,7 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     public void webClearUnread(Long linkId) {
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(ChatList::getFromUserIdentity, 1);
-        lambdaUpdateWrapper.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper.set(ChatList::getUnread, 0);
         chatListMapper.update(null, lambdaUpdateWrapper);
@@ -163,14 +163,14 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     public void appInWindow(Long linkId) {
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper1 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, 0);
-        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper1.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper1.set(ChatList::getFromWindow, 1);
         chatListMapper.update(null, lambdaUpdateWrapper1);
 
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper2 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, 0);
-        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper2.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper2.set(ChatList::getToWindow, 1);
         chatListMapper.update(null, lambdaUpdateWrapper2);
@@ -180,14 +180,14 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     public void appOutWindow(Long linkId) {
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper1 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, 0);
-        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper1.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper1.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper1.set(ChatList::getFromWindow, 0);
         chatListMapper.update(null, lambdaUpdateWrapper1);
 
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper2 = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, 0);
-        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper2.eq(ChatList::getToUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper2.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper2.set(ChatList::getToWindow, 0);
         chatListMapper.update(null, lambdaUpdateWrapper2);
@@ -197,7 +197,7 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     public void appClearUnread(Long linkId) {
         LambdaUpdateWrapper<ChatList> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(ChatList::getFromUserIdentity, 0);
-        lambdaUpdateWrapper.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaUpdateWrapper.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaUpdateWrapper.eq(ChatList::getLinkId, linkId);
         lambdaUpdateWrapper.set(ChatList::getUnread, 0);
         chatListMapper.update(null, lambdaUpdateWrapper);
@@ -240,7 +240,7 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     @Override
     public List<AppQueryChatListVo> appQueryChatList() {
         LambdaQueryWrapper<ChatList> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaQueryWrapper.eq(ChatList::getFromUserIdentity, 0);
         lambdaQueryWrapper.eq(ChatList::getStatus, 0);//未完成
         lambdaQueryWrapper.orderByDesc(ChatList::getLastMessageTime);
@@ -298,7 +298,7 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     @Override
     public UnreadNumber appQueryAllUnreadNo() {
         LambdaQueryWrapper<ChatList> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ChatList::getFromUserId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(ChatList::getFromUserId, BaseContext.getUserIdentity().getId());
         lambdaQueryWrapper.eq(ChatList::getFromUserIdentity, 0);
         lambdaQueryWrapper.eq(ChatList::getStatus, 0);//未完成
         List<ChatList> chatLists = chatListMapper.selectList(lambdaQueryWrapper);

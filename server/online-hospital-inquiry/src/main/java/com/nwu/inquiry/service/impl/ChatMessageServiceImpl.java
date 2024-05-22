@@ -82,11 +82,11 @@ public class ChatMessageServiceImpl extends ServiceImpl<ChatMessageMapper, ChatM
         //往聊天详情表插入聊天信息数据
         Long toUserId = webAddChatMessageDto.getToUserId();
         String username = userClient.getUserInfoById(toUserId).getData().getUsername();
-        String doctorName = hospitalClient.getHospitalInfoById(BaseContext.getCurrentId()).getData().getName();
+        String doctorName = hospitalClient.getHospitalInfoById(BaseContext.getUserIdentity().getId()).getData().getName();
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setContent(webAddChatMessageDto.getContent())
                 .setFromUserIdentity(1)
-                .setFromUserId(BaseContext.getCurrentId())
+                .setFromUserId(BaseContext.getUserIdentity().getId())
                 .setFromUserName(doctorName)
                 .setLinkId(webAddChatMessageDto.getLinkId())
                 .setInquiryApplicationId(webAddChatMessageDto.getInquiryApplicationId())
@@ -131,7 +131,7 @@ public class ChatMessageServiceImpl extends ServiceImpl<ChatMessageMapper, ChatM
         //往聊天详情表插入聊天信息数据
         Long toUserId = appAddChatMessageDto.getToUserId();
         String doctorName = hospitalClient.queryDoctorById(toUserId).getData().getName();
-        String username = userClient.getUserInfoById(BaseContext.getCurrentId()).getData().getUsername();
+        String username = userClient.getUserInfoById(BaseContext.getUserIdentity().getId()).getData().getUsername();
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setContent(appAddChatMessageDto.getContent())
                 .setToUserIdentity(1)
@@ -139,7 +139,7 @@ public class ChatMessageServiceImpl extends ServiceImpl<ChatMessageMapper, ChatM
                 .setToUserName(doctorName)
                 .setLinkId(appAddChatMessageDto.getLinkId())
                 .setInquiryApplicationId(appAddChatMessageDto.getInquiryApplicationId())
-                .setFromUserId(BaseContext.getCurrentId())
+                .setFromUserId(BaseContext.getUserIdentity().getId())
                 .setFromUserIdentity(0)
                 .setFromUserName(username)
                 .setSendTime(LocalDateTime.now())
@@ -182,7 +182,7 @@ public class ChatMessageServiceImpl extends ServiceImpl<ChatMessageMapper, ChatM
         webQueryChatMessageVo.setInquiryApplicationId(chatUserLink.getInquiryApplicationId());
         //获取聊天消息列表
         LambdaQueryWrapper<ChatMessage> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ChatMessage::getLinkId, linkId).and(Wrapper -> Wrapper.eq(ChatMessage::getFromUserId, BaseContext.getCurrentId()).or().eq(ChatMessage::getToUserId, BaseContext.getCurrentId())).orderBy(true, true, ChatMessage::getSendTime);
+        lambdaQueryWrapper.eq(ChatMessage::getLinkId, linkId).and(Wrapper -> Wrapper.eq(ChatMessage::getFromUserId, BaseContext.getUserIdentity().getId()).or().eq(ChatMessage::getToUserId, BaseContext.getUserIdentity().getId())).orderBy(true, true, ChatMessage::getSendTime);
         List<ChatMessage> chatMessages = chatMessageMapper.selectList(lambdaQueryWrapper);
         List<WebChatMessageVo> webChatMessageVos = new ArrayList<>();
         for (ChatMessage chatMessage : chatMessages) {
@@ -241,7 +241,7 @@ public class ChatMessageServiceImpl extends ServiceImpl<ChatMessageMapper, ChatM
 
         //设置聊天信息
         LambdaQueryWrapper<ChatMessage> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ChatMessage::getLinkId, linkId).and(Wrapper -> Wrapper.eq(ChatMessage::getFromUserId, BaseContext.getCurrentId()).or().eq(ChatMessage::getToUserId, BaseContext.getCurrentId())).orderBy(true, true, ChatMessage::getSendTime);
+        lambdaQueryWrapper.eq(ChatMessage::getLinkId, linkId).and(Wrapper -> Wrapper.eq(ChatMessage::getFromUserId, BaseContext.getUserIdentity().getId()).or().eq(ChatMessage::getToUserId, BaseContext.getUserIdentity().getId())).orderBy(true, true, ChatMessage::getSendTime);
         List<ChatMessage> chatMessages = chatMessageMapper.selectList(lambdaQueryWrapper);
         List<AppChatMessageVo> appChatMessageVos = new ArrayList<>();
         for (ChatMessage chatMessage : chatMessages) {

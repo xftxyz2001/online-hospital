@@ -28,7 +28,7 @@ public class AppReportInfoController {
     @GetMapping("/queryAll")
     public Result<List<AppReportInfoVo>> queryReportList() {
         LambdaQueryWrapper<ReportInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ReportInfo::getUserId, BaseContext.getCurrentId())
+        lambdaQueryWrapper.eq(ReportInfo::getUserId, BaseContext.getUserIdentity().getId())
                 .orderByDesc(ReportInfo::getSendTime);
         List<ReportInfo> reportInfos = iReportInfoService.list(lambdaQueryWrapper);
         List<AppReportInfoVo> appReportInfoVos = new ArrayList<>();

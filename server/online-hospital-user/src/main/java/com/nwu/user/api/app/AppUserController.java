@@ -2,9 +2,9 @@ package com.nwu.user.api.app;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.nwu.base.model.Result;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
+import com.nwu.base.model.Result;
 import com.nwu.properties.WeChatProperties;
 import com.nwu.user.model.dto.user.AppQueryUserInfoVo;
 import com.nwu.user.model.dto.user.AppUpdateUserInfoDto;
@@ -32,12 +32,11 @@ import java.util.Map;
 @RequestMapping("/app/user")
 public class AppUserController {
     public static final String WX_LOGIN = "https://api.weixin.qq.com/sns/jscode2session";
+    private final RestTemplate restTemplate = new RestTemplate();
     @Autowired
     IUserInfoService iUserInfoService;
     @Autowired
     WeChatProperties weChatProperties;
-
-    private final RestTemplate restTemplate = new RestTemplate();
 
     @PostMapping("/login")
     @ApiOperation("用户登录接口")

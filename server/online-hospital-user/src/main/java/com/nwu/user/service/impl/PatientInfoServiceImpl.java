@@ -98,19 +98,19 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
     public void addPatient(AddPatientDto addPatientDto) {
         PatientInfo patientInfo = new PatientInfo();
         BeanUtils.copyProperties(addPatientDto, patientInfo);
-        patientInfo.setUserId(BaseContext.getCurrentId());
+        patientInfo.setUserId(BaseContext.getUserIdentity().getId());
         patientInfo.setCreateTime(LocalDateTime.now());
         patientInfo.setStatus(1);
         patientInfo.setIsDeleted(0);
         patientInfo.setUpdateTime(LocalDateTime.now());
-        patientInfo.setCardNo(System.currentTimeMillis() + BaseContext.getCurrentId().toString());
+        patientInfo.setCardNo(System.currentTimeMillis() + BaseContext.getUserIdentity().getId().toString());
         patientInfoMapper.insert(patientInfo);
     }
 
     @Override
     public List<PatientInfo> queryAllPatient() {
         LambdaQueryWrapper<PatientInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(PatientInfo::getUserId, BaseContext.getCurrentId())
+        lambdaQueryWrapper.eq(PatientInfo::getUserId, BaseContext.getUserIdentity().getId())
                 .eq(PatientInfo::getIsDeleted, 0);
         return patientInfoMapper.selectList(lambdaQueryWrapper);
     }

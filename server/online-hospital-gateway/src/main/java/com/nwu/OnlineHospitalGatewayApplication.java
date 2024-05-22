@@ -1,4 +1,4 @@
-package com.nwu.gateway;
+package com.nwu;
 
 import com.nwu.base.config.JacksonConfig;
 import org.springframework.boot.SpringApplication;

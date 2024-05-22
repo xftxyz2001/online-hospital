@@ -130,7 +130,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public String getUsername() {
         LambdaQueryWrapper<UserInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(UserInfo::getId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(UserInfo::getId, BaseContext.getUserIdentity().getId());
         UserInfo userInfo = userInfoMapper.selectOne(lambdaQueryWrapper);
         return userInfo.getUsername();
     }
@@ -138,7 +138,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public void appUpdateUserInfo(AppUpdateUserInfoDto appUpdateUserInfoDto) {
         LambdaUpdateWrapper<UserInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-        lambdaUpdateWrapper.eq(UserInfo::getId, BaseContext.getCurrentId())
+        lambdaUpdateWrapper.eq(UserInfo::getId, BaseContext.getUserIdentity().getId())
                 .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getAvatar()), UserInfo::getAvatar, appUpdateUserInfoDto.getAvatar())
                 .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getUsername()), UserInfo::getUsername, appUpdateUserInfoDto.getUsername())
                 .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getPhone()), UserInfo::getPhone, appUpdateUserInfoDto.getPhone());
@@ -148,7 +148,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public AppQueryUserInfoVo appQueryUserInfo() {
         LambdaQueryWrapper<UserInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(UserInfo::getId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(UserInfo::getId, BaseContext.getUserIdentity().getId());
         UserInfo userInfo = userInfoMapper.selectOne(lambdaQueryWrapper);
         AppQueryUserInfoVo appQueryUserInfoVo = new AppQueryUserInfoVo();
         BeanUtils.copyProperties(userInfo, appQueryUserInfoVo);

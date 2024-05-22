@@ -55,7 +55,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         orderInfo.setUpdateTime(LocalDateTime.now());
         orderInfo.setOrderStatus(0);
         orderInfo.setOutTradeNo(String.valueOf(System.currentTimeMillis()));
-        orderInfo.setUserId(BaseContext.getCurrentId());
+        orderInfo.setUserId(BaseContext.getUserIdentity().getId());
         Long hospitalId = insertOrderDto.getHospitalId();
         String hospitalName = hospitalClient.getHospitalInfoById(hospitalId).getData().getName();
         Long outpatientId = insertOrderDto.getOutpatientId();
@@ -80,7 +80,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
 
     @Override
     public List<OrderInfo> queryAllOrder() {
-        Long userId = BaseContext.getCurrentId();
+        Long userId = BaseContext.getUserIdentity().getId();
         LambdaQueryWrapper<OrderInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(OrderInfo::getUserId, userId)
                 .orderByDesc(OrderInfo::getCreateTime);
@@ -117,7 +117,7 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     public Result<PageResult<OrderInfo>> webQueryOrderInfoList(PageParams pageParams) {
         Page<OrderInfo> page = new Page<>(pageParams.getPageNo(), pageParams.getPageSize());
         LambdaQueryWrapper<OrderInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(OrderInfo::getDoctorId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(OrderInfo::getDoctorId, BaseContext.getUserIdentity().getId());
         Page<OrderInfo> orderInfoPage = orderInfoMapper.selectPage(page, lambdaQueryWrapper);
         List<OrderInfo> orderInfos = orderInfoPage.getRecords();
         Long counts = orderInfoPage.getTotal();

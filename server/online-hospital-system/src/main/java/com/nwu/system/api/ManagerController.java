@@ -37,7 +37,7 @@ public class ManagerController {
     @GetMapping("/queryUsername")
     public Result<ManagerQueryUsernameVo> queryUsername() {
 
-        Manager manager = iManagerService.getById(BaseContext.getCurrentId());
+        Manager manager = iManagerService.getById(BaseContext.getUserIdentity().getId());
         ManagerQueryUsernameVo managerQueryUsernameVo = new ManagerQueryUsernameVo();
         managerQueryUsernameVo.setUsername(manager.getUsername());
         return Result.success(managerQueryUsernameVo);

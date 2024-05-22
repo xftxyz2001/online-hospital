@@ -1,8 +1,8 @@
 package com.nwu.hospital.api.web;
 
-import com.nwu.base.model.Result;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
+import com.nwu.base.model.Result;
 import com.nwu.hospital.model.dto.web.DoctorLoginDto;
 import com.nwu.hospital.model.po.DoctorInfo;
 import com.nwu.hospital.model.vo.DoctorLoginVo;

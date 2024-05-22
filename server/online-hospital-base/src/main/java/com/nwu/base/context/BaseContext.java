@@ -1,5 +1,7 @@
 package com.nwu.base.context;
 
+import com.nwu.base.jwt.UserIdAndIdentity;
+
 /**
  * @version 1.0
  * @Author lcy
@@ -9,27 +11,18 @@ package com.nwu.base.context;
 //用来解决保存当前用户ID
 public class BaseContext {
 
-    public static ThreadLocal<Long> threadLocalId = new ThreadLocal<>();
-    public static ThreadLocal<Integer> threadLocalIdentity = new ThreadLocal<>();
+    private static final ThreadLocal<UserIdAndIdentity> USER_IDENTITY = new ThreadLocal<>();
 
-    public static Long getCurrentId() {
-        return threadLocalId.get();
+    public static UserIdAndIdentity getUserIdentity() {
+        return USER_IDENTITY.get();
     }
 
-    public static void setCurrentId(Long id) {
-        threadLocalId.set(id);
+    public static void setUserIdentity(UserIdAndIdentity userIdentity) {
+        USER_IDENTITY.set(userIdentity);
     }
 
-    public static Integer getCurrentIdentity() {
-        return threadLocalIdentity.get();
-    }
-
-    public static void setCurrentIdentity(Integer id) {
-        threadLocalIdentity.set(id);
-    }
-
-    public static void removeCurrentId() {
-        threadLocalId.remove();
+    public static void removeUserIdentity() {
+        USER_IDENTITY.remove();
     }
 
 }

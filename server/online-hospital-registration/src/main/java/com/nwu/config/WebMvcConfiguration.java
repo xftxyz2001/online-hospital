@@ -1,6 +1,6 @@
 package com.nwu.config;
 
-import com.nwu.interceptor.JwtTokenUserInterceptor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.nwu.base.jwt.JwtInterceptor;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,7 +27,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Slf4j
 public class WebMvcConfiguration implements WebMvcConfigurer {
     @Autowired
-    JwtTokenUserInterceptor jwtTokenUserInterceptor;
+    JwtInterceptor jwtInterceptor;
 
     @Bean
     public Docket docket() {
@@ -54,7 +57,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(jwtTokenUserInterceptor).addPathPatterns("/**").excludePathPatterns("/**/login", "/swagger-ui/**",
+        registry.addInterceptor(jwtInterceptor).addPathPatterns("/**").excludePathPatterns("/**/login", "/swagger-ui/**",
                 "/swagger-resources/**",
                 "/v2/api-docs");
     }

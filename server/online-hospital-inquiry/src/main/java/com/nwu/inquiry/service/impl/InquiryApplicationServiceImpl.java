@@ -78,14 +78,14 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
         String doctorName = hospitalClient.queryDoctorById(doctorId).getData().getName();
         String outpatientName = hospitalClient.queryOutpatientById(outpatientId).getData().getName();
         String patientName = userClient.getPatientInfoById(patientId).getData().getName();
-        String userName = userClient.getUserInfoById(BaseContext.getCurrentId()).getData().getUsername();
+        String userName = userClient.getUserInfoById(BaseContext.getUserIdentity().getId()).getData().getUsername();
         inquiryApplication.setDoctorName(doctorName);
         inquiryApplication.setOutpatientName(outpatientName);
         inquiryApplication.setUserName(userName);
         inquiryApplication.setPatientName(patientName);
         inquiryApplication.setHospitalName(hospitalName);
         inquiryApplication.setStatus(0);
-        inquiryApplication.setUserId(BaseContext.getCurrentId());
+        inquiryApplication.setUserId(BaseContext.getUserIdentity().getId());
         inquiryApplication.setCreateTime(LocalDateTime.now());
         inquiryApplication.setRemainNumber(10);
         inquiryApplicationMapper.insert(inquiryApplication);
@@ -94,7 +94,7 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
     @Override
     public List<InquiryApplication> webQueryWaitingInquiryApplicationList() {
         LambdaQueryWrapper<InquiryApplication> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(InquiryApplication::getDoctorId, BaseContext.getCurrentId());//当前医生
+        lambdaQueryWrapper.eq(InquiryApplication::getDoctorId, BaseContext.getUserIdentity().getId());//当前医生
         lambdaQueryWrapper.eq(InquiryApplication::getStatus, 0);//等待状态
         List<InquiryApplication> inquiryApplications = inquiryApplicationMapper.selectList(lambdaQueryWrapper);
         return inquiryApplications;
@@ -120,7 +120,7 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
     public AppQueryWaitingInquiryApplicationDetailVo appQueryWaitingInquiryApplicationDetail() {
         LambdaQueryWrapper<InquiryApplication> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(InquiryApplication::getStatus, 0);
-        lambdaQueryWrapper.eq(InquiryApplication::getUserId, BaseContext.getCurrentId());
+        lambdaQueryWrapper.eq(InquiryApplication::getUserId, BaseContext.getUserIdentity().getId());
         InquiryApplication inquiryApplication = inquiryApplicationMapper.selectOne(lambdaQueryWrapper);
         AppQueryWaitingInquiryApplicationDetailVo appQueryWaitingInquiryApplicationDetailVo = new AppQueryWaitingInquiryApplicationDetailVo();
         BeanUtils.copyProperties(inquiryApplication, appQueryWaitingInquiryApplicationDetailVo);
@@ -203,7 +203,7 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
     @Override
     public List<AppQueryAllApplicationVo> appQueryAll() {
         LambdaQueryWrapper<InquiryApplication> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(InquiryApplication::getUserId, BaseContext.getCurrentId())
+        lambdaQueryWrapper.eq(InquiryApplication::getUserId, BaseContext.getUserIdentity().getId())
                 .orderByDesc(InquiryApplication::getCreateTime);
         List<InquiryApplication> inquiryApplications = inquiryApplicationMapper.selectList(lambdaQueryWrapper);
         List<AppQueryAllApplicationVo> appQueryAllApplicationVos = new ArrayList<>();
@@ -232,7 +232,7 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
     @Override
     public List<WebQueryAllFinishedInquiryVo> webQueryFinishedInquiryApplications() {
         LambdaQueryWrapper<InquiryApplication> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(InquiryApplication::getDoctorId, BaseContext.getCurrentId())
+        lambdaQueryWrapper.eq(InquiryApplication::getDoctorId, BaseContext.getUserIdentity().getId())
                 .eq(InquiryApplication::getStatus, 2);
         List<InquiryApplication> inquiryApplications = inquiryApplicationMapper.selectList(lambdaQueryWrapper);
         List<WebQueryAllFinishedInquiryVo> webQueryAllFinishedInquiryVos = new ArrayList<>();

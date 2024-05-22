@@ -2,7 +2,7 @@ package com.nwu.hospital.api.web;
 
 import com.nwu.base.model.Result;
 import com.nwu.base.utils.JwtHelper;
-import com.nwu.base.utils.JwtHelper.UserInfo;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.hospital.model.dto.web.DoctorLoginDto;
 import com.nwu.hospital.model.po.DoctorInfo;
 import com.nwu.hospital.model.vo.DoctorLoginVo;
@@ -28,7 +28,7 @@ public class WebDoctorInfoController {
         DoctorInfo doctorInfo = iDoctorInfoService.login(doctorLoginDto);
         if (doctorInfo == null)
             return Result.error("登陆失败");
-        String token = JwtHelper.generateToken(UserInfo.builder().id(doctorInfo.getId()).identity(1).build());
+        String token = JwtHelper.generateToken(UserIdAndIdentity.builder().id(doctorInfo.getId()).identity(1).build());
         DoctorLoginVo doctorLoginVo = DoctorLoginVo.builder().id(doctorInfo.getId()).token(token).build();
         return Result.success(doctorLoginVo);
     }

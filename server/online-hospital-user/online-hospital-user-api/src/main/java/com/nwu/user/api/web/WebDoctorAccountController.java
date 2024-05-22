@@ -2,6 +2,7 @@ package com.nwu.user.api.web;
 
 import com.nwu.base.model.Result;
 import com.nwu.base.utils.JwtHelper;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.user.model.dto.doctoraccount.DoctorAccountLoginDto;
 import com.nwu.user.model.po.DoctorAccount;
 import com.nwu.user.model.vo.doctoraccount.DoctorLoginVo;
@@ -36,7 +37,7 @@ public class WebDoctorAccountController {
         if (doctorAccount == null)
             return Result.error("登陆失败");
         String token = JwtHelper
-                .generateToken(JwtHelper.UserInfo.builder().id(doctorAccount.getId()).identity(1).build());
+                .generateToken(UserIdAndIdentity.builder().id(doctorAccount.getId()).identity(1).build());
         DoctorLoginVo doctorLoginVo = DoctorLoginVo.builder().id(doctorAccount.getId()).token(token).build();
         return Result.success(doctorLoginVo);
     }

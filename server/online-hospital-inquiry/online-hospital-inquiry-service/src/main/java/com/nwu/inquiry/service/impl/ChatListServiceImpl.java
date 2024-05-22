@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.context.BaseContext;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.inquiry.clients.HospitalClient;
 import com.nwu.inquiry.clients.UserClient;
 import com.nwu.inquiry.mapper.ChatListMapper;
@@ -16,7 +17,6 @@ import com.nwu.inquiry.model.po.InquiryApplication;
 import com.nwu.inquiry.model.vo.app.AppQueryChatListVo;
 import com.nwu.inquiry.model.vo.app.UnreadNumber;
 import com.nwu.inquiry.model.vo.web.WebQueryChatListVo;
-import com.nwu.inquiry.model.ws.UserIdentity;
 import com.nwu.inquiry.service.IChatListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -204,34 +204,34 @@ public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> i
     }
 
     @Override
-    public void wsInWindow(UserIdentity userIdentity, Long linkId) {
+    public void wsInWindow(UserIdAndIdentity userIdentity, Long linkId) {
         LambdaUpdateWrapper<ChatList> chatListLambdaUpdateWrapper1 = new LambdaUpdateWrapper<>();
-        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserId, userIdentity.getUserId());
-        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, userIdentity.getUserIdentity());
+        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserId, userIdentity.getId());
+        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, userIdentity.getIdentity());
         chatListLambdaUpdateWrapper1.eq(ChatList::getLinkId, linkId);
         chatListLambdaUpdateWrapper1.set(ChatList::getFromWindow, 1);
         chatListMapper.update(null, chatListLambdaUpdateWrapper1);
 
         LambdaUpdateWrapper<ChatList> chatListLambdaUpdateWrapper2 = new LambdaUpdateWrapper<>();
-        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserId, userIdentity.getUserId());
-        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, userIdentity.getUserIdentity());
+        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserId, userIdentity.getId());
+        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, userIdentity.getIdentity());
         chatListLambdaUpdateWrapper2.eq(ChatList::getLinkId, linkId);
         chatListLambdaUpdateWrapper2.set(ChatList::getToWindow, 1);
         chatListMapper.update(null, chatListLambdaUpdateWrapper2);
     }
 
     @Override
-    public void wsOutWindow(UserIdentity userIdentity, Long linkId) {
+    public void wsOutWindow(UserIdAndIdentity userIdentity, Long linkId) {
         LambdaUpdateWrapper<ChatList> chatListLambdaUpdateWrapper1 = new LambdaUpdateWrapper<>();
-        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserId, userIdentity.getUserId());
-        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, userIdentity.getUserIdentity());
+        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserId, userIdentity.getId());
+        chatListLambdaUpdateWrapper1.eq(ChatList::getFromUserIdentity, userIdentity.getIdentity());
         chatListLambdaUpdateWrapper1.eq(ChatList::getLinkId, linkId);
         chatListLambdaUpdateWrapper1.set(ChatList::getFromWindow, 0);
         chatListMapper.update(null, chatListLambdaUpdateWrapper1);
 
         LambdaUpdateWrapper<ChatList> chatListLambdaUpdateWrapper2 = new LambdaUpdateWrapper<>();
-        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserId, userIdentity.getUserId());
-        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, userIdentity.getUserIdentity());
+        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserId, userIdentity.getId());
+        chatListLambdaUpdateWrapper2.eq(ChatList::getToUserIdentity, userIdentity.getIdentity());
         chatListLambdaUpdateWrapper2.eq(ChatList::getLinkId, linkId);
         chatListLambdaUpdateWrapper2.set(ChatList::getToWindow, 0);
         chatListMapper.update(null, chatListLambdaUpdateWrapper2);

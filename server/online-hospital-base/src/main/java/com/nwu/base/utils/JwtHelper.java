@@ -3,8 +3,6 @@ package com.nwu.base.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import lombok.Builder;
-import lombok.Data;
 
 import java.util.Date;
 
@@ -17,30 +15,23 @@ public class JwtHelper {
     private static final long EXPIRE_TIME = 12 * 60 * 60 * 1000; // 12小时
 
     // 生成token
-    public static String generateToken(UserInfo userInfo) {
+    public static String generateToken(UserIdAndIdentity userIdAndIdentity) {
         return JWT.create()
-                .withClaim(X_ID, userInfo.getId())
-                .withClaim(X_IDENTITY, userInfo.getIdentity())
+                .withClaim(X_ID, userIdAndIdentity.getId())
+                .withClaim(X_IDENTITY, userIdAndIdentity.getIdentity())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRE_TIME))
                 .sign(Algorithm.HMAC256(SECRET_KEY));
     }
 
     // 解析token
-    public static UserInfo parseToken(String token) {
+    public static UserIdAndIdentity parseToken(String token) {
         DecodedJWT verifyed = JWT.require(Algorithm.HMAC256(SECRET_KEY))
                 .build()
                 .verify(token);
-        return UserInfo.builder()
+        return UserIdAndIdentity.builder()
                 .id(verifyed.getClaim(X_ID).asLong())
                 .identity(verifyed.getClaim(X_IDENTITY).asInt())
                 .build();
-    }
-
-    @Data
-    @Builder
-    public static class UserInfo {
-        private Long id;
-        private Integer identity;
     }
 
 }

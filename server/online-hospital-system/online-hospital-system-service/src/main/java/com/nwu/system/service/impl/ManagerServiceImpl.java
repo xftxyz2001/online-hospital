@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.constant.MessageConstant;
 import com.nwu.base.model.Result;
 import com.nwu.base.utils.JwtHelper;
-import com.nwu.base.utils.JwtHelper.UserInfo;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.system.mapper.ManagerMapper;
 import com.nwu.system.model.dto.ManagerLoginDto;
 import com.nwu.system.model.po.Manager;
@@ -35,7 +35,7 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, Manager> impl
         if (manager == null) {
             return Result.error(MessageConstant.LOGIN_FAILED);
         }
-        String jwt = JwtHelper.generateToken(UserInfo.builder().id(manager.getId().longValue()).identity(2).build());
+        String jwt = JwtHelper.generateToken(UserIdAndIdentity.builder().id(manager.getId().longValue()).identity(2).build());
         return Result.success(jwt);
     }
 }

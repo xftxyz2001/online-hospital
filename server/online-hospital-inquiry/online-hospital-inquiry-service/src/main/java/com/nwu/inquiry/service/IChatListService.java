@@ -2,11 +2,11 @@ package com.nwu.inquiry.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.inquiry.model.po.ChatList;
 import com.nwu.inquiry.model.vo.app.AppQueryChatListVo;
 import com.nwu.inquiry.model.vo.app.UnreadNumber;
 import com.nwu.inquiry.model.vo.web.WebQueryChatListVo;
-import com.nwu.inquiry.model.ws.UserIdentity;
 
 import java.util.List;
 
@@ -36,9 +36,9 @@ public interface IChatListService extends IService<ChatList> {
 
     void appClearUnread(Long linkId);
 
-    void wsInWindow(UserIdentity userIdentity, Long linkId);
+    void wsInWindow(UserIdAndIdentity userIdentity, Long linkId);
 
-    void wsOutWindow(UserIdentity userIdentity, Long linkId);
+    void wsOutWindow(UserIdAndIdentity userIdentity, Long linkId);
 
     List<AppQueryChatListVo> appQueryChatList();
 

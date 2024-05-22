@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.nwu.base.model.Result;
 import com.nwu.base.utils.HttpClientUtil;
 import com.nwu.base.utils.JwtHelper;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.properties.WeChatProperties;
 import com.nwu.user.model.dto.user.AppQueryUserInfoVo;
 import com.nwu.user.model.dto.user.AppUpdateUserInfoDto;
@@ -67,7 +68,7 @@ public class AppUserController {
         }
 
         // 生成jwt令牌
-        String token = JwtHelper.generateToken(JwtHelper.UserInfo.builder().id(userInfo.getId()).identity(0).build());
+        String token = JwtHelper.generateToken(UserIdAndIdentity.builder().id(userInfo.getId()).identity(0).build());
         userLoginVo.setToken(token);
         return Result.success(userLoginVo);
     }

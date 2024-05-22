@@ -2,9 +2,7 @@ package com.nwu.ws;
 
 import com.alibaba.fastjson.JSON;
 import com.nwu.base.utils.JwtHelper;
-import com.nwu.base.utils.JwtHelper.UserInfo;
-import com.nwu.config.GetHttpSessionConfig;
-import com.nwu.inquiry.model.ws.UserIdentity;
+import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.inquiry.model.ws.WsMessage;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
@@ -14,14 +12,14 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint(value = "/chat/{param}", configurator = GetHttpSessionConfig.class)
+@ServerEndpoint(value = "/chat/{param}")
 @Component
 public class ChatEndpoint {
 
     // 所有用户的Session
     private static final Map<String, Session> onlineUsers = new ConcurrentHashMap<>();
 
-    private UserIdentity userIdentity;
+    private String userIdentity;
 
     /**
      * 建立websocket连接后，被调用
@@ -30,16 +28,8 @@ public class ChatEndpoint {
      */
     @OnOpen
     public void onOpen(Session session, EndpointConfig config, @PathParam("param") String param) {
-        // 1.获取到传来的对象
-        System.err.println(param);
-        UserInfo userInfo = JwtHelper.parseToken(param);
-        UserIdentity userIdentity = new UserIdentity();
-        userIdentity.setUserId(userInfo.getId());
-        userIdentity.setUserIdentity(userInfo.getIdentity());
-        this.userIdentity = userIdentity;
-        // 2.将对象的字符串格式和websocket的session作为键值对存入onlineUsers中
-        onlineUsers.put(this.userIdentity.toString(), session);
-        // System.err.println(this.userIdentity.toString());
+        userIdentity = JwtHelper.parseToken(param).toString();
+        onlineUsers.put(userIdentity, session);
     }
 
     /**
@@ -57,14 +47,13 @@ public class ChatEndpoint {
         }
         // 发消息
         WsMessage wsMessage = JSON.parseObject(message, WsMessage.class);
-        UserIdentity userIdentity = new UserIdentity();
-        userIdentity.setUserIdentity(wsMessage.getToUserIdentity());
-        userIdentity.setUserId(wsMessage.getToUserId());
+        String toUserIdentity = UserIdAndIdentity.builder()
+                .id(wsMessage.getToUserId())
+                .identity(wsMessage.getToUserIdentity())
+                .build().toString();
 
-        if (onlineUsers.containsKey(userIdentity.toString())) {
-            System.err.println("send");
-            Session toSession = onlineUsers.get(userIdentity.toString());
-            toSession.getAsyncRemote().sendText("update");
+        if (onlineUsers.containsKey(toUserIdentity)) {
+            onlineUsers.get(toUserIdentity).getAsyncRemote().sendText("update");
         }
     }
 
@@ -75,7 +64,7 @@ public class ChatEndpoint {
      */
     @OnClose
     public void onClose(Session session) {
-        onlineUsers.remove(this.userIdentity.toString());
+        onlineUsers.remove(userIdentity);
     }
 
     @OnError

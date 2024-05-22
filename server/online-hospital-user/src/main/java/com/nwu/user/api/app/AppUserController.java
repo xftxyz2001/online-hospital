@@ -3,7 +3,6 @@ package com.nwu.user.api.app;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.nwu.base.model.Result;
-import com.nwu.base.utils.HttpClientUtil;
 import com.nwu.base.utils.JwtHelper;
 import com.nwu.base.utils.UserIdAndIdentity;
 import com.nwu.properties.WeChatProperties;
@@ -18,6 +17,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,9 +37,7 @@ public class AppUserController {
     @Autowired
     WeChatProperties weChatProperties;
 
-    public Result<?> isFirstLogin() {
-        return null;
-    }
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @PostMapping("/login")
     @ApiOperation("用户登录接口")
@@ -51,7 +49,7 @@ public class AppUserController {
         map.put("secret", weChatProperties.getSecret());
         map.put("js_code", userLoginDto.getCode());
         map.put("grant_type", "authorization_code");
-        String json = HttpClientUtil.doGet(WX_LOGIN, map);
+        String json = restTemplate.getForObject(WX_LOGIN, String.class, map);
         JSONObject jsonObject = JSON.parseObject(json);
         String openid = jsonObject.getString("openid");
         if (openid == null)

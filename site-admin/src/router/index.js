@@ -76,10 +76,11 @@ const router = createRouter({
     };
   }
 });
-// router.beforeEach((to,from,next)=>{
-
-//     const useToken =  store.getters.managerLoginToken;
-//     if (to.path != '/login' && useToken=="") return next({ path: '/login'})
-//     else return next()
-//   })
+router.beforeEach((to, from, next) => {
+  const useToken = store.getters.managerLoginToken;
+  if (to.path != "/login" && useToken == "") {
+    return next({ path: "/login" });
+  }
+  return next();
+});
 export default router;

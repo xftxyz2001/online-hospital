@@ -38,7 +38,7 @@ const queryUsername = async () => {
 //退出
 const exit = () => {
   store.commit("changeManagerLoginToken", "");
-  router.push("/login/index.vue");
+  router.push("/login");
 };
 onMounted(() => {
   queryUsername();

@@ -42,7 +42,7 @@ public class PatientInfoController {
 
     @ApiOperation(value = "查询单条就诊人信息")
     @GetMapping("")
-    public Result<PatientInfo> getPatientInfoById(Long id) {
+    public Result<?> getPatientInfoById(Long id) {
         return iPatientInfoService.getPatientInfoById(id);
     }
 

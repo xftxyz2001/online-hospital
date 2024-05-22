@@ -27,7 +27,7 @@ public interface IPatientInfoService extends IService<PatientInfo> {
 
     Result<?> deletePatientById(Long id);
 
-    Result<PatientInfo> getPatientInfoById(Long id);
+    Result<?> getPatientInfoById(Long id);
 
     Result<?> updatePatientInfo(UpdatePatientInfoDto updatePatientInfoDto);
 

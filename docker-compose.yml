@@ -51,7 +51,7 @@ services:
 
   # 微服务s
   user:
-    build: server/online-hospital-user/online-hospital-user-api
+    build: server/online-hospital-user
     image: xftxyz/onlinehospital-user:0.0.1
     container_name: user
     restart: unless-stopped
@@ -64,7 +64,7 @@ services:
       - ./config/user:/app/config
   
   hospital:
-    build: server/online-hospital-hospital/online-hospital-hospital-api
+    build: server/online-hospital-hospital
     image: xftxyz/onlinehospital-hospital:0.0.1
     container_name: hospital
     restart: unless-stopped
@@ -77,7 +77,7 @@ services:
       - ./config/hospital:/app/config
 
   registration:
-    build: server/online-hospital-registration/online-hospital-registration-api
+    build: server/online-hospital-registration
     image: xftxyz/onlinehospital-registration:0.0.1
     container_name: registration
     restart: unless-stopped
@@ -90,7 +90,7 @@ services:
       - ./config/registration:/app/config
   
   inquiry:
-    build: server/online-hospital-inquiry/online-hospital-inquiry-api
+    build: server/online-hospital-inquiry
     image: xftxyz/onlinehospital-inquiry:0.0.1
     container_name: inquiry
     restart: unless-stopped
@@ -103,7 +103,7 @@ services:
       - ./config/inquiry:/app/config
   
   system:
-    build: server/online-hospital-system/online-hospital-system-api
+    build: server/online-hospital-system
     image: xftxyz/onlinehospital-system:0.0.1
     container_name: system
     restart: unless-stopped

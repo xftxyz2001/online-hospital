@@ -1,6 +1,5 @@
 package com.nwu.user.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -39,20 +38,24 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Autowired
     UserInfoMapper userInfoMapper;
 
-
     @Override
     public Result<PageResult<UserInfo>> queryUserInfoList(PageParams pageParams, QueryUserInfoDto queryUserInfoDto) {
 
         Page<UserInfo> page = new Page<>(pageParams.getPageNo(), pageParams.getPageSize());
         LambdaQueryWrapper<UserInfo> userInfoLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        userInfoLambdaQueryWrapper.like(StringUtils.isNotEmpty(queryUserInfoDto.getUserName()), UserInfo::getUsername, queryUserInfoDto.getUserName())
-                .like(StringUtils.isNotEmpty(queryUserInfoDto.getPhone()), UserInfo::getPhone, queryUserInfoDto.getPhone())
-                .eq(StringUtils.isNotEmpty(queryUserInfoDto.getStatus()), UserInfo::getStatus, queryUserInfoDto.getStatus())
+        userInfoLambdaQueryWrapper
+                .like(StringUtils.isNotEmpty(queryUserInfoDto.getUserName()), UserInfo::getUsername,
+                        queryUserInfoDto.getUserName())
+                .like(StringUtils.isNotEmpty(queryUserInfoDto.getPhone()), UserInfo::getPhone,
+                        queryUserInfoDto.getPhone())
+                .eq(StringUtils.isNotEmpty(queryUserInfoDto.getStatus()), UserInfo::getStatus,
+                        queryUserInfoDto.getStatus())
                 .eq(UserInfo::getIsDeleted, UserInfo.NOT_DELETED);
         Page<UserInfo> userInfoPage = userInfoMapper.selectPage(page, userInfoLambdaQueryWrapper);
         List<UserInfo> userInfoList = userInfoPage.getRecords();
         Long counts = userInfoPage.getTotal();
-        PageResult<UserInfo> userInfoPageResult = new PageResult<>(userInfoList, counts, pageParams.getPageNo(), pageParams.getPageSize());
+        PageResult<UserInfo> userInfoPageResult = new PageResult<>(userInfoList, counts, pageParams.getPageNo(),
+                pageParams.getPageSize());
         return Result.success(userInfoPageResult);
     }
 
@@ -83,7 +86,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result<?> getUserInfoById(Long id) {
         UserInfo userInfo = userInfoMapper.selectById(id);
-        return userInfo == null ? Result.error(ErrorMessages.QUERY_FAILED) : Result.success(userInfo);
+        if (userInfo == null) {
+            return Result.error(ErrorMessages.QUERY_FAILED);
+        } else {
+            return Result.success(userInfo);
+        }
     }
 
     @Override
@@ -95,12 +102,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         return Result.success();
     }
 
-
-    //小程序端用户Service
+    // 小程序端用户Service
 
     @Override
     public UserInfo appUserLogin(String openid) {
-        //新建用户
+        // 新建用户
         UserInfo newUser = new UserInfo();
         newUser.setCreateTime(LocalDateTime.now())
                 .setModifiedTime(LocalDateTime.now())
@@ -108,19 +114,20 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
                 .setStatus(UserInfo.ENABLE)
                 .setIsDeleted(UserInfo.NOT_DELETED)
                 .setUsername("微信用户")
-                .setAvatar("https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0");
+                .setAvatar(
+                        "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0");
         userInfoMapper.insert(newUser);
         return newUser;
     }
 
     @Override
     public UserInfo isFirstLogin(String openid) {
-        //查询是否存在用户
+        // 查询是否存在用户
         LambdaQueryWrapper<UserInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(UserInfo::getOpenId, openid);
         UserInfo userInfo = userInfoMapper.selectOne(lambdaQueryWrapper);
         if (userInfo != null) {
-            //已有用户
+            // 已有用户
             return userInfo;
         }
         return null;
@@ -138,9 +145,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     public void appUpdateUserInfo(AppUpdateUserInfoDto appUpdateUserInfoDto) {
         LambdaUpdateWrapper<UserInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(UserInfo::getId, BaseContext.getUserIdentity().getId())
-                .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getAvatar()), UserInfo::getAvatar, appUpdateUserInfoDto.getAvatar())
-                .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getUsername()), UserInfo::getUsername, appUpdateUserInfoDto.getUsername())
-                .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getPhone()), UserInfo::getPhone, appUpdateUserInfoDto.getPhone());
+                .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getAvatar()), UserInfo::getAvatar,
+                        appUpdateUserInfoDto.getAvatar())
+                .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getUsername()), UserInfo::getUsername,
+                        appUpdateUserInfoDto.getUsername())
+                .set(StringUtils.isNotEmpty(appUpdateUserInfoDto.getPhone()), UserInfo::getPhone,
+                        appUpdateUserInfoDto.getPhone());
         userInfoMapper.update(null, lambdaUpdateWrapper);
     }
 

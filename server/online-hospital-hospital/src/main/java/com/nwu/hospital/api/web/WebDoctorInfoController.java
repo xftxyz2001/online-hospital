@@ -1,5 +1,6 @@
 package com.nwu.hospital.api.web;
 
+import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.base.model.Result;
@@ -27,7 +28,7 @@ public class WebDoctorInfoController {
     public Result<?> login(@RequestBody DoctorLoginDto doctorLoginDto) {
         DoctorInfo doctorInfo = iDoctorInfoService.login(doctorLoginDto);
         if (doctorInfo == null)
-            return Result.error("登陆失败");
+            return Result.error(ErrorMessages.LOGIN_ERROR);
         String token = JwtHelper.generateToken(UserIdAndIdentity.builder().id(doctorInfo.getId()).identity(1).build());
         DoctorLoginVo doctorLoginVo = DoctorLoginVo.builder().id(doctorInfo.getId()).token(token).build();
         return Result.success(doctorLoginVo);

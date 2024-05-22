@@ -63,7 +63,11 @@ public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, Patie
     @Override
     public Result<?> getPatientInfoById(Long id) {
         PatientInfo patientInfo = patientInfoMapper.selectById(id);
-        return patientInfo == null ? Result.error(ErrorMessages.QUERY_FAILED) : Result.success(patientInfo);
+        if (patientInfo == null) {
+            return Result.error(ErrorMessages.QUERY_FAILED);
+        } else {
+            return Result.success(patientInfo);
+        }
     }
 
     @Override

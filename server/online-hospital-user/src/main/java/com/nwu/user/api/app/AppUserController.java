@@ -2,6 +2,7 @@ package com.nwu.user.api.app;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.base.model.Result;
@@ -52,7 +53,7 @@ public class AppUserController {
         JSONObject jsonObject = JSON.parseObject(json);
         String openid = jsonObject.getString("openid");
         if (openid == null)
-            return Result.error("登陆失败");
+            return Result.error(ErrorMessages.LOGIN_ERROR);
 
         UserLoginVo userLoginVo = new UserLoginVo();
         userLoginVo.setIsFirst(0);// 不是第一次登录

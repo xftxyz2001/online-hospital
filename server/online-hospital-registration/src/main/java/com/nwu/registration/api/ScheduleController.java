@@ -1,6 +1,5 @@
 package com.nwu.registration.api;
 
-
 import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.model.Result;
 import com.nwu.registration.model.dto.InsertScheduleDto;
@@ -33,7 +32,6 @@ public class ScheduleController {
     @PostMapping("")
     public Result<List<ScheduleVo>> getSchedules(@RequestBody QueryScheduleDto queryScheduleDto) {
 
-
         return iScheduleService.getSchedules(queryScheduleDto);
     }
 
@@ -46,8 +44,11 @@ public class ScheduleController {
     @Operation(summary = "根据id删除排班")
     @DeleteMapping("/delete")
     public Result<?> deleteSchedule(Long scheduleId) {
-        return iScheduleService.removeById(scheduleId) ? Result.success() : Result.error(ErrorMessages.DELETE_FAILED);
+        if (iScheduleService.removeById(scheduleId)) {
+            return Result.success();
+        } else {
+            return Result.error(ErrorMessages.DELETE_FAILED);
+        }
     }
-
 
 }

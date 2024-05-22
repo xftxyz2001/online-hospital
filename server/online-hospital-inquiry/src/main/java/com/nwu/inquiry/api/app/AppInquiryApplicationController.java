@@ -1,6 +1,7 @@
 package com.nwu.inquiry.api.app;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.model.Result;
 import com.nwu.inquiry.model.dto.app.AddInquiryApplicationDto;
 import com.nwu.inquiry.model.po.InquiryApplication;
@@ -67,8 +68,9 @@ public class AppInquiryApplicationController {
                 .set(InquiryApplication::getStatus, 3)
                 .set(InquiryApplication::getCancelTime, LocalDateTime.now());
         boolean update = iInquiryApplicationService.update(lambdaUpdateWrapper);
-        if (update) return Result.success();
-        else return Result.error("操作失败，请刷新");
-
+        if (update) {
+            return Result.success();
+        }
+        return Result.error(ErrorMessages.OPERATION_FAILED);
     }
 }

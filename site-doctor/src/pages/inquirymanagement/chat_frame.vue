@@ -185,7 +185,6 @@ const innerRef = ref();
 const scrollbarRef = ref({});
 const applicationDetail = ref({});
 const srcList = ref([]);
-import { defineEmits } from "vue";
 const emit = defineEmits(["queryList"]);
 const queryChatMessage = async () => {
   let result = await inquiryChatMessage(linkId.value);
@@ -209,8 +208,7 @@ const inWindowInitial = async () => {
   await inWindow(linkId.value);
 };
 onBeforeMount(() => {
-  const webSocketUrl = process.env.VUE_APP_WS_CHAT;
-  webSocket.webSocketInit(webSocketUrl); //初始化webSocket
+  webSocket.webSocketInit(); //初始化webSocket
   webSocket.setOpenCallback(res => {
     console.log("连接建立成功", res);
   });

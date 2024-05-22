@@ -8,8 +8,7 @@ import store from "@/vuex";
 export default {
   // 初始化webSocket
   webSocketInit() {
-    // ws://127.0.0.1:8088/websocket
-    const webSocketUrl = process.env.VUE_APP_WS_CHAT;
+    const webSocketUrl = "/inquiry/chat"
     const useToken = store.getters.doctorLoginToken.token;
     if (useToken != "") {
       this.webSocket = new WebSocket(webSocketUrl + "/" + useToken);

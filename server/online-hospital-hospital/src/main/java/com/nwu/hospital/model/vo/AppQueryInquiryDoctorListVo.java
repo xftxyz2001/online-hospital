@@ -1,8 +1,7 @@
 package com.nwu.hospital.model.vo;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -11,17 +10,17 @@ import lombok.Data;
  * @DateTime 2024/4/1 22:41
  **/
 @Data
-@ApiModel(value = "app查询问诊医生列表Vo")
+@Schema(description = "app查询问诊医生列表Vo")
 public class AppQueryInquiryDoctorListVo {
 
     private Long id;
 
-    @ApiModelProperty(value = "医生姓名")
+    @Schema(description = "医生姓名")
     private String name;
-    @ApiModelProperty(value = "照片")
+    @Schema(description = "照片")
     private String picture;
-    @ApiModelProperty(value = "职称")
+    @Schema(description = "职称")
     private String professionalTitle;
-    @ApiModelProperty(value = "候诊人数")
+    @Schema(description = "候诊人数")
     private Integer waitingNum;
 }

@@ -5,8 +5,8 @@ import com.nwu.base.model.Result;
 import com.nwu.registration.model.dto.AddReportDto;
 import com.nwu.registration.model.po.ReportInfo;
 import com.nwu.registration.service.IReportInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,12 +18,12 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/reportInfo/web")
-@Api(tags = "web端检查报告接口")
+@Tag(name = "web端检查报告接口")
 public class WebReportInfoController {
     @Autowired
     IReportInfoService iReportInfoService;
 
-    @ApiOperation(value = "添加报告")
+    @Operation(summary = "添加报告")
     @PostMapping(value = "/insert")
     public Result insert(@RequestBody AddReportDto addReportDto) {
         ReportInfo reportInfo = new ReportInfo();

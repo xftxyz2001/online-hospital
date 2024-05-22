@@ -1,8 +1,7 @@
 package com.nwu.registration.model.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,7 +23,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("order_info")
-@ApiModel(value = "OrderInfo对象", description = "")
+@Schema(description = "OrderInfo对象")
 public class OrderInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,19 +32,19 @@ public class OrderInfo implements Serializable {
 
     private Long userId;
 
-    @ApiModelProperty(value = "订单交易号")
+    @Schema(description = "订单交易号")
     private String outTradeNo;
 
-    @ApiModelProperty(value = "医院编号")
+    @Schema(description = "医院编号")
     private Long hospitalId;
 
-    @ApiModelProperty(value = "医院名称")
+    @Schema(description = "医院名称")
     private String hospitalName;
 
-    @ApiModelProperty(value = "门诊编号")
+    @Schema(description = "门诊编号")
     private Long outpatientId;
 
-    @ApiModelProperty(value = "门诊名称")
+    @Schema(description = "门诊名称")
     private String outpatientName;
 
     private LocalDate reserveDate;
@@ -58,10 +57,10 @@ public class OrderInfo implements Serializable {
 
     private String patientPhone;
 
-    @ApiModelProperty(value = "预约费")
+    @Schema(description = "预约费")
     private BigDecimal amount;
 
-    @ApiModelProperty(value = "订单状态:0.未完成1.已完成 2.已超时3.已取消")
+    @Schema(description = "订单状态:0.未完成1.已完成 2.已超时3.已取消")
     private Integer orderStatus;
 
     private LocalDateTime createTime;
@@ -70,13 +69,13 @@ public class OrderInfo implements Serializable {
 
     private Integer isDeleted;
 
-    @ApiModelProperty(value = "排班id")
+    @Schema(description = "排班id")
     private Long scheduleId;
 
-    @ApiModelProperty(value = "医生编号")
+    @Schema(description = "医生编号")
     private Long doctorId;
 
-    @ApiModelProperty(value = "医生姓名")
+    @Schema(description = "医生姓名")
     private String doctorName;
 
     private Long patientId;

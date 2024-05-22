@@ -1,8 +1,7 @@
 package com.nwu.system.model.dto;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 
@@ -12,13 +11,13 @@ import lombok.Data;
  * @Description 管理员登录Dto
  * @DateTime 2024/3/13 23:11
  **/
-@ApiModel(value = "管理员登录Dto")
+@Schema(description = "管理员登录Dto")
 @Data
 public class ManagerLoginDto {
 
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     String username;
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     String password;
 
 }

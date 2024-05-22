@@ -1,7 +1,6 @@
 package com.nwu.user.model.vo.patient;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,12 +11,12 @@ import lombok.Data;
  **/
 @Data
 @Builder
-@ApiModel(value = "查询所有就诊人Vo")
+@Schema(description = "查询所有就诊人Vo")
 public class AppQueryAllPatientVo {
-    @ApiModelProperty(value = "编号")
+    @Schema(description = "编号")
     private Long id;
-    @ApiModelProperty(value = "姓名")
+    @Schema(description = "姓名")
     private String name;
-    @ApiModelProperty(value = "就诊卡号")
+    @Schema(description = "就诊卡号")
     private String cardNo;
 }

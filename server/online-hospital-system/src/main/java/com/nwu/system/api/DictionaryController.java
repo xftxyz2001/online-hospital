@@ -4,8 +4,8 @@ package com.nwu.system.api;
 import com.nwu.base.model.Result;
 import com.nwu.system.model.po.Dictionary;
 import com.nwu.system.service.IDictionaryService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,20 +25,20 @@ import java.util.List;
  */
 @RestController
 @Slf4j
-@Api(tags = "字典接口")
+@Tag(name = "字典接口")
 @RequestMapping("/dictionary")
 public class DictionaryController {
     @Autowired
     private IDictionaryService iDictionaryService;
 
     @GetMapping("/list")
-    @ApiOperation("查询所有字典")
+    @Operation(summary = "查询所有字典")
     public List<Dictionary> list() {
         return iDictionaryService.list();
     }
 
     @GetMapping("/{code}")
-    @ApiOperation("根据code查询所有字典")
+    @Operation(summary = "根据code查询所有字典")
     public Result<Dictionary> queryByCode(@PathVariable String code) {
         return iDictionaryService.queryByCode(code);
     }

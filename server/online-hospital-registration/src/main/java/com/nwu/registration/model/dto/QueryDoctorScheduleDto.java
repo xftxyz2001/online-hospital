@@ -1,6 +1,6 @@
 package com.nwu.registration.model.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -10,24 +10,24 @@ import lombok.Data;
  **/
 @Data
 public class QueryDoctorScheduleDto {
-    @ApiModelProperty(value = "医院id")
+    @Schema(description = "医院id")
 
     private Long hospitalId;
 
-    @ApiModelProperty(value = "门诊id")
+    @Schema(description = "门诊id")
 
     private Long outpatientId;
 
 
-    @ApiModelProperty(value = "排班日期")
+    @Schema(description = "排班日期")
 
     private String workDate;
 
-    @ApiModelProperty(value = "医生id")
+    @Schema(description = "医生id")
 
     private Long doctorId;
 
-    @ApiModelProperty(value = "排班时间（0.上午1.下午）")
+    @Schema(description = "排班时间（0.上午1.下午）")
 
     private Integer workHalf;
 }

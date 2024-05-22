@@ -3,8 +3,7 @@ package com.nwu.hospital.model.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -24,7 +23,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("hospital_outpatient")
-@ApiModel(value = "HospitalOutpatient对象", description = "医院-门诊对应表")
+@Schema(description = "HospitalOutpatient对象-医院-门诊对应表")
 public class HospitalOutpatient implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,13 +31,13 @@ public class HospitalOutpatient implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "医院id")
+    @Schema(description = "医院id")
     private Long hospitalId;
 
-    @ApiModelProperty(value = "门诊id")
+    @Schema(description = "门诊id")
     private Long outpatientId;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private LocalDateTime createTime;
 
 

@@ -6,8 +6,8 @@ import com.nwu.base.model.Result;
 import com.nwu.registration.model.po.ReportInfo;
 import com.nwu.registration.model.vo.AppReportInfoVo;
 import com.nwu.registration.service.IReportInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +19,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reportInfo/app")
-@Api(tags = "app端检查报告接口")
+@Tag(name = "app端检查报告接口")
 public class AppReportInfoController {
     @Autowired
     IReportInfoService iReportInfoService;
 
-    @ApiOperation(value = "请求所有报告接口")
+    @Operation(summary = "请求所有报告接口")
     @GetMapping("/queryAll")
     public Result<List<AppReportInfoVo>> queryReportList() {
         LambdaQueryWrapper<ReportInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();

@@ -1,7 +1,6 @@
 package com.nwu.inquiry.model.ws;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -11,18 +10,18 @@ import lombok.Data;
  * @Author: 黑马程序员
  */
 @Data
-@ApiModel(value = "webSocket消息")
+@Schema(description = "webSocket消息")
 public class WsMessage {
 
-    @ApiModelProperty(value = "用户聊天关系表id")
+    @Schema(description = "用户聊天关系表id")
     private Long linkId;
 
-    @ApiModelProperty(value = "问诊申请id")
+    @Schema(description = "问诊申请id")
     private Long inquiryApplicationId;
 
-    @ApiModelProperty(value = "接收方id")
+    @Schema(description = "接收方id")
     private Long toUserId;
 
-    @ApiModelProperty(value = "接收方身份：0.用户 1.医生")
+    @Schema(description = "接收方身份：0.用户 1.医生")
     private Integer toUserIdentity;
 }

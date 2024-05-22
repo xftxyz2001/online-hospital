@@ -1,7 +1,6 @@
 package com.nwu.user.model.dto;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -10,14 +9,14 @@ import lombok.Data;
  * @Description 分页请求用户的查询参数
  * @DateTime 2024/3/5 16:55
  **/
-@ApiModel(value = "请求用户查询参数")
+@Schema(description = "请求用户查询参数")
 @Data
 public class QueryUserInfoDto {
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String userName;
-    @ApiModelProperty(value = "手机号")
+    @Schema(description = "手机号")
     private String phone;
-    @ApiModelProperty(value = "账号状态")
+    @Schema(description = "账号状态")
     private String status;
 
 }

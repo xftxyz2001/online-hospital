@@ -1,15 +1,14 @@
 package com.nwu.hospital.model.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@ApiModel(value = "门诊列表vo")
+@Schema(description = "门诊列表vo")
 @Data
 public class AppOutpatientListVo {
 
     private Long id;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(description = "名称")
     private String name;
 }

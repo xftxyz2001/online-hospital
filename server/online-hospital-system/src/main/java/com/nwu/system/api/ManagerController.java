@@ -7,8 +7,8 @@ import com.nwu.system.model.dto.ManagerLoginDto;
 import com.nwu.system.model.po.Manager;
 import com.nwu.system.model.vo.ManagerQueryUsernameVo;
 import com.nwu.system.service.IManagerService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +21,19 @@ import org.springframework.web.bind.annotation.*;
  * @since 2024-03-13
  */
 @RestController
-@Api(tags = "管理员接口")
+@Tag(name = "管理员接口")
 @RequestMapping("/manager")
 public class ManagerController {
     @Autowired
     IManagerService iManagerService;
 
-    @ApiOperation("管理员登录接口")
+    @Operation(summary = "管理员登录接口")
     @PostMapping("/login")
     public Result<?> login(@RequestBody ManagerLoginDto managerLoginDto) {
         return iManagerService.login(managerLoginDto);
     }
 
-    @ApiOperation("管理员名称查询")
+    @Operation(summary = "管理员名称查询")
     @GetMapping("/queryUsername")
     public Result<ManagerQueryUsernameVo> queryUsername() {
 

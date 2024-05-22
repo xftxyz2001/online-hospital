@@ -7,8 +7,8 @@ import com.nwu.registration.model.po.OrderInfo;
 import com.nwu.registration.model.vo.AppQueryAllOrderVo;
 import com.nwu.registration.model.vo.AppQueryOneOrderVo;
 import com.nwu.registration.service.IOrderInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +23,13 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/orderInfo/app")
-@Api(tags = "app订单接口")
+@Tag(name = "app订单接口")
 public class AppOrderInfoController {
     @Autowired
     IOrderInfoService iOrderInfoService;
 
     @PostMapping("/add")
-    @ApiOperation(value = "新增预约订单")
+    @Operation(summary = "新增预约订单")
     public Result addOrder(@RequestBody InsertOrderDto insertOrderDto) {
         iOrderInfoService.addOrder(insertOrderDto);
         return Result.success();
@@ -37,7 +37,7 @@ public class AppOrderInfoController {
 
 
     @GetMapping("/queryAll")
-    @ApiOperation(value = "查询所有订单信息")
+    @Operation(summary = "查询所有订单信息")
     public Result<List<AppQueryAllOrderVo>> queryAllOrder() {
         List<OrderInfo> orderInfos = iOrderInfoService.queryAllOrder();
         List<AppQueryAllOrderVo> appQueryAllOrderVos = new ArrayList<>();
@@ -51,7 +51,7 @@ public class AppOrderInfoController {
     }
 
     @GetMapping("/queryOne")
-    @ApiOperation(value = "查询单个订单信息")
+    @Operation(summary = "查询单个订单信息")
     public Result<AppQueryOneOrderVo> queryOneOrder(Long id) {
         OrderInfo orderInfo = iOrderInfoService.getById(id);
         AppQueryOneOrderVo appQueryOneOrderVo = new AppQueryOneOrderVo();
@@ -61,7 +61,7 @@ public class AppOrderInfoController {
     }
 
     @PutMapping("/update")
-    @ApiOperation(value = "更新订单")
+    @Operation(summary = "更新订单")
     public Result update(@RequestBody UpdateOrderDto updateOrderDto) {
         iOrderInfoService.updateOrder(updateOrderDto);
         return Result.success();

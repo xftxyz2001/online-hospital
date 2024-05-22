@@ -10,8 +10,8 @@ import com.nwu.hospital.model.po.OutpatientInfo;
 import com.nwu.hospital.model.vo.AppOutpatientListOrderByLetter;
 import com.nwu.hospital.model.vo.AppOutpatientListVo;
 import com.nwu.hospital.service.IOutpatientInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -38,25 +38,25 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/outpatientInfo")
-@Api(tags = "门诊接口")
+@Tag(name = "门诊接口")
 public class OutpatientInfoController {
     @Autowired
     IOutpatientInfoService iOutpatientInfoService;
 
     @GetMapping("/queryOutpatientInfoByHospitalAndSpecialistId")
-    @ApiOperation(value = "根据医院id和专科id获取门诊信息")
+    @Operation(summary = "根据医院id和专科id获取门诊信息")
     public Result<List<OutpatientInfo>> queryOutpatientInfoByHospitalAndSpecialistId(Long hospitalId, Long specialistId) {
         return iOutpatientInfoService.queryOutpatientInfoByHospitalAndSpecialistId(hospitalId, specialistId);
     }
 
     @GetMapping("/queryById")
-    @ApiOperation(value = "根据id获取门诊信息")
+    @Operation(summary = "根据id获取门诊信息")
     public Result<OutpatientInfo> queryOutpatientById(Long id) {
         return Result.success(iOutpatientInfoService.getById(id));
     }
 
     @PostMapping("/add")
-    @ApiOperation(value = "添加门诊")
+    @Operation(summary = "添加门诊")
     public Result<?> add(@RequestBody AddOutpatientDto addOutpatientDto) throws BadHanyuPinyinOutputFormatCombination {
         OutpatientInfo outpatientInfo = new OutpatientInfo();
         BeanUtils.copyProperties(addOutpatientDto, outpatientInfo);
@@ -76,7 +76,7 @@ public class OutpatientInfoController {
     }
 
     @PutMapping("/update")
-    @ApiOperation(value = "修改门诊")
+    @Operation(summary = "修改门诊")
     public Result<?> update(@RequestBody UpdateOutpatientDto updateOutpatientDto) {
         LambdaUpdateWrapper<OutpatientInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(OutpatientInfo::getId, updateOutpatientDto.getId())
@@ -87,7 +87,7 @@ public class OutpatientInfoController {
         return Result.success();
     }
 
-    @ApiOperation(value = "返回首字母排序门诊列表")
+    @Operation(summary = "返回首字母排序门诊列表")
     @GetMapping("/order-letter-list")
     public Result<AppOutpatientListOrderByLetter> orderByLetterList(Long hospitalId) {
         LambdaQueryWrapper<OutpatientInfo> lambdaQueryWrapper = new LambdaQueryWrapper<>();

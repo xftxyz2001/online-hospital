@@ -1,18 +1,17 @@
 package com.nwu.hospital.model.dto.admin;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@ApiModel("添加专科Dto")
+@Schema(description = "添加专科Dto")
 @Data
 public class AddSpecialistDto {
-    @ApiModelProperty(value = "所属医院")
+    @Schema(description = "所属医院")
     private Long hospitalId;
 
-    @ApiModelProperty(value = "专科名称")
+    @Schema(description = "专科名称")
     private String name;
 
-    @ApiModelProperty(value = "介绍")
+    @Schema(description = "介绍")
     private String disc;
 }

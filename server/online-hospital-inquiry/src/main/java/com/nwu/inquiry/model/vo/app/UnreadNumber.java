@@ -1,7 +1,6 @@
 package com.nwu.inquiry.model.vo.app;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,11 +8,11 @@ import lombok.Data;
  * @Author lcy
  * @DateTime 2024/4/6 18:02
  **/
-@ApiModel(value = "app查询未读数Vo")
+@Schema(description = "app查询未读数Vo")
 @Data
 public class UnreadNumber {
 
-    @ApiModelProperty(value = "未读数,当有进行中问诊时有效")
+    @Schema(description = "未读数,当有进行中问诊时有效")
     private Integer unread;
 
 }

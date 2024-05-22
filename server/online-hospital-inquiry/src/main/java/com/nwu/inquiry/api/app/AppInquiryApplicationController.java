@@ -8,8 +8,8 @@ import com.nwu.inquiry.model.vo.app.AppQueryAllApplicationVo;
 import com.nwu.inquiry.model.vo.app.AppQueryOneApplicationVo;
 import com.nwu.inquiry.model.vo.app.AppQueryWaitingInquiryApplicationDetailVo;
 import com.nwu.inquiry.service.IInquiryApplicationService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +23,13 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("app/inquiry-application")
-@Api(tags = "app问诊申请接口")
+@Tag(name = "app问诊申请接口")
 public class AppInquiryApplicationController {
 
     @Autowired
     IInquiryApplicationService iInquiryApplicationService;
 
-    @ApiOperation(value = "新增问诊申请")
+    @Operation(summary = "新增问诊申请")
     @PostMapping("/add")
     public Result<?> addInquiryApplication(@RequestBody AddInquiryApplicationDto addInquiryApplicationDto) {
         iInquiryApplicationService.appAddInquiryApplication(addInquiryApplicationDto);
@@ -37,28 +37,28 @@ public class AppInquiryApplicationController {
     }
 
 
-    @ApiOperation(value = "查询等待中问诊申请详情")
+    @Operation(summary = "查询等待中问诊申请详情")
     @GetMapping("/query-waiting-inquiry-application-detail")
     public Result<AppQueryWaitingInquiryApplicationDetailVo> queryWaitingInquiryApplicationDetail() {
         AppQueryWaitingInquiryApplicationDetailVo queryWaitingInquiryApplicationDetailVo = iInquiryApplicationService.appQueryWaitingInquiryApplicationDetail();
         return Result.success(queryWaitingInquiryApplicationDetailVo);
     }
 
-    @ApiOperation(value = "查询所有的问诊")
+    @Operation(summary = "查询所有的问诊")
     @GetMapping("/queryAll")
     public Result<List<AppQueryAllApplicationVo>> queryAll() {
         List<AppQueryAllApplicationVo> appQueryAllApplicationVos = iInquiryApplicationService.appQueryAll();
         return Result.success(appQueryAllApplicationVos);
     }
 
-    @ApiOperation(value = "查询单个问诊")
+    @Operation(summary = "查询单个问诊")
     @GetMapping("/queryById")
     public Result<AppQueryOneApplicationVo> queryById(Long id) {
         AppQueryOneApplicationVo appQueryOneApplicationVo = iInquiryApplicationService.appQueryById(id);
         return Result.success(appQueryOneApplicationVo);
     }
 
-    @ApiOperation(value = "取消问诊申请")
+    @Operation(summary = "取消问诊申请")
     @PutMapping("/cancel")
     public Result<?> cancel(Long id) {
         LambdaUpdateWrapper<InquiryApplication> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();

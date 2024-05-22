@@ -6,8 +6,8 @@ import com.nwu.hospital.model.po.DoctorInfo;
 import com.nwu.hospital.model.vo.AppDoctorInfoVo;
 import com.nwu.hospital.model.vo.AppQueryInquiryDoctorListVo;
 import com.nwu.hospital.service.IDoctorInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +22,12 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("app/doctorInfo")
-@Api(tags = "app医生接口")
+@Tag(name = "app医生接口")
 public class AppDoctorInfoController {
     @Autowired
     IDoctorInfoService iDoctorInfoService;
 
-    @ApiOperation(value = "根据医院id和门诊id获取在线问诊医生列表")
+    @Operation(summary = "根据医院id和门诊id获取在线问诊医生列表")
     @PostMapping("/queryInquiryDoctorList")
     public Result<List<AppQueryInquiryDoctorListVo>> queryInquiryDoctorList(@RequestBody QueryInquiryDoctorListDto queryInquiryDoctorListDto) {
         List<DoctorInfo> list = iDoctorInfoService.appQueryInquiryDoctorList(queryInquiryDoctorListDto);
@@ -40,7 +40,7 @@ public class AppDoctorInfoController {
         return Result.success(listVos);
     }
 
-    @ApiOperation(value = "app查询单个医生信息")
+    @Operation(summary = "app查询单个医生信息")
     @GetMapping("/queryById")
     public Result<AppDoctorInfoVo> queryById(Long doctorId) {
         AppDoctorInfoVo appDoctorInfoVo = iDoctorInfoService.appQueryById(doctorId);

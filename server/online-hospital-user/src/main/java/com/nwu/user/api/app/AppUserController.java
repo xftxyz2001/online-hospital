@@ -13,8 +13,8 @@ import com.nwu.user.model.po.UserInfo;
 import com.nwu.user.model.vo.user.QueryUsernameVo;
 import com.nwu.user.model.vo.user.UserLoginVo;
 import com.nwu.user.service.IUserInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -28,7 +28,7 @@ import java.util.Map;
  * @DateTime 2024/3/21 0:45
  **/
 @RestController
-@Api(tags = "App用户接口")
+@Tag(name = "App用户接口")
 @RequestMapping("/app/user")
 public class AppUserController {
     public static final String WX_LOGIN = "https://api.weixin.qq.com/sns/jscode2session";
@@ -39,7 +39,7 @@ public class AppUserController {
     WeChatProperties weChatProperties;
 
     @PostMapping("/login")
-    @ApiOperation("用户登录接口")
+    @Operation(summary = "用户登录接口")
     public Result<?> userLogin(@RequestBody UserLoginDto userLoginDto) {
         // 发送微信登录请求
 
@@ -71,7 +71,7 @@ public class AppUserController {
     }
 
     @GetMapping("/queryUsername")
-    @ApiOperation("查询用户名接口")
+    @Operation(summary = "查询用户名接口")
     public Result<QueryUsernameVo> getUsername() {
         String username = iUserInfoService.getUsername();
         QueryUsernameVo queryUsernameVo = QueryUsernameVo.builder().username(username).build();
@@ -79,14 +79,14 @@ public class AppUserController {
     }
 
     @GetMapping("/queryUserInfo")
-    @ApiOperation("查询用户信息接口")
+    @Operation(summary = "查询用户信息接口")
     public Result<AppQueryUserInfoVo> getUserInfo() {
         AppQueryUserInfoVo appQueryUserInfoVo = iUserInfoService.appQueryUserInfo();
         return Result.success(appQueryUserInfoVo);
     }
 
     @PutMapping("/updateUserInfo")
-    @ApiOperation("修改用户信息")
+    @Operation(summary = "修改用户信息")
     public Result<?> updateUserInfo(@RequestBody AppUpdateUserInfoDto appUpdateUserInfoDto) {
         iUserInfoService.appUpdateUserInfo(appUpdateUserInfoDto);
         return Result.success();

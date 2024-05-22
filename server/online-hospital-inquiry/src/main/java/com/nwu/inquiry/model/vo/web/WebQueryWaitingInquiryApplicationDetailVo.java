@@ -1,7 +1,6 @@
 package com.nwu.inquiry.model.vo.web;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,41 +12,41 @@ import java.time.LocalDateTime;
  * @DateTime 2024/4/5 19:06
  **/
 @Data
-@ApiModel(value = "web查询等待问诊详情Vo")
+@Schema(description = "web查询等待问诊详情Vo")
 public class WebQueryWaitingInquiryApplicationDetailVo {
     private Long id;
 
-    @ApiModelProperty(value = "用户id")
+    @Schema(description = "用户id")
     private Long userId;
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String userName;
 
-    @ApiModelProperty(value = "就诊人id")
+    @Schema(description = "就诊人id")
     private Long patientId;
 
-    @ApiModelProperty(value = "就诊人姓名")
+    @Schema(description = "就诊人姓名")
     private String patientName;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private LocalDateTime createTime;
 
 
-    @ApiModelProperty(value = "性别 0.女1.男")
+    @Schema(description = "性别 0.女1.男")
     private Integer sex;
 
-    @ApiModelProperty(value = "出生年月")
+    @Schema(description = "出生年月")
     private LocalDate birthdate;
 
-    @ApiModelProperty(value = "是否结婚 0.否 1.是")
+    @Schema(description = "是否结婚 0.否 1.是")
     private Integer isMarry;
 
-    @ApiModelProperty(value = "就诊卡号")
+    @Schema(description = "就诊卡号")
     private String cardNo;
 
 
-    @ApiModelProperty(value = "病情描述信息（300字以内）")
+    @Schema(description = "病情描述信息（300字以内）")
     private String description;
 
-    @ApiModelProperty(value = "图片")
+    @Schema(description = "图片")
     private String image;
 }

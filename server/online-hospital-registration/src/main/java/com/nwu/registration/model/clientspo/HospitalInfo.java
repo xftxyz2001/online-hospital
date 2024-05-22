@@ -2,8 +2,7 @@ package com.nwu.registration.model.clientspo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -22,7 +21,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 
-@ApiModel(value = "HospitalInfo对象", description = "分院信息")
+@Schema(description = "HospitalInfo对象-分院信息")
 public class HospitalInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,25 +29,25 @@ public class HospitalInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(description = "名称")
     private String name;
 
-    @ApiModelProperty(value = "电话")
+    @Schema(description = "电话")
     private String phone;
 
-    @ApiModelProperty(value = "地址")
+    @Schema(description = "地址")
     private String address;
 
-    @ApiModelProperty(value = "介绍")
+    @Schema(description = "介绍")
     private String introduction;
 
-    @ApiModelProperty(value = "图片地址")
+    @Schema(description = "图片地址")
     private String picture;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private String createTime;
 
-    @ApiModelProperty(value = "修改时间")
+    @Schema(description = "修改时间")
     private String modifiedTime;
 
 

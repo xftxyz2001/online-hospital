@@ -7,8 +7,8 @@ import com.nwu.inquiry.model.vo.web.WebQueryOneFinishedInquiryApplicationDetailV
 import com.nwu.inquiry.model.vo.web.WebQueryWaitingInquiryApplicationDetailVo;
 import com.nwu.inquiry.model.vo.web.WebQueryWaitingInquiryApplicationListVo;
 import com.nwu.inquiry.service.IInquiryApplicationService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +25,12 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("web/inquiry-application")
-@Api(tags = "web问诊申请接口")
+@Tag(name = "web问诊申请接口")
 public class WebInquiryApplicationController {
     @Autowired
     IInquiryApplicationService iInquiryApplicationService;
 
-    @ApiOperation(value = "查询等待中问诊申请列表")
+    @Operation(summary = "查询等待中问诊申请列表")
     @GetMapping("/query-waiting-list")
     public Result<List<WebQueryWaitingInquiryApplicationListVo>> queryWaitingInquiryApplicationList() {
         List<InquiryApplication> inquiryApplications = iInquiryApplicationService.webQueryWaitingInquiryApplicationList();
@@ -43,7 +43,7 @@ public class WebInquiryApplicationController {
         return Result.success(webQueryWaitingInquiryApplicationListVos);
     }
 
-    @ApiOperation(value = "查询等待中问诊申请详情")
+    @Operation(summary = "查询等待中问诊申请详情")
     @GetMapping("/query-waiting-detail")
     public Result<WebQueryWaitingInquiryApplicationDetailVo> queryWaitingInquiryApplicationDetail(Long id) {
         WebQueryWaitingInquiryApplicationDetailVo webQueryWaitingInquiryApplicationDetailVo = iInquiryApplicationService.webQueryWaitingInquiryApplicationDetail(id);
@@ -51,21 +51,21 @@ public class WebInquiryApplicationController {
     }
 
 
-    @ApiOperation(value = "接诊")
+    @Operation(summary = "接诊")
     @GetMapping("/reception")
     public Result<?> reception(Long id) {
         iInquiryApplicationService.changeWaitingToDoing(id);
         return Result.success();
     }
 
-    @ApiOperation(value = "查询所有已完成问诊")
+    @Operation(summary = "查询所有已完成问诊")
     @GetMapping("/allFinished")
     public Result<List<WebQueryAllFinishedInquiryVo>> allFinished() {
         List<WebQueryAllFinishedInquiryVo> webQueryAllFinishedInquiryVos = iInquiryApplicationService.webQueryFinishedInquiryApplications();
         return Result.success(webQueryAllFinishedInquiryVos);
     }
 
-    @ApiOperation(value = "查询单个已完成问诊详情")
+    @Operation(summary = "查询单个已完成问诊详情")
     @GetMapping("/queryFinishedById")
     public Result<WebQueryOneFinishedInquiryApplicationDetailVo> queryFinishedById(Long id) {
         WebQueryOneFinishedInquiryApplicationDetailVo webQueryOneFinishedInquiryApplicationDetailVo = iInquiryApplicationService.webQueryFinishedById(id);

@@ -1,6 +1,6 @@
 package com.nwu.base.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -12,8 +12,8 @@ import lombok.Data;
 @Data
 public class PageParams {
 
-    @ApiModelProperty("页码")
+    @Schema(description = "页码")
     private Long pageNo = 1L;
-    @ApiModelProperty("每页记录数")
+    @Schema(description = "每页记录数")
     private Long pageSize = 30L;
 }

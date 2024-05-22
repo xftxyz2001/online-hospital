@@ -1,7 +1,6 @@
 package com.nwu.user.model.dto;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,16 +11,16 @@ import java.time.LocalDateTime;
  * @DateTime 2024/3/7 13:03
  **/
 @Data
-@ApiModel(value = "修改用户信息参数模型")
+@Schema(description = "修改用户信息参数模型")
 public class UpdateUserInfoDto {
-    @ApiModelProperty(value = "id")
+    @Schema(description = "id")
     private Long id;
-    @ApiModelProperty(value = "昵称")
+    @Schema(description = "昵称")
     private String username;
-    @ApiModelProperty(value = "手机号")
+    @Schema(description = "手机号")
     private String phone;
-    @ApiModelProperty(value = "头像地址")
+    @Schema(description = "头像地址")
     private String avatar;
-    @ApiModelProperty(value = "上次修改时间")
+    @Schema(description = "上次修改时间")
     private LocalDateTime modifiedTime;
 }

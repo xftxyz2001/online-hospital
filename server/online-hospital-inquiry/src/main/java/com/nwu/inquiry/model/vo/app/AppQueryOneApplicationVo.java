@@ -1,46 +1,45 @@
 package com.nwu.inquiry.model.vo.app;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@ApiModel(value = "app查询单个问诊申请Vo")
+@Schema(description = "app查询单个问诊申请Vo")
 public class AppQueryOneApplicationVo {
     private Long id;
     private Long linkId;
 
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String userName;
 
-    @ApiModelProperty(value = "就诊人姓名")
+    @Schema(description = "就诊人姓名")
     private String patientName;
 
-    @ApiModelProperty(value = "病情描述信息（300字以内）")
+    @Schema(description = "病情描述信息（300字以内）")
     private String description;
 
-    @ApiModelProperty(value = "图片")
+    @Schema(description = "图片")
     private String image;
 
-    @ApiModelProperty(value = "医院名称")
+    @Schema(description = "医院名称")
     private String hospitalName;
 
-    @ApiModelProperty(value = "门诊名称")
+    @Schema(description = "门诊名称")
     private String outpatientName;
 
 
-    @ApiModelProperty(value = "医生姓名")
+    @Schema(description = "医生姓名")
     private String doctorName;
 
-    @ApiModelProperty(value = "状态（0.排队 1.进行 2.结束 3.取消）")
+    @Schema(description = "状态（0.排队 1.进行 2.结束 3.取消）")
     private Integer status;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "取消时间")
+    @Schema(description = "取消时间")
     private LocalDateTime cancelTime;
 
 }

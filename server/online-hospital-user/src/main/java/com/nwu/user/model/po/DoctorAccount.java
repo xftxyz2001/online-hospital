@@ -3,8 +3,7 @@ package com.nwu.user.model.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,7 +22,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("doctor_account")
-@ApiModel(value = "DoctorAccount对象", description = "医生账户")
+@Schema(description = "DoctorAccount对象-医生账户")
 public class DoctorAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,13 +30,13 @@ public class DoctorAccount implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "医生id")
+    @Schema(description = "医生id")
     private Long doctorId;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     private String password;
 
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String username;
 
 

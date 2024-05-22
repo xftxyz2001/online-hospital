@@ -1,13 +1,12 @@
 package com.nwu.system.model.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@ApiModel("管理员查询名称vo")
+@Schema(description = "管理员查询名称vo")
 @Data
 public class ManagerQueryUsernameVo {
 
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String username;
 }

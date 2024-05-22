@@ -1,7 +1,6 @@
 package com.nwu.hospital.model.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -11,10 +10,10 @@ import lombok.Data;
  * @DateTime 2024/3/8 18:34
  **/
 @Data
-@ApiModel(value = "门诊树状信息")
+@Schema(description = "门诊树状信息")
 public class OutpatientTreeVo {
-    @ApiModelProperty(value = "门诊id")
+    @Schema(description = "门诊id")
     private Long value;
-    @ApiModelProperty(value = "门诊名称")
+    @Schema(description = "门诊名称")
     private String label;
 }

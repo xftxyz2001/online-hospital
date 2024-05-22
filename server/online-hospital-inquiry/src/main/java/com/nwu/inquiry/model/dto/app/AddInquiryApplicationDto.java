@@ -1,7 +1,6 @@
 package com.nwu.inquiry.model.dto.app;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -10,24 +9,24 @@ import lombok.Data;
  * @DateTime 2024/4/2 16:26
  **/
 @Data
-@ApiModel(value = "添加问诊Dto")
+@Schema(description = "添加问诊Dto")
 public class AddInquiryApplicationDto {
 
-    @ApiModelProperty(value = "就诊人id")
+    @Schema(description = "就诊人id")
     private Long patientId;
 
-    @ApiModelProperty(value = "病情描述信息（300字以内）")
+    @Schema(description = "病情描述信息（300字以内）")
     private String description;
 
-    @ApiModelProperty(value = "图片")
+    @Schema(description = "图片")
     private String image;
 
-    @ApiModelProperty(value = "医院id")
+    @Schema(description = "医院id")
     private Long hospitalId;
 
-    @ApiModelProperty(value = "门诊id")
+    @Schema(description = "门诊id")
     private Long outpatientId;
 
-    @ApiModelProperty(value = "医生id")
+    @Schema(description = "医生id")
     private Long doctorId;
 }

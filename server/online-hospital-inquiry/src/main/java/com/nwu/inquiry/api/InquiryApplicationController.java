@@ -6,7 +6,7 @@ import com.nwu.base.model.PageResult;
 import com.nwu.base.model.Result;
 import com.nwu.inquiry.model.po.InquiryApplication;
 import com.nwu.inquiry.service.IInquiryApplicationService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ public class InquiryApplicationController {
     IInquiryApplicationService iInquiryApplicationService;
 
     @PostMapping("/list")
-    @ApiOperation("问诊申请查询接口")
+    @Operation(summary = "问诊申请查询接口")
     public Result<PageResult<InquiryApplication>> list(PageParams pageParams) {
         return iInquiryApplicationService.queryInquiryApplicationList(pageParams);
     }

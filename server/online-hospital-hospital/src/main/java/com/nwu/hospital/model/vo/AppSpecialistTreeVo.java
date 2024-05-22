@@ -1,7 +1,6 @@
 package com.nwu.hospital.model.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.List;
@@ -13,11 +12,11 @@ import java.util.List;
  * @DateTime 2024/3/17 16:13
  **/
 @Data
-@ApiModel(value = "小程序专科树状信息")
+@Schema(description = "小程序专科树状信息")
 public class AppSpecialistTreeVo {
-    @ApiModelProperty(value = "专科名称")
+    @Schema(description = "专科名称")
     private String text;
-    @ApiModelProperty(value = "包含的门诊")
+    @Schema(description = "包含的门诊")
     private List<AppOutpatientTreeVo> children;
 
 }

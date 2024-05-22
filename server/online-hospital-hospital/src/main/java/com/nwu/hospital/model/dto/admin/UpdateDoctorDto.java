@@ -1,38 +1,37 @@
 package com.nwu.hospital.model.dto.admin;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-@ApiModel(value = "更新医生Dto")
+@Schema(description = "更新医生Dto")
 @Data
 public class UpdateDoctorDto {
-    @ApiModelProperty(value = "编号")
+    @Schema(description = "编号")
     private Long id;
 
-    @ApiModelProperty(value = "医生姓名")
+    @Schema(description = "医生姓名")
     private String name;
 
-    @ApiModelProperty(value = "性别：1.男 0.女")
+    @Schema(description = "性别：1.男 0.女")
     private String gender;
 
-    @ApiModelProperty(value = "职称")
+    @Schema(description = "职称")
     private String professionalTitle;
 
-    @ApiModelProperty(value = "简介")
+    @Schema(description = "简介")
     private String introduce;
 
-    @ApiModelProperty(value = "照片")
+    @Schema(description = "照片")
     private String picture;
 
-    @ApiModelProperty(value = "在线问诊:0.否 1.是")
+    @Schema(description = "在线问诊:0.否 1.是")
 
     private String isInquiry;
 
-    @ApiModelProperty(value = "密码")
+    @Schema(description = "密码")
     private String password;
 
-    @ApiModelProperty(value = "用户名")
+    @Schema(description = "用户名")
     private String username;
 
 

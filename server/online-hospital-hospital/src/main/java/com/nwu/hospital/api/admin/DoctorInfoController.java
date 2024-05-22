@@ -11,8 +11,8 @@ import com.nwu.hospital.model.dto.admin.UpdateDoctorDto;
 import com.nwu.hospital.model.po.DoctorInfo;
 import com.nwu.hospital.model.vo.DoctorInfoPageVo;
 import com.nwu.hospital.service.IDoctorInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,24 +31,24 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/doctorInfo")
-@Api(tags = "医生接口")
+@Tag(name = "医生接口")
 public class DoctorInfoController {
     @Autowired
     IDoctorInfoService iDoctorInfoService;
 
-    @ApiOperation(value = "根据医生id查询医生")
+    @Operation(summary = "根据医生id查询医生")
     @GetMapping("/queryById")
     public Result<DoctorInfo> queryById(Long doctorId) {
         return Result.success(iDoctorInfoService.getById(doctorId));
     }
 
-    @ApiOperation(value = "根据医院和门诊id查询医生列表")
+    @Operation(summary = "根据医院和门诊id查询医生列表")
     @GetMapping("/queryByHospitalAndOutpatientId")
     public Result<List<DoctorInfo>> queryByHospitalAndOutpatientId(Long hospitalId, Long outpatientId) {
         return iDoctorInfoService.queryByHospitalAndOutpatientId(hospitalId, outpatientId);
     }
 
-    @ApiOperation(value = "添加医生")
+    @Operation(summary = "添加医生")
     @PostMapping("/add")
     public Result<?> add(@RequestBody AddDoctorDto addDoctorDto) {
         DoctorInfo doctorInfo = new DoctorInfo();
@@ -66,7 +66,7 @@ public class DoctorInfoController {
         return Result.success();
     }
 
-    @ApiOperation(value = "修改医生")
+    @Operation(summary = "修改医生")
     @PutMapping("/update")
     public Result<?> update(@RequestBody UpdateDoctorDto updateDoctorDto) {
         LambdaUpdateWrapper<DoctorInfo> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
@@ -84,7 +84,7 @@ public class DoctorInfoController {
         return Result.success();
     }
 
-    @ApiOperation(value = "分页条件查询医生")
+    @Operation(summary = "分页条件查询医生")
     @PostMapping("/queryPage")
     public Result<PageResult<DoctorInfoPageVo>> queryPage(PageParams pageParams, @RequestBody(required = false) QueryDoctorInfoPageDto queryDoctorInfoPageDto) {
         return iDoctorInfoService.queryPageDoctorList(pageParams, queryDoctorInfoPageDto);

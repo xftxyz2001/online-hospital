@@ -7,8 +7,8 @@ import com.nwu.hospital.model.dto.web.DoctorLoginDto;
 import com.nwu.hospital.model.po.DoctorInfo;
 import com.nwu.hospital.model.vo.DoctorLoginVo;
 import com.nwu.hospital.service.IDoctorInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/doctorInfo/web")
-@Api(tags = "web医生接口")
+@Tag(name = "web医生接口")
 public class WebDoctorInfoController {
     @Autowired
     IDoctorInfoService iDoctorInfoService;
 
-    @ApiOperation("医生登录接口")
+    @Operation(summary = "医生登录接口")
     @PostMapping("/login")
     public Result<?> login(@RequestBody DoctorLoginDto doctorLoginDto) {
         DoctorInfo doctorInfo = iDoctorInfoService.login(doctorLoginDto);

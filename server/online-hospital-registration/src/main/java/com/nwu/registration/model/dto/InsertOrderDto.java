@@ -1,7 +1,6 @@
 package com.nwu.registration.model.dto;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -13,14 +12,14 @@ import java.time.LocalDate;
  * @DateTime 2024/3/24 16:18
  **/
 @Data
-@ApiModel(value = "添加订单Dto")
+@Schema(description = "添加订单Dto")
 public class InsertOrderDto {
 
-    @ApiModelProperty(value = "医院编号")
+    @Schema(description = "医院编号")
     private Long hospitalId;
 
 
-    @ApiModelProperty(value = "门诊编号")
+    @Schema(description = "门诊编号")
     private Long outpatientId;
 
     private LocalDate reserveDate;
@@ -29,13 +28,13 @@ public class InsertOrderDto {
 
     private Integer reserveTime;
 
-    @ApiModelProperty(value = "预约费")
+    @Schema(description = "预约费")
     private BigDecimal amount;
 
-    @ApiModelProperty(value = "排班id")
+    @Schema(description = "排班id")
     private Long scheduleId;
 
-    @ApiModelProperty(value = "医生编号")
+    @Schema(description = "医生编号")
     private Long doctorId;
 
     private Long patientId;

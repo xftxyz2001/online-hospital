@@ -2,7 +2,7 @@ package com.nwu.system.api;
 
 import com.nwu.base.model.Result;
 import com.nwu.system.service.IFileService;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @RestController
 @Slf4j
-@Api(tags = "上传图片接口")
+@Tag(name = "上传图片接口")
 @RequestMapping("/upload")
 public class UpLoadController {
     @Autowired

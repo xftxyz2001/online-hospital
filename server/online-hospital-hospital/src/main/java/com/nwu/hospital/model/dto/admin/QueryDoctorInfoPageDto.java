@@ -1,28 +1,27 @@
 package com.nwu.hospital.model.dto.admin;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@ApiModel(value = "条件分页查询医生列表Dto")
+@Schema(description = "条件分页查询医生列表Dto")
 public class QueryDoctorInfoPageDto {
-    @ApiModelProperty(value = "医生姓名")
+    @Schema(description = "医生姓名")
     private String name;
 
-    @ApiModelProperty(value = "性别：1.男 0.女")
+    @Schema(description = "性别：1.男 0.女")
     private Integer gender;
 
-    @ApiModelProperty(value = "所属医院")
+    @Schema(description = "所属医院")
     private Long hospitalId;
 
-    @ApiModelProperty(value = "所属门诊")
+    @Schema(description = "所属门诊")
     private Long outpatientId;
 
-    @ApiModelProperty(value = "职称")
+    @Schema(description = "职称")
     private String professionalTitle;
 
-    @ApiModelProperty(value = "是否问诊(0.否 1.是)")
+    @Schema(description = "是否问诊(0.否 1.是)")
     private Integer isInquiry;
 
 }

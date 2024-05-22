@@ -1,8 +1,7 @@
 package com.nwu.registration.model.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -14,7 +13,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("report_info")
-@ApiModel(value = "ReportInfo对象", description = "")
+@Schema(description = "ReportInfo对象")
 public class ReportInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,12 +27,12 @@ public class ReportInfo implements Serializable {
 
     private String patientName;
 
-    @ApiModelProperty(value = "发送时间")
+    @Schema(description = "发送时间")
     private LocalDateTime sendTime;
 
-    @ApiModelProperty(value = "报告名称")
+    @Schema(description = "报告名称")
     private String reportName;
 
-    @ApiModelProperty(value = "文件地址")
+    @Schema(description = "文件地址")
     private String fileUrl;
 }

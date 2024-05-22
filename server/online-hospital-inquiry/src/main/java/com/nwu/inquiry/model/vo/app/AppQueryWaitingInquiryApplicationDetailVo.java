@@ -1,7 +1,6 @@
 package com.nwu.inquiry.model.vo.app;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,26 +11,26 @@ import java.time.LocalDateTime;
  * @DateTime 2024/4/6 21:53
  **/
 @Data
-@ApiModel(value = "app查询等待问诊详情Vo")
+@Schema(description = "app查询等待问诊详情Vo")
 public class AppQueryWaitingInquiryApplicationDetailVo {
     private Long id;
 
-    @ApiModelProperty(value = "就诊人姓名")
+    @Schema(description = "就诊人姓名")
     private String patientName;
 
-    @ApiModelProperty(value = "病情描述信息（300字以内）")
+    @Schema(description = "病情描述信息（300字以内）")
     private String description;
 
-    @ApiModelProperty(value = "门诊名称")
+    @Schema(description = "门诊名称")
     private String outpatientName;
 
 
-    @ApiModelProperty(value = "医生姓名")
+    @Schema(description = "医生姓名")
     private String doctorName;
 
-    @ApiModelProperty(value = "创建时间")
+    @Schema(description = "创建时间")
     private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "候诊人数")
+    @Schema(description = "候诊人数")
     private Integer waitingNum;
 }

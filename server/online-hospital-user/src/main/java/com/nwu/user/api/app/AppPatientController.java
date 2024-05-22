@@ -7,8 +7,8 @@ import com.nwu.user.model.po.PatientInfo;
 import com.nwu.user.model.vo.patient.AppQueryAllPatientVo;
 import com.nwu.user.model.vo.patient.AppQueryOnePatientVo;
 import com.nwu.user.service.IPatientInfoService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,20 +22,20 @@ import java.util.List;
  * @DateTime 2024/3/23 22:30
  **/
 @RestController
-@Api(tags = "App就诊人接口")
+@Tag(name = "App就诊人接口")
 @RequestMapping("/app/patient")
 public class AppPatientController {
     @Autowired
     IPatientInfoService iPatientInfoService;
 
-    @ApiOperation(value = "添加就诊人")
+    @Operation(summary = "添加就诊人")
     @PostMapping("/add")
     public Result<?> addPatient(@RequestBody AddPatientDto addPatientDto) {
         iPatientInfoService.addPatient(addPatientDto);
         return Result.success();
     }
 
-    @ApiOperation(value = "查询所有就诊人")
+    @Operation(summary = "查询所有就诊人")
     @GetMapping("/queryAll")
     public Result<List<AppQueryAllPatientVo>> queryAllPatient() {
         List<PatientInfo> patientInfoList = iPatientInfoService.queryAllPatient();
@@ -49,7 +49,7 @@ public class AppPatientController {
         return Result.success(appQueryAllPatientVoList);
     }
 
-    @ApiOperation(value = "查询单个就诊人")
+    @Operation(summary = "查询单个就诊人")
     @GetMapping("/queryOne")
     public Result<AppQueryOnePatientVo> queryOnePatient(Long patientId) {
         PatientInfo patientInfo = iPatientInfoService.getById(patientId);
@@ -59,14 +59,14 @@ public class AppPatientController {
         return Result.success(appQueryOnePatientVo);
     }
 
-    @ApiOperation(value = "修改就诊人")
+    @Operation(summary = "修改就诊人")
     @PutMapping("/update")
     public Result<?> updatePatient(@RequestBody UpdatePatientDto updatePatientDto) {
         iPatientInfoService.appUpdate(updatePatientDto);
         return Result.success();
     }
 
-    @ApiOperation(value = "删除就诊人")
+    @Operation(summary = "删除就诊人")
     @DeleteMapping("/delete")
     public Result<?> deletePatient(Long patientId) {
         iPatientInfoService.appDelete(patientId);

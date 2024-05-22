@@ -1,7 +1,6 @@
 package com.nwu.registration.api.web;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.nwu.base.model.Result;
 import com.nwu.registration.model.dto.AddReportDto;
 import com.nwu.registration.model.po.ReportInfo;

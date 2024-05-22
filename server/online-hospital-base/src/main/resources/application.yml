@@ -1,6 +1,6 @@
 aliyun:
   oss:
-    access-key-id: 
-    access-key-secret: 
-    endpoint: 
+    access-key-id:
+    access-key-secret:
+    endpoint:
     bucket-name: 

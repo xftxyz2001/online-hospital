@@ -4,15 +4,12 @@ package com.nwu.hospital.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.model.Result;
-import com.nwu.hospital.model.po.HospitalOutpatient;
+import com.nwu.hospital.mapper.OutpatientInfoMapper;
 import com.nwu.hospital.model.po.OutpatientInfo;
 import com.nwu.hospital.service.IOutpatientInfoService;
-import com.nwu.hospital.mapper.HospitalOutpatientMapper;
-import com.nwu.hospital.mapper.OutpatientInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

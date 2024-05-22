@@ -4,8 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @ApiModel("添加门诊Dto")
 @Data
 public class AddOutpatientDto {

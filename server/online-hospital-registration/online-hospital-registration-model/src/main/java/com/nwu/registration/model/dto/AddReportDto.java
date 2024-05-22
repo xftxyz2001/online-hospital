@@ -5,8 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @Data
 @ToString
 @ApiModel(value = "添加报告Dto")

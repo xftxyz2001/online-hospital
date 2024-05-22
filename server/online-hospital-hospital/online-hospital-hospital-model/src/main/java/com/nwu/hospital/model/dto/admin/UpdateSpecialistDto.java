@@ -2,7 +2,6 @@ package com.nwu.hospital.model.dto.admin;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 
 @ApiModel("修改专科Dto")

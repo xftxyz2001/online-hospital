@@ -45,7 +45,7 @@ spring:
           uri: lb://system-api
           predicates:
             - Path=/system/**
-        
+
         - id: doctor
           uri: http://site-doctor:3000
           predicates:

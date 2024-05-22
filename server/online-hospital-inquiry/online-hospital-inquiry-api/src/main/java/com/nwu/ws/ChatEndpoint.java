@@ -1,10 +1,5 @@
 package com.nwu.ws;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Component;
-
 import com.alibaba.fastjson.JSON;
 import com.nwu.base.utils.JwtHelper;
 import com.nwu.base.utils.JwtHelper.UserInfo;
@@ -12,15 +7,13 @@ import com.nwu.config.GetHttpSessionConfig;
 import com.nwu.inquiry.model.ws.UserIdentity;
 import com.nwu.inquiry.model.ws.WsMessage;
 import com.nwu.inquiry.service.IChatListService;
-
-import jakarta.websocket.EndpointConfig;
-import jakarta.websocket.OnClose;
-import jakarta.websocket.OnError;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.OnOpen;
-import jakarta.websocket.Session;
+import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 @ServerEndpoint(value = "/chat/{param}", configurator = GetHttpSessionConfig.class)

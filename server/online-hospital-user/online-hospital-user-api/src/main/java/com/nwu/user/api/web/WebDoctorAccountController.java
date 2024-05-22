@@ -1,20 +1,18 @@
 package com.nwu.user.api.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.nwu.base.model.Result;
 import com.nwu.base.utils.JwtHelper;
 import com.nwu.user.model.dto.doctoraccount.DoctorAccountLoginDto;
 import com.nwu.user.model.po.DoctorAccount;
 import com.nwu.user.model.vo.doctoraccount.DoctorLoginVo;
 import com.nwu.user.service.IDoctorAccountService;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>

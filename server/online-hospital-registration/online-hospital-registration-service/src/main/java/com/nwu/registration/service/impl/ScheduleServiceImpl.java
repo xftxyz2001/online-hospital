@@ -4,8 +4,6 @@ package com.nwu.registration.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.model.Result;
-
-
 import com.nwu.registration.clients.HospitalClient;
 import com.nwu.registration.mapper.ScheduleMapper;
 import com.nwu.registration.model.clientspo.DoctorInfo;

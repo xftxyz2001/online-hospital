@@ -1,16 +1,14 @@
 package com.nwu.interceptor;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.HandlerInterceptor;
-
 import com.nwu.base.context.BaseContext;
 import com.nwu.base.utils.JwtHelper;
 import com.nwu.base.utils.JwtHelper.UserInfo;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * jwt令牌校验的拦截器

@@ -1,8 +1,5 @@
 package com.nwu.system.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.constant.MessageConstant;
@@ -13,6 +10,8 @@ import com.nwu.system.mapper.ManagerMapper;
 import com.nwu.system.model.dto.ManagerLoginDto;
 import com.nwu.system.model.po.Manager;
 import com.nwu.system.service.IManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>

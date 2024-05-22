@@ -1,8 +1,8 @@
 package com.nwu.ws;
 
 import com.alibaba.fastjson.JSON;
-import com.nwu.base.utils.JwtHelper;
-import com.nwu.base.utils.UserIdAndIdentity;
+import com.nwu.base.jwt.JwtHelper;
+import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.inquiry.model.ws.WsMessage;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nwu.base.context.BaseContext;
-import com.nwu.base.utils.UserIdAndIdentity;
+import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.inquiry.clients.HospitalClient;
 import com.nwu.inquiry.clients.UserClient;
 import com.nwu.inquiry.mapper.ChatListMapper;

@@ -1,6 +1,6 @@
 package com.nwu;
 
-import com.nwu.base.json.JacksonConfig;
+import com.nwu.base.config.JacksonConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;

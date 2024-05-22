@@ -1,8 +1,8 @@
 package com.nwu.interceptor;
 
 import com.nwu.base.context.BaseContext;
-import com.nwu.base.utils.JwtHelper;
-import com.nwu.base.utils.UserIdAndIdentity;
+import com.nwu.base.jwt.JwtHelper;
+import com.nwu.base.jwt.UserIdAndIdentity;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;

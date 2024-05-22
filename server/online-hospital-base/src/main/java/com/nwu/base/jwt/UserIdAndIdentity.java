@@ -1,4 +1,4 @@
-package com.nwu.base.utils;
+package com.nwu.base.jwt;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.nwu.base.json;
+package com.nwu.base.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -2,7 +2,7 @@ package com.nwu.inquiry.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.nwu.base.utils.UserIdAndIdentity;
+import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.inquiry.model.po.ChatList;
 import com.nwu.inquiry.model.vo.app.AppQueryChatListVo;
 import com.nwu.inquiry.model.vo.app.UnreadNumber;

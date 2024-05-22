@@ -3,7 +3,6 @@ package com.nwu.registration.model.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,7 +13,6 @@ import java.time.LocalDate;
  * @DateTime 2024/3/24 16:18
  **/
 @Data
-@ToString
 @ApiModel(value = "添加订单Dto")
 public class InsertOrderDto {
 

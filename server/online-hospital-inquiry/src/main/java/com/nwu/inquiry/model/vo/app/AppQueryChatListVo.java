@@ -3,10 +3,8 @@ package com.nwu.inquiry.model.vo.app;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
-@ToString
 @ApiModel(value = "app查询问诊聊天列表Vo")
 public class AppQueryChatListVo {
     @ApiModelProperty(value = "聊天列表id")

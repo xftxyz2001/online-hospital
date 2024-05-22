@@ -3,11 +3,9 @@ package com.nwu.inquiry.model.dto.app;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 @ApiModel(value = "web发送消息Dto")
 @Data
-@ToString
 public class AppAddChatMessageDto {
 
     @ApiModelProperty(value = "用户聊天关系表id")

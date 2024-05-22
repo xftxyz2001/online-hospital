@@ -3,7 +3,6 @@ package com.nwu.inquiry.model.dto.app;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version 1.0
@@ -11,7 +10,6 @@ import lombok.ToString;
  * @DateTime 2024/4/2 16:26
  **/
 @Data
-@ToString
 @ApiModel(value = "添加问诊Dto")
 public class AddInquiryApplicationDto {
 

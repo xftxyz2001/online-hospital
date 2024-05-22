@@ -3,12 +3,10 @@ package com.nwu.inquiry.model.vo.app;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Data
-@ToString
 @ApiModel(value = "app查询所有问诊申请Vo")
 public class AppQueryAllApplicationVo {
     private Long id;

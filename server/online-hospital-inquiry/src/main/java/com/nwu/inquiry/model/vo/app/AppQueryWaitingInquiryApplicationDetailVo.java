@@ -3,7 +3,6 @@ package com.nwu.inquiry.model.vo.app;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
  * @DateTime 2024/4/6 21:53
  **/
 @Data
-@ToString
 @ApiModel(value = "app查询等待问诊详情Vo")
 public class AppQueryWaitingInquiryApplicationDetailVo {
     private Long id;

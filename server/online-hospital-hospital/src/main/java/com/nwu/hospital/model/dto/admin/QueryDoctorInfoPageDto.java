@@ -3,10 +3,8 @@ package com.nwu.hospital.model.dto.admin;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
-@ToString
 @ApiModel(value = "条件分页查询医生列表Dto")
 public class QueryDoctorInfoPageDto {
     @ApiModelProperty(value = "医生姓名")

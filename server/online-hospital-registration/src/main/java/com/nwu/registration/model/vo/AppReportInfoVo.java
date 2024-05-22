@@ -3,12 +3,10 @@ package com.nwu.registration.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Data
-@ToString
 @ApiModel(value = "App检查报告Vo")
 public class AppReportInfoVo {
 

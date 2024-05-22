@@ -1,7 +1,6 @@
 package com.nwu.base.model;
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
  * @DateTime 2024/3/1 14:07
  **/
 @Data
-@ToString
 public class PageResult<T> implements Serializable {
     //结果列表
     private List<T> items;

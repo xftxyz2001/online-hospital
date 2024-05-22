@@ -3,7 +3,6 @@ package com.nwu.registration.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version 1.0
@@ -11,7 +10,6 @@ import lombok.ToString;
  * @DateTime 2024/3/25 14:57
  **/
 @Data
-@ToString
 @ApiModel(value = "查询所有订单Vo")
 public class AppQueryAllOrderVo {
     private String id;

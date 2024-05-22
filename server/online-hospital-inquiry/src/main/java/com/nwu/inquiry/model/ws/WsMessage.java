@@ -3,7 +3,6 @@ package com.nwu.inquiry.model.ws;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version v1.0
@@ -12,7 +11,6 @@ import lombok.ToString;
  * @Author: 黑马程序员
  */
 @Data
-@ToString
 @ApiModel(value = "webSocket消息")
 public class WsMessage {
 

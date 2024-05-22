@@ -76,7 +76,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public Result<?> disenableUserById(Long id) {
         LambdaUpdateWrapper<UserInfo> userInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserConstant.DISENABLE);
+        userInfoLambdaUpdateWrapper.eq(UserInfo::getId, id).set(UserInfo::getStatus, UserConstant.DISABLE);
         userInfoMapper.update(null, userInfoLambdaUpdateWrapper);
         return Result.success();
     }

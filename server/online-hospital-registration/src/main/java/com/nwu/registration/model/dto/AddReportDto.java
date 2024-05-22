@@ -3,10 +3,8 @@ package com.nwu.registration.model.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
-@ToString
 @ApiModel(value = "添加报告Dto")
 public class AddReportDto {
 

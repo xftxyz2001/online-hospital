@@ -3,7 +3,6 @@ package com.nwu.registration.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,7 +16,6 @@ import java.time.LocalDateTime;
  **/
 @Data
 @ApiModel(value = "ScheduleVo对象")
-@ToString
 public class ScheduleVo {
 
     private Long id;

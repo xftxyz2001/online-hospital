@@ -3,7 +3,6 @@ package com.nwu.registration.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version 1.0
@@ -13,7 +12,6 @@ import lombok.ToString;
  **/
 @Data
 @ApiModel(value = "AppScheduleVo对象，返回上午下午有哪些医生以及挂号情况")
-@ToString
 public class AppScheduleVo {
     @ApiModelProperty(value = "医生id")
 

@@ -2,7 +2,6 @@ package com.nwu.registration.model.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version 1.0
@@ -10,7 +9,6 @@ import lombok.ToString;
  * @DateTime 2024/3/9 1:31
  **/
 @Data
-@ToString
 public class QueryScheduleDto {
     @ApiModelProperty(value = "医院id")
 

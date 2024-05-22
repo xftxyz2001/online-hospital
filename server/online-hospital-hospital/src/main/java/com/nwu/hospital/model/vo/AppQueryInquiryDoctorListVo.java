@@ -4,14 +4,12 @@ package com.nwu.hospital.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version 1.0
  * @Author lcy
  * @DateTime 2024/4/1 22:41
  **/
-@ToString
 @Data
 @ApiModel(value = "app查询问诊医生列表Vo")
 public class AppQueryInquiryDoctorListVo {

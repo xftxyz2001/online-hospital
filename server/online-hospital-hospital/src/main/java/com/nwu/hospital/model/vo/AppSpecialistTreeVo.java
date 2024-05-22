@@ -3,7 +3,6 @@ package com.nwu.hospital.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 
@@ -13,7 +12,6 @@ import java.util.List;
  * @Description 小程序专科树状信息
  * @DateTime 2024/3/17 16:13
  **/
-@ToString
 @Data
 @ApiModel(value = "小程序专科树状信息")
 public class AppSpecialistTreeVo {

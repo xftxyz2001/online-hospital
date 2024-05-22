@@ -4,13 +4,11 @@ package com.nwu.inquiry.model.vo.web;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@ToString
 @ApiModel(value = "web查询单个已完成问诊详情")
 public class WebQueryOneFinishedInquiryApplicationDetailVo {
     private Long id;

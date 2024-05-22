@@ -3,11 +3,9 @@ package com.nwu.inquiry.model.ws;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 @ApiModel(value = "ws添加消息Dto")
 @Data
-@ToString
 public class WsChatMessageDto {
 
     @ApiModelProperty(value = "用户聊天关系表id")

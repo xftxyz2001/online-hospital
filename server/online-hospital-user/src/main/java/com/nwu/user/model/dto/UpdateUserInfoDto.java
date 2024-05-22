@@ -3,7 +3,6 @@ package com.nwu.user.model.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +11,6 @@ import java.time.LocalDateTime;
  * @Author lcy
  * @DateTime 2024/3/7 13:03
  **/
-@ToString
 @Data
 @ApiModel(value = "修改用户信息参数模型")
 public class UpdateUserInfoDto {

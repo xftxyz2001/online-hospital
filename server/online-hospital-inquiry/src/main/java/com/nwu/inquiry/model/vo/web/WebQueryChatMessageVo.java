@@ -3,12 +3,10 @@ package com.nwu.inquiry.model.vo.web;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 
 @Data
-@ToString
 @ApiModel(value = "web聊天消息vo")
 public class WebQueryChatMessageVo {
     @ApiModelProperty(value = "用户聊天关系表id")

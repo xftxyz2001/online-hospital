@@ -3,7 +3,6 @@ package com.nwu.inquiry.model.vo.app;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * @version 1.0
@@ -12,7 +11,6 @@ import lombok.ToString;
  **/
 @ApiModel(value = "app查询未读数Vo")
 @Data
-@ToString
 public class UnreadNumber {
 
     @ApiModelProperty(value = "未读数,当有进行中问诊时有效")

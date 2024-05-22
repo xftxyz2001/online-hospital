@@ -2,11 +2,11 @@ package com.nwu.inquiry.api.app;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.nwu.base.model.Result;
-import com.nwu.inquiry.model.dto.app.AddInquiryApplicationDto;
 import com.nwu.inquiry.model.po.InquiryApplication;
 import com.nwu.inquiry.model.vo.app.AppQueryAllApplicationVo;
 import com.nwu.inquiry.model.vo.app.AppQueryOneApplicationVo;
 import com.nwu.inquiry.model.vo.app.AppQueryWaitingInquiryApplicationDetailVo;
+import com.nwu.inquiry.model.dto.app.AddInquiryApplicationDto;
 import com.nwu.inquiry.service.IInquiryApplicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

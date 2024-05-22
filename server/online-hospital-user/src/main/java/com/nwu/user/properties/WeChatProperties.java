@@ -1,4 +1,4 @@
-package com.nwu.properties;
+package com.nwu.user.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

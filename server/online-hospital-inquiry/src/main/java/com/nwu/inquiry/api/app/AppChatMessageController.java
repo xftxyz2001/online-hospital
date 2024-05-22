@@ -1,8 +1,8 @@
 package com.nwu.inquiry.api.app;
 
 import com.nwu.base.model.Result;
-import com.nwu.inquiry.model.dto.app.AppAddChatMessageDto;
 import com.nwu.inquiry.model.vo.app.AppQueryChatMessageVo;
+import com.nwu.inquiry.model.dto.app.AppAddChatMessageDto;
 import com.nwu.inquiry.service.IChatMessageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

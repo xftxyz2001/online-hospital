@@ -1,4 +1,4 @@
-package com.nwu.config;
+package com.nwu.inquiry.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

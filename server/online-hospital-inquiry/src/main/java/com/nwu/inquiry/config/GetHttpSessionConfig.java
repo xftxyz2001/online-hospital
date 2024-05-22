@@ -1,4 +1,4 @@
-package com.nwu.config;
+package com.nwu.inquiry.config;
 
 import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;

@@ -1,4 +1,4 @@
-package com.nwu.interceptor;
+package com.nwu.inquiry.interceptor;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

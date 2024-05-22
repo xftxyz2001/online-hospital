@@ -1,4 +1,4 @@
-package com.nwu;
+package com.nwu.inquiry;
 
 import com.nwu.base.config.JacksonConfig;
 import com.nwu.base.config.OpenAPIConfig;

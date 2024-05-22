@@ -1,17 +1,19 @@
-package com.nwu;
+package com.nwu.user;
 
 import com.nwu.base.config.JacksonConfig;
 import com.nwu.base.config.OpenAPIConfig;
+import com.nwu.base.config.WebMvcConfig;
+import com.nwu.base.jwt.JwtInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import({JacksonConfig.class, OpenAPIConfig.class})
-public class OnlineHospitalHospitalApiApplication {
+@Import({JacksonConfig.class, OpenAPIConfig.class, JwtInterceptor.class, WebMvcConfig.class})
+public class OnlineHospitalUserApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OnlineHospitalHospitalApiApplication.class, args);
+        SpringApplication.run(OnlineHospitalUserApiApplication.class, args);
     }
 
 }

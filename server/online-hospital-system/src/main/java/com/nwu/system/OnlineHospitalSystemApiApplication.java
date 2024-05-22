@@ -1,4 +1,4 @@
-package com.nwu;
+package com.nwu.system;
 
 import com.nwu.base.config.JacksonConfig;
 import com.nwu.base.config.OpenAPIConfig;
@@ -10,10 +10,9 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @Import({JacksonConfig.class, OpenAPIConfig.class, JwtInterceptor.class, WebMvcConfig.class})
-public class OnlineHospitalUserApiApplication {
-
+public class OnlineHospitalSystemApiApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OnlineHospitalUserApiApplication.class, args);
+        SpringApplication.run(OnlineHospitalSystemApiApplication.class, args);
     }
 
 }

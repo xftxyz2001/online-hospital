@@ -1,4 +1,4 @@
-package com.nwu.ws;
+package com.nwu.inquiry.ws;
 
 import com.alibaba.fastjson.JSON;
 import com.nwu.base.jwt.JwtHelper;

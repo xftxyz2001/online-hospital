@@ -1,12 +1,13 @@
 package com.nwu.inquiry.ws;
 
-import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.inquiry.model.ws.WsMessage;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -18,8 +19,13 @@ public class ChatEndpoint {
 
     // 所有用户的Session
     private static final Map<String, Session> onlineUsers = new ConcurrentHashMap<>();
-
+    private static ObjectMapper objectMapper;
     private String userIdentity;
+
+    @Autowired
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        ChatEndpoint.objectMapper = objectMapper;
+    }
 
     /**
      * 建立websocket连接后，被调用
@@ -34,7 +40,6 @@ public class ChatEndpoint {
 
     /**
      * 浏览器发送消息到服务端，该方法被调用
-     * <p>
      * 张三 --> 李四
      *
      * @param message
@@ -46,7 +51,7 @@ public class ChatEndpoint {
             return;
         }
         // 发消息
-        WsMessage wsMessage = JSON.parseObject(message, WsMessage.class);
+        WsMessage wsMessage = objectMapper.convertValue(message, WsMessage.class);
         String toUserIdentity = UserIdAndIdentity.builder()
                 .id(wsMessage.getToUserId())
                 .identity(wsMessage.getToUserIdentity())

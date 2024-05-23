@@ -1,27 +1,22 @@
 package com.nwu.user.api.app;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.nwu.base.constant.ErrorMessages;
 import com.nwu.base.jwt.JwtHelper;
 import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.base.model.Result;
+import com.nwu.user.client.WeChatTemplate;
 import com.nwu.user.model.dto.user.AppQueryUserInfoVo;
 import com.nwu.user.model.dto.user.AppUpdateUserInfoDto;
 import com.nwu.user.model.dto.user.UserLoginDto;
 import com.nwu.user.model.po.UserInfo;
 import com.nwu.user.model.vo.user.QueryUsernameVo;
 import com.nwu.user.model.vo.user.UserLoginVo;
-import com.nwu.user.properties.WeChatProperties;
 import com.nwu.user.service.IUserInfoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @version 1.0
@@ -32,26 +27,17 @@ import java.util.Map;
 @Tag(name = "App用户接口")
 @RequestMapping("/app/user")
 public class AppUserController {
-    public static final String WX_LOGIN = "https://api.weixin.qq.com/sns/jscode2session";
-    private final RestTemplate restTemplate = new RestTemplate();
     @Autowired
     IUserInfoService iUserInfoService;
     @Autowired
-    WeChatProperties weChatProperties;
+    private WeChatTemplate weChatTemplate;
 
     @PostMapping("/login")
     @Operation(summary = "用户登录接口")
     public Result<?> userLogin(@RequestBody UserLoginDto userLoginDto) {
         // 发送微信登录请求
+        String openid = weChatTemplate.getOpenId(userLoginDto.getCode());
 
-        Map<String, String> map = new HashMap<>();
-        map.put("appid", weChatProperties.getAppid());
-        map.put("secret", weChatProperties.getSecret());
-        map.put("js_code", userLoginDto.getCode());
-        map.put("grant_type", "authorization_code");
-        String json = restTemplate.getForObject(WX_LOGIN, String.class, map);
-        JSONObject jsonObject = JSON.parseObject(json);
-        String openid = jsonObject.getString("openid");
         if (openid == null)
             return Result.error(ErrorMessages.LOGIN_ERROR);
 

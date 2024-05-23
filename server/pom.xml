@@ -30,11 +30,11 @@
         <cloud.version>2022.0.4</cloud.version>
         <alibaba.version>2022.0.0.0</alibaba.version>
         <mybatis-plus.version>3.5.4.1</mybatis-plus.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
         <swagger.version>2.2.0</swagger.version>
         <jwt.version>4.4.0</jwt.version>
         <oss.version>3.10.2</oss.version>
 
-        <fastjson.version>1.2.83</fastjson.version>
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <pinyin4j.version>2.5.0</pinyin4j.version>
     </properties>
@@ -67,9 +67,9 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-annotation</artifactId>
-                <version>${mybatis-plus.version}</version>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-api.version}</version>
             </dependency>
 
             <!-- Swagger -->
@@ -91,20 +91,6 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${oss.version}</version>
-            </dependency>
-
-            <!-- FastJson -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-
-            <!-- Swagger Annotations -->
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger-annotations.version}</version>
             </dependency>
 
             <!-- Pinyin4j -->

@@ -8,9 +8,11 @@ import com.nwu.base.jwt.JwtInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@Import({JacksonConfig.class, OpenAPIConfig.class, JwtInterceptor.class, WebMvcConfig.class, MybatisPlusConfig.class})
+@Import({JacksonConfig.class, OpenAPIConfig.class, JwtInterceptor.class, WebMvcConfig.class, MybatisPlusConfig.class,
+        RestTemplate.class})
 public class OnlineHospitalUserApiApplication {
 
     public static void main(String[] args) {

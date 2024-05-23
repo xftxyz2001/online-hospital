@@ -1,6 +1,5 @@
 package com.nwu.inquiry.service;
 
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nwu.base.model.PageParams;
 import com.nwu.base.model.PageResult;
@@ -16,7 +15,6 @@ import com.nwu.inquiry.model.vo.web.WebQueryWaitingInquiryApplicationDetailVo;
 
 import java.util.List;
 
-
 public interface IInquiryApplicationService extends IService<InquiryApplication> {
 
     void appAddInquiryApplication(AddInquiryApplicationDto addInquiryApplicationDto);
@@ -25,10 +23,9 @@ public interface IInquiryApplicationService extends IService<InquiryApplication>
 
     WebQueryWaitingInquiryApplicationDetailVo webQueryWaitingInquiryApplicationDetail(Long id);
 
-
     AppQueryWaitingInquiryApplicationDetailVo appQueryWaitingInquiryApplicationDetail();
 
-    void changeWaitingToDoing(Long id);
+    Long changeWaitingToDoing(Long id);
 
     List<AppQueryAllApplicationVo> appQueryAll();
 

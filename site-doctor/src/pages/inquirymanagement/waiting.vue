@@ -126,6 +126,7 @@ import {
 } from "@/api/inquiry/inquiry_application";
 import { ref, onMounted } from "vue";
 import { ElMessage } from "element-plus";
+import router from "@/router";
 //import store from "@/vuex";
 
 const applicationList = ref([]);
@@ -161,7 +162,8 @@ const confirmRecept = async () => {
       type: "success"
     });
     receptDialogVisible.value = false;
-    queryInquiryApplicationList();
+    // queryInquiryApplicationList();
+    router.push(`/home/inquirymanagement/inprogress/chatframe?id=${result.data}`);
   }
 };
 onMounted(() => {

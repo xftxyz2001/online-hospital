@@ -1,6 +1,5 @@
 package com.nwu.inquiry.api.web;
 
-
 import com.nwu.base.model.Result;
 import com.nwu.inquiry.model.vo.web.WebQueryChatListVo;
 import com.nwu.inquiry.service.IChatListService;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("web/chat-list")

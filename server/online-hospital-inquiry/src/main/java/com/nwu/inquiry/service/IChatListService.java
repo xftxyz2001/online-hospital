@@ -1,6 +1,5 @@
 package com.nwu.inquiry.service;
 
-
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.nwu.base.jwt.UserIdAndIdentity;
 import com.nwu.inquiry.model.po.ChatList;
@@ -9,7 +8,6 @@ import com.nwu.inquiry.model.vo.app.UnreadNumber;
 import com.nwu.inquiry.model.vo.web.WebQueryChatListVo;
 
 import java.util.List;
-
 
 public interface IChatListService extends IService<ChatList> {
 

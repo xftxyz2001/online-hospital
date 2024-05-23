@@ -7,6 +7,7 @@ import com.nwu.inquiry.model.ws.WsMessage;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -36,13 +37,14 @@ public class ChatEndpoint {
 
     // 收到消息
     @OnMessage
+    @SneakyThrows
     public void onMessage(String message) {
         // 心跳
         if (message.equals("heart")) {
             return;
         }
         // 发消息
-        WsMessage wsMessage = objectMapper.convertValue(message, WsMessage.class);
+        WsMessage wsMessage = objectMapper.readValue(message, WsMessage.class);
         String toUserIdentity = UserIdAndIdentity.builder()
                 .id(wsMessage.getToUserId())
                 .identity(wsMessage.getToUserIdentity())

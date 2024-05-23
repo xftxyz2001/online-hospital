@@ -1,6 +1,5 @@
 package com.nwu.inquiry.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -37,9 +36,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Service
-public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicationMapper, InquiryApplication> implements IInquiryApplicationService {
+public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicationMapper, InquiryApplication>
+        implements IInquiryApplicationService {
 
     @Autowired
     InquiryApplicationMapper inquiryApplicationMapper;
@@ -87,8 +86,8 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
     @Override
     public List<InquiryApplication> webQueryWaitingInquiryApplicationList() {
         LambdaQueryWrapper<InquiryApplication> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(InquiryApplication::getDoctorId, BaseContext.getUserIdentity().getId());//当前医生
-        lambdaQueryWrapper.eq(InquiryApplication::getStatus, 0);//等待状态
+        lambdaQueryWrapper.eq(InquiryApplication::getDoctorId, BaseContext.getUserIdentity().getId());// 当前医生
+        lambdaQueryWrapper.eq(InquiryApplication::getStatus, 0);// 等待状态
         List<InquiryApplication> inquiryApplications = inquiryApplicationMapper.selectList(lambdaQueryWrapper);
         return inquiryApplications;
     }
@@ -108,7 +107,6 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
         return webQueryWaitingInquiryApplicationDetailVo;
     }
 
-
     @Override
     public AppQueryWaitingInquiryApplicationDetailVo appQueryWaitingInquiryApplicationDetail() {
         LambdaQueryWrapper<InquiryApplication> lambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -123,13 +121,13 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
     }
 
     @Override
-    public void changeWaitingToDoing(Long id) {
-        //更新状态
+    public Long changeWaitingToDoing(Long id) {
+        // 更新状态
         LambdaUpdateWrapper<InquiryApplication> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(InquiryApplication::getId, id);
         updateWrapper.set(InquiryApplication::getStatus, 1);
         inquiryApplicationMapper.update(null, updateWrapper);
-        //添加用户聊天关系
+        // 添加用户聊天关系
         InquiryApplication inquiryApplication = getById(id);
         ChatUserLink chatUserLink = new ChatUserLink();
         chatUserLink.setFromUserId(inquiryApplication.getDoctorId())
@@ -142,7 +140,7 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
                 .setIsFinished(0)
                 .setInquiryApplicationId(id);
         iChatUserLinkService.webAddChatUserLink(chatUserLink);
-        //添加聊天列表
+        // 添加聊天列表
         ChatList chatList = new ChatList();
         chatList.setLinkId(chatUserLink.getId())
                 .setFromUserId(inquiryApplication.getDoctorId())
@@ -157,7 +155,7 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
                 .setFromWindow(0)
                 .setToWindow(0)
                 .setUnread(0)
-                .setLastMessageTime(LocalDateTime.now());//医生列表
+                .setLastMessageTime(LocalDateTime.now());// 医生列表
         iChatListService.webAddChatList(chatList);
         ChatList chatList1 = new ChatList();
         chatList1.setLinkId(chatUserLink.getId())
@@ -174,23 +172,8 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
                 .setToWindow(0)
                 .setUnread(0)
                 .setLastMessageTime(LocalDateTime.now());
-        iChatListService.webAddChatList(chatList1);//用户列表
-//        //增加一条聊天记录
-//        ChatMessage chatMessage= new ChatMessage();
-//        chatMessage.setLinkId(chatUserLink.getId())
-//                .setInquiryApplicationId(inquiryApplication.getId())
-//                .setFromUserId(inquiryApplication.getUserId())
-//                .setFromUserIdentity(0)
-//                .setFromUserName(inquiryApplication.getUserName())
-//                .setToUserId(inquiryApplication.getDoctorId())
-//                .setToUserName(inquiryApplication.getDoctorName())
-//                .setToUserIdentity(1)
-//                .setContent(inquiryApplication.getDescription())
-//                .setSendTime(LocalDateTime.now())
-//                .setType(0)
-//                .setIsLatest(1);
-
-//        chatMessageMapper.insert(chatMessage);
+        iChatListService.webAddChatList(chatList1);// 用户列表
+        return chatUserLink.getId();
     }
 
     @Override
@@ -263,7 +246,8 @@ public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicatio
         Page<InquiryApplication> inquiryApplicationPage = inquiryApplicationMapper.selectPage(page, null);
         List<InquiryApplication> inquiryApplications = inquiryApplicationPage.getRecords();
         Long counts = inquiryApplicationPage.getTotal();
-        PageResult<InquiryApplication> inquiryApplicationPageResult = new PageResult<>(inquiryApplications, counts, pageParams.getPageNo(), pageParams.getPageSize());
+        PageResult<InquiryApplication> inquiryApplicationPageResult = new PageResult<>(inquiryApplications, counts,
+                pageParams.getPageNo(), pageParams.getPageSize());
         return Result.success(inquiryApplicationPageResult);
 
     }

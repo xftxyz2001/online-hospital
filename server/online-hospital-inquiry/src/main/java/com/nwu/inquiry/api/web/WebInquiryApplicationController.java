@@ -29,7 +29,8 @@ public class WebInquiryApplicationController {
     @Operation(summary = "查询等待中问诊申请列表")
     @GetMapping("/query-waiting-list")
     public Result<List<WebQueryWaitingInquiryApplicationListVo>> queryWaitingInquiryApplicationList() {
-        List<InquiryApplication> inquiryApplications = iInquiryApplicationService.webQueryWaitingInquiryApplicationList();
+        List<InquiryApplication> inquiryApplications = iInquiryApplicationService
+                .webQueryWaitingInquiryApplicationList();
         List<WebQueryWaitingInquiryApplicationListVo> webQueryWaitingInquiryApplicationListVos = new ArrayList<>();
         for (InquiryApplication inquiryApplication : inquiryApplications) {
             WebQueryWaitingInquiryApplicationListVo webQueryWaitingInquiryApplicationListVo = new WebQueryWaitingInquiryApplicationListVo();
@@ -42,31 +43,32 @@ public class WebInquiryApplicationController {
     @Operation(summary = "查询等待中问诊申请详情")
     @GetMapping("/query-waiting-detail")
     public Result<WebQueryWaitingInquiryApplicationDetailVo> queryWaitingInquiryApplicationDetail(Long id) {
-        WebQueryWaitingInquiryApplicationDetailVo webQueryWaitingInquiryApplicationDetailVo = iInquiryApplicationService.webQueryWaitingInquiryApplicationDetail(id);
+        WebQueryWaitingInquiryApplicationDetailVo webQueryWaitingInquiryApplicationDetailVo = iInquiryApplicationService
+                .webQueryWaitingInquiryApplicationDetail(id);
         return Result.success(webQueryWaitingInquiryApplicationDetailVo);
     }
 
-
     @Operation(summary = "接诊")
     @GetMapping("/reception")
-    public Result<?> reception(Long id) {
-        iInquiryApplicationService.changeWaitingToDoing(id);
-        return Result.success();
+    public Result<Long> reception(Long id) {
+        Long linkId = iInquiryApplicationService.changeWaitingToDoing(id);
+        return Result.success(linkId);
     }
 
     @Operation(summary = "查询所有已完成问诊")
     @GetMapping("/allFinished")
     public Result<List<WebQueryAllFinishedInquiryVo>> allFinished() {
-        List<WebQueryAllFinishedInquiryVo> webQueryAllFinishedInquiryVos = iInquiryApplicationService.webQueryFinishedInquiryApplications();
+        List<WebQueryAllFinishedInquiryVo> webQueryAllFinishedInquiryVos = iInquiryApplicationService
+                .webQueryFinishedInquiryApplications();
         return Result.success(webQueryAllFinishedInquiryVos);
     }
 
     @Operation(summary = "查询单个已完成问诊详情")
     @GetMapping("/queryFinishedById")
     public Result<WebQueryOneFinishedInquiryApplicationDetailVo> queryFinishedById(Long id) {
-        WebQueryOneFinishedInquiryApplicationDetailVo webQueryOneFinishedInquiryApplicationDetailVo = iInquiryApplicationService.webQueryFinishedById(id);
+        WebQueryOneFinishedInquiryApplicationDetailVo webQueryOneFinishedInquiryApplicationDetailVo = iInquiryApplicationService
+                .webQueryFinishedById(id);
         return Result.success(webQueryOneFinishedInquiryApplicationDetailVo);
     }
-
 
 }

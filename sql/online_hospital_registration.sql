@@ -11,8 +11,11 @@
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 21/05/2024 03:55:53
+ Date: 23/05/2024 12:21:22
 */
+
+CREATE DATABASE online_hospital_registration;
+USE online_hospital_registration;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -46,6 +49,10 @@ CREATE TABLE `order_info`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
+-- Records of order_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for report_info
 -- ----------------------------
 DROP TABLE IF EXISTS `report_info`;
@@ -59,7 +66,11 @@ CREATE TABLE `report_info`  (
   `file_url` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '文件地址',
   `doctor_id` bigint NULL DEFAULT NULL COMMENT '医生id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1792212282710360067 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '检验报告' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '检验报告' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of report_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for schedule
@@ -79,6 +90,10 @@ CREATE TABLE `schedule`  (
   `status` int NULL DEFAULT NULL COMMENT '排版状态（-1.停诊 0.停约 1.可约）',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 74 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '排版信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '排版信息' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of schedule
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

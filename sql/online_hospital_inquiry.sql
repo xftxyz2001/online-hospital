@@ -11,8 +11,11 @@
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 21/05/2024 03:55:48
+ Date: 23/05/2024 12:21:15
 */
+
+CREATE DATABASE online_hospital_inquiry;
+USE online_hospital_inquiry;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -38,7 +41,11 @@ CREATE TABLE `chat_list`  (
   `inquiry_application_id` bigint NULL DEFAULT NULL COMMENT '问诊申请id',
   `last_message_time` datetime NULL DEFAULT NULL COMMENT '最后一条消息时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聊天列表表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聊天列表表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of chat_list
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for chat_message
@@ -59,7 +66,11 @@ CREATE TABLE `chat_message`  (
   `type` int NULL DEFAULT NULL COMMENT '类型：0.文字 1.图片',
   `is_latest` int NULL DEFAULT NULL COMMENT '是否是最后一条消息:0.否 1.是',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 266 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聊天内容详情表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '聊天内容详情表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of chat_message
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for chat_user_link
@@ -77,7 +88,11 @@ CREATE TABLE `chat_user_link`  (
   `inquiry_application_id` bigint NULL DEFAULT NULL COMMENT '问诊申请id',
   `is_finished` int NULL DEFAULT NULL COMMENT '是否结束 0.否 1.是',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户聊天关系表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户聊天关系表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of chat_user_link
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for inquiry_application
@@ -102,6 +117,10 @@ CREATE TABLE `inquiry_application`  (
   `patient_id` bigint NULL DEFAULT NULL COMMENT '就诊人id',
   `remain_number` int NULL DEFAULT 10 COMMENT '剩余聊天次数',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of inquiry_application
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

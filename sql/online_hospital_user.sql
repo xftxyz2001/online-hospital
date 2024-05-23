@@ -11,8 +11,11 @@
  Target Server Version : 80200 (8.2.0)
  File Encoding         : 65001
 
- Date: 21/05/2024 03:56:02
+ Date: 23/05/2024 12:21:33
 */
+
+CREATE DATABASE online_hospital_user;
+USE online_hospital_user;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -30,7 +33,11 @@ CREATE TABLE `doctor_account`  (
   `outpatient_id` bigint NULL DEFAULT NULL COMMENT '门诊id',
   `doctor_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '医生姓名',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '医生账户' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '医生账户' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of doctor_account
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for patient_info
@@ -61,7 +68,11 @@ CREATE TABLE `patient_info`  (
   `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '逻辑删除(1:已删除，0:未删除)',
   `status` tinyint NOT NULL DEFAULT 0 COMMENT '状态（0：默认 1：已认证）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 312 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '就诊人表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '就诊人表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of patient_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user_info
@@ -78,6 +89,10 @@ CREATE TABLE `user_info`  (
   `open_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '微信openID',
   `is_deleted` tinyint NULL DEFAULT NULL COMMENT '是否逻辑删除 0.否 1.是',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1006 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of user_info
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;

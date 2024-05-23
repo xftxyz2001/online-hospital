@@ -6,12 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description 新增排班Dto
- * @DateTime 2024/3/9 18:31
- **/
+
 @Data
 @Schema(description = "新增排班Dto")
 public class InsertScheduleDto {

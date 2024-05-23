@@ -5,11 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/23 21:38
- **/
+
 @Data
 @Schema(description = "添加就诊人Dto")
 public class AddPatientDto {

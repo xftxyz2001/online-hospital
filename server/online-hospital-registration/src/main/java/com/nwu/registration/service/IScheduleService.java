@@ -12,14 +12,7 @@ import com.nwu.registration.model.vo.ScheduleVo;
 
 import java.util.List;
 
-/**
- * <p>
- * 班版信息 服务类
- * </p>
- *
- * @author author
- * @since 2024-03-08
- */
+
 public interface IScheduleService extends IService<Schedule> {
 
     Result<List<ScheduleVo>> getSchedules(QueryScheduleDto queryScheduleDto);

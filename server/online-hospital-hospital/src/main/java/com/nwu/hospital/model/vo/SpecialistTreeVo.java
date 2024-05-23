@@ -5,12 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description 专科树状信息
- * @DateTime 2024/3/8 18:26
- **/
+// 专科树状信息
 @Data
 @Schema(description = "专科树状信息")
 public class SpecialistTreeVo {

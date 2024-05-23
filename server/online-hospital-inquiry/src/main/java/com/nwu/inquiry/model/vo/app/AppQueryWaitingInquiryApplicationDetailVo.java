@@ -5,11 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/4/6 21:53
- **/
+
 @Data
 @Schema(description = "app查询等待问诊详情Vo")
 public class AppQueryWaitingInquiryApplicationDetailVo {

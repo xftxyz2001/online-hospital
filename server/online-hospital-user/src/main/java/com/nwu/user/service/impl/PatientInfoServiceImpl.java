@@ -25,14 +25,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * <p>
- * 就诊人表 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-03-06
- */
 @Service
 public class PatientInfoServiceImpl extends ServiceImpl<PatientInfoMapper, PatientInfo> implements IPatientInfoService {
     @Autowired

@@ -16,14 +16,7 @@ import com.nwu.inquiry.model.vo.web.WebQueryWaitingInquiryApplicationDetailVo;
 
 import java.util.List;
 
-/**
- * <p>
- * 服务类
- * </p>
- *
- * @author author
- * @since 2024-04-02
- */
+
 public interface IInquiryApplicationService extends IService<InquiryApplication> {
 
     void appAddInquiryApplication(AddInquiryApplicationDto addInquiryApplicationDto);

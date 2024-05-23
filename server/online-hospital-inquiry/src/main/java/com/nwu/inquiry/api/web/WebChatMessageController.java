@@ -10,14 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- * 聊天内容详情表 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-04-08
- */
+
 @RestController
 @RequestMapping("web/chat-message")
 @Tag(name = "web聊天消息接口")

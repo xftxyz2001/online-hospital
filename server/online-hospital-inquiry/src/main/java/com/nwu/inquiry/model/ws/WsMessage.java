@@ -3,12 +3,7 @@ package com.nwu.inquiry.model.ws;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version v1.0
- * @ClassName: Message
- * @Description: 用于封装浏览器发送给服务端的消息数据
- * @Author: 黑马程序员
- */
+
 @Data
 @Schema(description = "webSocket消息")
 public class WsMessage {

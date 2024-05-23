@@ -16,11 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/24 16:10
- **/
+
 @RestController
 @RequestMapping("/schedule/app")
 @Tag(name = "app排班接口")

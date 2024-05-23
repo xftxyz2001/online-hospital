@@ -7,12 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description 排班信息vo
- * @DateTime 2024/3/8 23:38
- **/
+
 @Data
 @Schema(description = "ScheduleVo对象")
 public class ScheduleVo {

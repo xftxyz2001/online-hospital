@@ -19,14 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * <p>
- * 专科 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @RestController
 @Tag(name = "专科接口")
 @RequestMapping("/specialist")

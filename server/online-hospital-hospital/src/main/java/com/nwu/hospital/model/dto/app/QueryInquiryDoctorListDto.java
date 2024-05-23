@@ -3,11 +3,7 @@ package com.nwu.hospital.model.dto.app;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/4/1 22:35
- **/
+// 查询问诊医生列表Dto
 @Data
 @Schema(description = "查询问诊医生列表Dto")
 public class QueryInquiryDoctorListDto {

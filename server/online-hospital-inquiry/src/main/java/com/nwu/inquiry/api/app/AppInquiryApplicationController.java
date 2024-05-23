@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/4/2 13:07
- **/
+// app问诊申请接口
 @RestController
 @RequestMapping("app/inquiry-application")
 @Tag(name = "app问诊申请接口")

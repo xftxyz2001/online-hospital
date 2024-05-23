@@ -6,11 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/24 17:20
- **/
+
 @FeignClient(value = "user-api")
 public interface UserClient {
     @GetMapping("/user/patient")

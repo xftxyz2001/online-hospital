@@ -8,14 +8,7 @@ import com.nwu.inquiry.service.IChatUserLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * <p>
- * 用户聊天关系表 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-04-07
- */
+
 @Service
 public class ChatUserLinkServiceImpl extends ServiceImpl<ChatUserLinkMapper, ChatUserLink> implements IChatUserLinkService {
 

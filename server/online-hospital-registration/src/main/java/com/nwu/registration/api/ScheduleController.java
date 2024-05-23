@@ -13,14 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 排班信息 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-08
- */
+
 @RestController
 @RequestMapping("/schedule")
 @Tag(name = "排班接口")

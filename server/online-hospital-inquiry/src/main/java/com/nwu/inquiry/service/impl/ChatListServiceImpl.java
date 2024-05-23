@@ -27,14 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- * 聊天列表表 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-04-08
- */
+
 @Service
 public class ChatListServiceImpl extends ServiceImpl<ChatListMapper, ChatList> implements IChatListService {
 

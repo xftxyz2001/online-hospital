@@ -18,11 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/21 0:45
- **/
 @RestController
 @Tag(name = "App用户接口")
 @RequestMapping("/app/user")

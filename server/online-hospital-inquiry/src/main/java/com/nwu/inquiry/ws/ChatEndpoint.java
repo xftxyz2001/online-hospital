@@ -27,23 +27,14 @@ public class ChatEndpoint {
         ChatEndpoint.objectMapper = objectMapper;
     }
 
-    /**
-     * 建立websocket连接后，被调用
-     *
-     * @param session
-     */
+    // 连接建立
     @OnOpen
     public void onOpen(Session session, EndpointConfig config, @PathParam("param") String param) {
         userIdentity = JwtHelper.parseToken(param).toString();
         onlineUsers.put(userIdentity, session);
     }
 
-    /**
-     * 浏览器发送消息到服务端，该方法被调用
-     * 张三 --> 李四
-     *
-     * @param message
-     */
+    // 收到消息
     @OnMessage
     public void onMessage(String message) {
         // 心跳
@@ -62,11 +53,7 @@ public class ChatEndpoint {
         }
     }
 
-    /**
-     * 断开 websocket 连接时被调用
-     *
-     * @param session
-     */
+    // 连接关闭
     @OnClose
     public void onClose(Session session) {
         onlineUsers.remove(userIdentity);

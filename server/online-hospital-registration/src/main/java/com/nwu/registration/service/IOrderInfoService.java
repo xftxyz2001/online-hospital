@@ -11,14 +11,7 @@ import com.nwu.registration.model.po.OrderInfo;
 
 import java.util.List;
 
-/**
- * <p>
- * 服务类
- * </p>
- *
- * @author author
- * @since 2024-03-24
- */
+
 public interface IOrderInfoService extends IService<OrderInfo> {
 
     void addOrder(InsertOrderDto insertOrderDto);

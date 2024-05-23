@@ -9,11 +9,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/9 1:03
- **/
 @FeignClient(value = "hospital-api")
 public interface HospitalClient {
     @GetMapping("/hospital/doctorInfo/queryById")

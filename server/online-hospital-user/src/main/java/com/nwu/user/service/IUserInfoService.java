@@ -12,14 +12,6 @@ import com.nwu.user.model.dto.user.AppUpdateUserInfoDto;
 import com.nwu.user.model.po.UserInfo;
 
 
-/**
- * <p>
- * 服务类
- * </p>
- *
- * @author author
- * @since 2024-03-05
- */
 public interface IUserInfoService extends IService<UserInfo> {
 
     Result<PageResult<UserInfo>> queryUserInfoList(PageParams pageParams, QueryUserInfoDto queryUserInfoDto);

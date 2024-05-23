@@ -14,14 +14,7 @@ import com.nwu.hospital.model.vo.DoctorInfoPageVo;
 
 import java.util.List;
 
-/**
- * <p>
- * 医生信息表 服务类
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 public interface IDoctorInfoService extends IService<DoctorInfo> {
 
     Result<List<DoctorInfo>> queryByHospitalAndOutpatientId(Long hospitalId, Long outpatientId);

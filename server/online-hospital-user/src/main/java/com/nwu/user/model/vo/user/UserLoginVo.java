@@ -4,12 +4,6 @@ package com.nwu.user.model.vo.user;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description 用户登录Vo
- * @DateTime 2024/3/22 19:03
- **/
 @Data
 @Schema(description = "用户登录Vo")
 public class UserLoginVo {

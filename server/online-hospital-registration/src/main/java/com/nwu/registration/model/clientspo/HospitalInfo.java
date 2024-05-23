@@ -9,14 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 分院信息
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

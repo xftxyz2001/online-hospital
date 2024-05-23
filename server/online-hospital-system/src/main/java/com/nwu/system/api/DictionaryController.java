@@ -15,14 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * <p>
- * 数据字典 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-03
- */
+
 @RestController
 @Slf4j
 @Tag(name = "字典接口")

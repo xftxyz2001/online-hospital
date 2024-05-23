@@ -9,14 +9,7 @@ import com.nwu.inquiry.model.vo.app.AppQueryChatMessageVo;
 import com.nwu.inquiry.model.vo.web.WebQueryChatMessageVo;
 import com.nwu.inquiry.model.ws.WsChatMessageDto;
 
-/**
- * <p>
- * 聊天内容详情表 服务类
- * </p>
- *
- * @author author
- * @since 2024-04-08
- */
+
 public interface IChatMessageService extends IService<ChatMessage> {
 
 

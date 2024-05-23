@@ -10,14 +10,7 @@ import com.nwu.inquiry.model.vo.web.WebQueryChatListVo;
 
 import java.util.List;
 
-/**
- * <p>
- * 聊天列表表 服务类
- * </p>
- *
- * @author author
- * @since 2024-04-08
- */
+
 public interface IChatListService extends IService<ChatList> {
 
     void webAddChatList(ChatList chatList);

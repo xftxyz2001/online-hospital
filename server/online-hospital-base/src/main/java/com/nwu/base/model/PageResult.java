@@ -5,12 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description 分页查询结果
- * @DateTime 2024/3/1 14:07
- **/
+// 分页查询结果
 @Data
 public class PageResult<T> implements Serializable {
     //结果列表

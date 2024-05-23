@@ -16,11 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/23 22:30
- **/
+
 @RestController
 @Tag(name = "App就诊人接口")
 @RequestMapping("/app/patient")

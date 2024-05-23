@@ -13,14 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-/**
- * <p>
- * 分院信息 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
 @RestController
 @Tag(name = "医院接口")
 @RequestMapping("/hospital")

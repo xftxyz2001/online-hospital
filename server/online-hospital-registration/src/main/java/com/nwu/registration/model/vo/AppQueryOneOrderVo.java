@@ -7,11 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/25 14:45
- **/
+
 @Data
 @Schema(description = "查询单个订单Vo")
 public class AppQueryOneOrderVo {

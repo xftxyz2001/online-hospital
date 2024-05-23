@@ -12,9 +12,8 @@ import org.springframework.context.annotation.Bean;
         "com.nwu.inquiry.mapper",
         "com.nwu.system.mapper"})
 public class MybatisPlusConfig {
-    /**
-     * 定义分页拦截器
-     */
+
+    // 配置MybatisPlus分页插件
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();

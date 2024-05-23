@@ -12,14 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * <p>
- * 门诊信息表 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @Service
 public class OutpatientInfoServiceImpl extends ServiceImpl<OutpatientInfoMapper, OutpatientInfo> implements IOutpatientInfoService {
 

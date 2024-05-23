@@ -3,12 +3,7 @@ package com.nwu.registration.model.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version 1.0
- * @Author lcy
- * @Description AppScheduleVo
- * @DateTime 2024/3/18 21:24
- **/
+
 @Data
 @Schema(description = "AppScheduleVo对象，返回上午下午有哪些医生以及挂号情况")
 public class AppScheduleVo {

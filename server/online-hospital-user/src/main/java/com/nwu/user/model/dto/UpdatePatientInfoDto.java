@@ -6,11 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/7 16:20
- **/
+
 @Data
 @Schema(description = "修改就诊人信息参数模型")
 public class UpdatePatientInfoDto {

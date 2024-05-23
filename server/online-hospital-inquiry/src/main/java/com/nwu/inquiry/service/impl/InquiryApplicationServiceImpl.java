@@ -37,14 +37,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-04-02
- */
+
 @Service
 public class InquiryApplicationServiceImpl extends ServiceImpl<InquiryApplicationMapper, InquiryApplication> implements IInquiryApplicationService {
 

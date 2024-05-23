@@ -21,14 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * <p>
- * 医生信息表 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @RestController
 @RequestMapping("/doctorInfo")
 @Tag(name = "医生接口")

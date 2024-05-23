@@ -20,14 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- * 专科 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @Service
 public class SpecialistInfoServiceImpl extends ServiceImpl<SpecialistInfoMapper, SpecialistInfo> implements ISpecialistInfoService {
 

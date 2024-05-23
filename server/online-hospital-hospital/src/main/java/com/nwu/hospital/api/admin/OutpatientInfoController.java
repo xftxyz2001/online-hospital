@@ -28,14 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 门诊信息表 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @RestController
 @RequestMapping("/outpatientInfo")
 @Tag(name = "门诊接口")

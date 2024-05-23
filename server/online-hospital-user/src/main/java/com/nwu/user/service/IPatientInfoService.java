@@ -13,14 +13,6 @@ import com.nwu.user.model.po.PatientInfo;
 
 import java.util.List;
 
-/**
- * <p>
- * 就诊人表 服务类
- * </p>
- *
- * @author author
- * @since 2024-03-06
- */
 public interface IPatientInfoService extends IService<PatientInfo> {
 
     Result<PageResult<PatientInfo>> getPatientListByUserId(Long userId, PageParams pageParams);

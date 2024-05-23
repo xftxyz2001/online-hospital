@@ -8,11 +8,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/24 21:07
- **/
+
 @Component
 public class FeignInterceptor implements RequestInterceptor {
     @Override

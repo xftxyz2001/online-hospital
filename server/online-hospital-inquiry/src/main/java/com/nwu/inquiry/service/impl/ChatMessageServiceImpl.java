@@ -33,14 +33,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- * 聊天内容详情表 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-04-08
- */
+
 @Service
 public class ChatMessageServiceImpl extends ServiceImpl<ChatMessageMapper, ChatMessage> implements IChatMessageService {
 

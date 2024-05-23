@@ -11,14 +11,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- *
- * </p>
- *
- * @author author
- * @since 2024-03-24
- */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

@@ -14,14 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * <p>
- * 聊天列表表 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-04-08
- */
+
 @RestController
 @RequestMapping("web/chat-list")
 @Tag(name = "web聊天列表接口")

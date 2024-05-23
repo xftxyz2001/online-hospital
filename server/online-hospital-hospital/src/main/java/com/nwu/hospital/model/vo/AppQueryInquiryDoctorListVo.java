@@ -4,11 +4,7 @@ package com.nwu.hospital.model.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/4/1 22:41
- **/
+// app查询问诊医生列表Vo
 @Data
 @Schema(description = "app查询问诊医生列表Vo")
 public class AppQueryInquiryDoctorListVo {

@@ -10,14 +10,6 @@ import com.nwu.user.service.IDoctorAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * <p>
- * 医生账户 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-04-01
- */
 @Service
 public class DoctorAccountServiceImpl extends ServiceImpl<DoctorAccountMapper, DoctorAccount> implements IDoctorAccountService {
 

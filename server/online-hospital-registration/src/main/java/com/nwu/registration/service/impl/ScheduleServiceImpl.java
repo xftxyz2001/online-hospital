@@ -23,14 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * <p>
- * 排班信息 服务实现类
- * </p>
- *
- * @author author
- * @since 2024-03-08
- */
+
 @Service
 public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> implements IScheduleService {
 

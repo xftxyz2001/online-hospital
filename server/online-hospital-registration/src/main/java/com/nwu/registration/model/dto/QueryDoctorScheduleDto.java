@@ -3,11 +3,7 @@ package com.nwu.registration.model.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/20 17:00
- **/
+
 @Data
 public class QueryDoctorScheduleDto {
     @Schema(description = "医院id")

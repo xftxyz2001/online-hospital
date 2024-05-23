@@ -18,11 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/4/2 17:59
- **/
+// web问诊申请接口
 @RestController
 @RequestMapping("web/inquiry-application")
 @Tag(name = "web问诊申请接口")

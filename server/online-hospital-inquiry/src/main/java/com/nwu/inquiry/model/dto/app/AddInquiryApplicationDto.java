@@ -3,11 +3,7 @@ package com.nwu.inquiry.model.dto.app;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/4/2 16:26
- **/
+
 @Data
 @Schema(description = "添加问诊Dto")
 public class AddInquiryApplicationDto {

@@ -7,14 +7,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 医生信息表
- * </p>
- *
- * @author author
- * @since 2024-03-07
- */
+
 @Data
 @Schema(description = "DoctorInfo对象")
 @EqualsAndHashCode(callSuper = false)

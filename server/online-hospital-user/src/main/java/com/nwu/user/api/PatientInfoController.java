@@ -13,14 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- * 就诊人表 前端控制器
- * </p>
- *
- * @author author
- * @since 2024-03-06
- */
+
 @RestController
 @Tag(name = "就诊人接口")
 @RequestMapping("/patient")

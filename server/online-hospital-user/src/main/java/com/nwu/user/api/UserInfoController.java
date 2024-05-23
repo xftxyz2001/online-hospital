@@ -12,11 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/1 15:39
- **/
+
 @RestController
 @Tag(name = "用户管理接口")
 @RequestMapping("/user")

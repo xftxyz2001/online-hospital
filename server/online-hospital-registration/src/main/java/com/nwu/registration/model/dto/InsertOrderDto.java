@@ -6,11 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * @version 1.0
- * @Author lcy
- * @DateTime 2024/3/24 16:18
- **/
+
 @Data
 @Schema(description = "添加订单Dto")
 public class InsertOrderDto {

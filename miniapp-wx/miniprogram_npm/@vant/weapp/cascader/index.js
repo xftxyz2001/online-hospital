@@ -161,6 +161,7 @@ var defaultFieldNames = {
                         selected: null,
                     },
                 ],
+                activeTab: 0,
             });
         },
         onClose: function () {

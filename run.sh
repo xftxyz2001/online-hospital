@@ -35,11 +35,11 @@ docker-compose build
 # user
 if [ ! -d ./config/user ]; then
     mkdir -p ./config/user
-    echo "下面是微信相关配置，参考: "
-    echo "https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index"
+    echo "下面是微信相关配置，参考（开发->开发管理->开发设置->开发者ID）: "
+    echo "https://mp.weixin.qq.com/wxamp/devprofile/get_profile/lang=zh_CN"
 
-    read -p "请输入微信公众号的AppID: " appid
-    read -p "请输入微信公众号的AppSecret: " appsecret
+    read -p "请输入微信小程序的AppID: " appid
+    read -p "请输入微信小程序的AppSecret: " appsecret
 
     cat <<EOF >./config/user/application.yml
 nwu:

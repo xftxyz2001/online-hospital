@@ -7,6 +7,7 @@ const VITE_ONLINE_HOSPITAL_GATEWAY_URL = "http://localhost";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/admin/",
   plugins: [vue()],
   resolve: {
     alias: {

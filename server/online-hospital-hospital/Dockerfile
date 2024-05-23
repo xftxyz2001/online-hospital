@@ -7,7 +7,7 @@ ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 
-COPY ./target/online-hospital-hospital-SNAPSHOT.jar /app/hospital.jar
+COPY ./target/online-hospital-hospital-0.0.1-SNAPSHOT.jar /app/hospital.jar
 
 ENTRYPOINT ["java", "-jar", "/app/hospital.jar"]
 

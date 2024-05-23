@@ -49,6 +49,7 @@ Page({
     Toast('功能暂不开放');
   },
   getHeartConnect() {
+    const app=getApp()
     var that = this
     wx.getStorage({
       key:'token',
@@ -57,7 +58,7 @@ Page({
         WebsocketHeartbeat({
            miniprogram: wx,
            connectSocketParams: {
-             url: `ws://localhost/inquiry/chat/`+res.data
+             url: `${app.globalData.wsInquiryUrl}/${res.data}`
            },
            pingTimeout: that.heartTime,
            pongTimeout: that.closeTime,

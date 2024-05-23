@@ -38,7 +38,8 @@ if ! docker --version > /dev/null 2>&1; then
     sudo systemctl start docker
     sudo systemctl enable docker
 fi
-echo "docker已安装！"
+echo "docker已安装！（配置阿里云镜像加速器参考:"
+echo "https://cr.console.aliyun.com/"
 
 ## 检查docker-compose
 if ! docker-compose --version > /dev/null 2>&1; then

@@ -1,16 +1,16 @@
 /* pages/doctorInfo/detial/detial.wxss */
 
-.body{
-  height:600px;
-  background-color: #F1F2F4;
+.body {
+  height: 600px;
+  background-color: #f1f2f4;
   display: flex;
   flex-direction: column;
- align-items: center;
+  align-items: center;
 }
-.item{
+.item {
   height: 60px;
   display: flex;
   align-items: center;
   background-color: white;
   width: 100%;
-  }
+}

@@ -1,1 +1,9 @@
 /* pages/patient/list/list.wxss */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 1500rpx;
+  background-color: #eee;
+}

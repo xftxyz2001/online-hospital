@@ -1,16 +1,27 @@
 <!--pages/doctorInfo/index/index.wxml-->
-<scroll-view style="min-height: 1300rpx;background-color: #EEE;" scroll-y>
-
-<van-search model:value="{{ name }}" shape="round" background="#4EA5FF" placeholder="请输入医生姓名" bind:change="searchDoctorList" />
-    <view wx:for="{{doctorList}}" wx:key="index" style="background-color: white;margin:10rpx 0;padding: 10rpx 5rpx;" bind:tap="toDetail" data-doctorId="{{item.id}}">
-  <view style="display: flex;">
-    <view>
-      <van-image round width="90rpx" height="90rpx" src="{{item.picture==null?'':item.picture}}" />
-    </view>
-    <view style="margin-left: 20rpx;">
-      <view>{{item.name}}</view>
-      <view style="color:gray;font-size:30rpx;margin-top:10rpx">{{item.professionalTitle}}</view>
+<scroll-view style="min-height: 1300rpx; background-color: #eee" scroll-y>
+  <van-search
+    model:value="{{ name }}"
+    shape="round"
+    background="#4EA5FF"
+    placeholder="请输入医生姓名"
+    bind:change="searchDoctorList"
+  />
+  <view
+    wx:for="{{doctorList}}"
+    wx:key="index"
+    style="background-color: white; margin: 10rpx 0; padding: 10rpx 5rpx"
+    bind:tap="toDetail"
+    data-doctorId="{{item.id}}"
+  >
+    <view style="display: flex">
+      <view>
+        <van-image round width="90rpx" height="90rpx" src="{{item.picture==null?'':item.picture}}" />
+      </view>
+      <view style="margin-left: 20rpx">
+        <view>{{item.name}}</view>
+        <view style="color: gray; font-size: 30rpx; margin-top: 10rpx">{{item.professionalTitle}}</view>
+      </view>
     </view>
   </view>
-</view>
 </scroll-view>

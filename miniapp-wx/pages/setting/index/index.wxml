@@ -1,25 +1,37 @@
 <!--pages/setting/index/index.wxml-->
-<van-cell title="头像" ><button style="width: 50px;height: 50px;padding: 0;margin-right:0" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image style="width: 50px;height: 50px;" src="{{avatarUrl}}"></image>
-    </button> </van-cell>
-<van-cell title="用户名" is-link bind:tap="clickUserName" value="{{userName}}"/>
+<van-cell title="头像">
+  <button
+    style="width: 50px; height: 50px; padding: 0; margin-right: 0"
+    open-type="chooseAvatar"
+    bind:chooseavatar="onChooseAvatar"
+  >
+    <image style="width: 50px; height: 50px" src="{{avatarUrl}}"></image>
+  </button>
+</van-cell>
+<van-cell title="用户名" is-link bind:tap="clickUserName" value="{{userName}}" />
 <van-cell title="手机号" is-link bind:tap="clickPhone" value="{{(phone == null)?'未设置':phone}}" />
 <van-action-sheet show="{{ setUsernameShow }}" title="设置用户名" bind:close="closeSetUsername">
- <form bindsubmit="submitUsername">
-  <view style="display: flex;flex-direction: column;align-items: center;margin:15px 0 10px 0">
-    <view style="display: flex; flex-direction: row;width: 100%;justify-content: center;margin:15px 0;"><view >用户名：</view><view style="width: 30%;"> <input  type="nickname" placeholder="请输入用户名" model:value="{{newUsername}}"/></view></view>
-   <view style="width: 50%;"> <van-button type="primary" form-type="submit" block>确定</van-button></view>
-  </view>
- </form>
+  <form bindsubmit="submitUsername">
+    <view style="display: flex; flex-direction: column; align-items: center; margin: 15px 0 10px 0">
+      <view style="display: flex; flex-direction: row; width: 100%; justify-content: center; margin: 15px 0">
+        <view>用户名：</view>
+        <view style="width: 30%">
+          <input type="nickname" placeholder="请输入用户名" model:value="{{newUsername}}" />
+        </view>
+      </view>
+      <view style="width: 50%"><van-button type="primary" form-type="submit" block>确定</van-button></view>
+    </view>
+  </form>
 </van-action-sheet>
 <van-action-sheet show="{{ setPhoneShow }}" title="设置手机号" bind:close="closeSetPhone">
- <form bindsubmit="submitPhone">
-  <view style="display: flex;flex-direction: column;align-items: center;margin:15px 0 10px 0">
-    <view style="display: flex; flex-direction: row;width: 100%;justify-content: center;margin:15px 0;"><view >手机号：</view><view style="width: 30%;"> <input   placeholder="请输入手机号" model:value="{{newPhone}}"/></view></view>
-   <view style="width: 50%;"> <van-button type="primary" form-type="submit" block>确定</van-button></view>
-  </view>
- </form>
+  <form bindsubmit="submitPhone">
+    <view style="display: flex; flex-direction: column; align-items: center; margin: 15px 0 10px 0">
+      <view style="display: flex; flex-direction: row; width: 100%; justify-content: center; margin: 15px 0">
+        <view>手机号：</view>
+        <view style="width: 30%"><input placeholder="请输入手机号" model:value="{{newPhone}}" /></view>
+      </view>
+      <view style="width: 50%"><van-button type="primary" form-type="submit" block>确定</van-button></view>
+    </view>
+  </form>
 </van-action-sheet>
 <van-notify id="van-notify" />
-
-

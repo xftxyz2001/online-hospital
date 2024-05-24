@@ -1,119 +1,105 @@
 // pages/inquiryrecord/detail/detail.js
-import {
-  promiseRequest
-} from '../../../utils/service'
-import {store} from '../../../store/store'
-import{createStoreBindings} from 'mobx-miniprogram-bindings'
+import { promiseRequest } from "../../../utils/service";
+import { store } from "../../../store/store";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    inquiryInfo:{},
-    show:false,
+    inquiryInfo: {},
+    show: false
   },
-  previewImage: function(e) {
+  previewImage: function (e) {
     wx.previewImage({
-      urls: [e.target.dataset.url],
-    })
-    },
+      urls: [e.target.dataset.url]
+    });
+  },
   //查询单个问诊记录
   async queryInquiryRecord() {
-    const app = getApp()
+    const app = getApp();
     let res = await promiseRequest({
-      url:app.globalData.inquiryUrl+'/app/inquiry-application/queryById?id='+store.inquiryDetailId,
-      methed:'GET'
-    })
-    if(res.code==1){
+      url: app.globalData.inquiryUrl + "/app/inquiry-application/queryById?id=" + store.inquiryDetailId,
+      methed: "GET"
+    });
+    if (res.code == 1) {
       this.setData({
-        inquiryInfo:res.data
-      })
+        inquiryInfo: res.data
+      });
     }
   },
-  descriptionDetail(){
+  descriptionDetail() {
     this.setData({
-      show:true
-    })
+      show: true
+    });
   },
-    onClose() {
-      this.setData({ show: false });
-    },
-    toMessageDetail(){
-      if(this.data.inquiryInfo.status==1){
-        //进行中
-        this.updateInquiryLinkId(this.data.inquiryInfo.linkId)
-        this.updateMessageShowInput(true)
-        wx.navigateTo({
-          url: '/pages/message/detial/detial',
-        })
-      }
-      else if(this.data.inquiryInfo.status==2){
-        this.updateInquiryLinkId(this.data.inquiryInfo.linkId)
-        this.updateMessageShowInput(false)
-        wx.navigateTo({
-          url: '/pages/message/detial/detial',
-        })
-      }
-    },
+  onClose() {
+    this.setData({ show: false });
+  },
+  toMessageDetail() {
+    if (this.data.inquiryInfo.status == 1) {
+      //进行中
+      this.updateInquiryLinkId(this.data.inquiryInfo.linkId);
+      this.updateMessageShowInput(true);
+      wx.navigateTo({
+        url: "/pages/message/detial/detial"
+      });
+    } else if (this.data.inquiryInfo.status == 2) {
+      this.updateInquiryLinkId(this.data.inquiryInfo.linkId);
+      this.updateMessageShowInput(false);
+      wx.navigateTo({
+        url: "/pages/message/detial/detial"
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.storeBindings=createStoreBindings(this,{
+    this.storeBindings = createStoreBindings(this, {
       store,
-      actions:['updateInquiryLinkId','updateMessageShowInput'],
-      field:['inquiryDetailId']
-    })
-    this.queryInquiryRecord()
+      actions: ["updateInquiryLinkId", "updateMessageShowInput"],
+      field: ["inquiryDetailId"]
+    });
+    this.queryInquiryRecord();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    this.storeBindings.destroyStoreBindings()
+    this.storeBindings.destroyStoreBindings();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.queryInquiryRecord()
+    this.queryInquiryRecord();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

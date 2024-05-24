@@ -1,23 +1,26 @@
 <!--pages/inquiryrecord/index/index.wxml-->
-<van-empty description="暂无问诊" wx:if="{{inquiryList.length==0}}"/>
+<van-empty description="暂无问诊" wx:if="{{inquiryList.length==0}}" />
 
-<view style="width: 100%;background-color: #EEE;min-height: 1200rpx;overflow: hidden;" wx:else="">
-
-<view wx:for="{{inquiryList}}" style="width: 100%;margin-top: 20rpx;">
-  <van-cell-group inset>
-  <van-cell title="医生" value="{{item.doctorName}}" />
-  <van-cell title="门诊" value="{{item.outpatientName}}" />
-  <van-cell title="就诊人" value="{{item.patientName}}" />
-  <van-cell title="创建时间" value="{{item.createTime}}" />
-  <van-cell title="状态">
-    <van-tag type="primary" wx:if="{{item.status==2}}">已完成</van-tag>
-<van-tag type="success" wx:if="{{item.status==1}}">进行中</van-tag>
-<van-tag type="danger" wx:if="{{item.status==3}}">已取消</van-tag>
-<van-tag type="warning" wx:if="{{item.status==0}}">排队中</van-tag>
-  </van-cell>
-  <van-cell   wx:if="{{item.status!=0}}"><van-button type="primary" size="mini" bind:tap="toDetail" data-id="{{item.id}}">详情</van-button></van-cell>
-  <van-cell   wx:if="{{item.status==0}}"><van-button type="danger" size="mini" bind:tap="cancel" data-id="{{item.id}}">取消</van-button></van-cell>
-</van-cell-group>
-</view>
+<view style="width: 100%; background-color: #eee; min-height: 1200rpx; overflow: hidden" wx:else="">
+  <view wx:for="{{inquiryList}}" style="width: 100%; margin-top: 20rpx">
+    <van-cell-group inset>
+      <van-cell title="医生" value="{{item.doctorName}}" />
+      <van-cell title="门诊" value="{{item.outpatientName}}" />
+      <van-cell title="就诊人" value="{{item.patientName}}" />
+      <van-cell title="创建时间" value="{{item.createTime}}" />
+      <van-cell title="状态">
+        <van-tag type="primary" wx:if="{{item.status==2}}">已完成</van-tag>
+        <van-tag type="success" wx:if="{{item.status==1}}">进行中</van-tag>
+        <van-tag type="danger" wx:if="{{item.status==3}}">已取消</van-tag>
+        <van-tag type="warning" wx:if="{{item.status==0}}">排队中</van-tag>
+      </van-cell>
+      <van-cell wx:if="{{item.status!=0}}">
+        <van-button type="primary" size="mini" bind:tap="toDetail" data-id="{{item.id}}">详情</van-button>
+      </van-cell>
+      <van-cell wx:if="{{item.status==0}}">
+        <van-button type="danger" size="mini" bind:tap="cancel" data-id="{{item.id}}">取消</van-button>
+      </van-cell>
+    </van-cell-group>
+  </view>
 </view>
 <van-dialog id="van-dialog" />

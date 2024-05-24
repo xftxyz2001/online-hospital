@@ -1,5 +1,5 @@
 <!--pages/inquiry/in-progress/in-progress.wxml-->
-<view style="width: 100%;min-height: 600rpx;background-color: #EEEEEE;padding: 20rpx 0 0 0;display: flex;flex-direction: column;">
+<view class="container">
   <view>
     <van-cell-group inset>
       <van-cell title="医生" value="{{messageVo.doctorName}}" />
@@ -11,44 +11,64 @@
     </van-cell-group>
   </view>
   <view id="viewCommunicationBody" class="chat">
-    <view wx:for="{{messageVo.messageVos}}" id="item{{index}}"  wx:key="id">
+    <view wx:for="{{messageVo.messageVos}}" id="item{{index}}" wx:key="id">
       <view class="dialog1" wx:if="{{item.identity==1}}">
         <view>
           <van-image round width="2rem" height="2rem" src="{{messageVo.toUserPicture}}" />
         </view>
         <view class="word1">
-          <view wx:if="{{item.type==0}}"> {{item.content}}</view>
+          <view wx:if="{{item.type==0}}">{{item.content}}</view>
           <view wx:if="{{item.type==1}}">
-            <van-image width="10rem" height="5rem" fit="contain" src="{{item.content}}" bindtap="previewImage" data-url="{{item.content}}"/>
+            <van-image
+              width="10rem"
+              height="5rem"
+              fit="contain"
+              src="{{item.content}}"
+              bindtap="previewImage"
+              data-url="{{item.content}}"
+            />
           </view>
-          <view style="font-weight: 100;font-size: small;margin:3rpx 0 0 2rpx;float: left;">{{item.sendTime}}</view>
+          <view style="font-weight: 100; font-size: small; margin: 3rpx 0 0 2rpx; float: left">{{item.sendTime}}</view>
         </view>
-
       </view>
       <view class="dialog2" wx:if="{{item.identity==0}}">
         <view class="word2">
-          <view wx:if="{{item.type==0}}"> {{item.content}}</view>
+          <view wx:if="{{item.type==0}}">{{item.content}}</view>
           <view wx:if="{{item.type==1}}">
-            <van-image width="10rem" height="5rem" fit="contain" src="{{item.content}}" bindtap="previewImage" data-url="{{item.content}}" />
+            <van-image
+              width="10rem"
+              height="5rem"
+              fit="contain"
+              src="{{item.content}}"
+              bindtap="previewImage"
+              data-url="{{item.content}}"
+            />
           </view>
 
-          <view style="font-weight: 100;font-size: small;margin:3rpx 0 0 2rpx;float: right;">{{item.sendTime}}</view>
+          <view style="font-weight: 100; font-size: small; margin: 3rpx 0 0 2rpx; float: right">{{item.sendTime}}</view>
         </view>
         <view>
           <van-image round width="2rem" height="2rem" src="{{messageVo.fromUserPicture}}" />
         </view>
       </view>
-    </view></view>
+    </view>
+  </view>
 
-
-  <view style="width:100%;display: flex;padding: 0 10rpx 0 0;justify-content: space-around;align-items: center; position: fixed;bottom: 0;height:110rpx;background-color: #EEEEEE;" wx:if="{{inputShow}}">
-    <view style="width:65%;">
+  <view class="input2" wx:if="{{inputShow}}">
+    <view style="width: 65%">
       <van-cell-group>
-        <van-field model:value="{{ message }}" type="textarea" placeholder="还有{{messageVo.remainNumber}}次咨询次数" autosize border="{{ false }}" disabled="{{canSend}}" />
+        <van-field
+          model:value="{{ message }}"
+          type="textarea"
+          placeholder="还有{{messageVo.remainNumber}}次咨询次数"
+          autosize
+          border="{{ false }}"
+          disabled="{{canSend}}"
+        />
       </van-cell-group>
     </view>
-    <view style="width: 30%;display: flex;justify-content: space-around;align-items: center;">
-      <van-button type="info" bind:tap="send" style="height: 90rpx;">发送</van-button>
+    <view style="width: 30%; display: flex; justify-content: space-around; align-items: center">
+      <van-button type="info" bind:tap="send" style="height: 90rpx">发送</van-button>
       <van-uploader bind:after-read="afterRead">
         <van-icon name="photo-o" size="60rpx" color="#1989FA" />
       </van-uploader>
@@ -60,7 +80,16 @@
       <van-cell title="病情描述" label="{{messageVo.description}}" border="{{ false }}" />
       <view>
         <van-cell title="图片" />
-        <van-image width="10rem" height="10rem" fit="contain" src="{{messageVo.image}}" style="margin-left:25rpx" wx:if="{{messageVo.image!=null&&messageVo.image!=''}}" bindtap="previewImage" data-url="{{messageVo.image}}"/>
+        <van-image
+          width="10rem"
+          height="10rem"
+          fit="contain"
+          src="{{messageVo.image}}"
+          style="margin-left: 25rpx"
+          wx:if="{{messageVo.image!=null&&messageVo.image!=''}}"
+          bindtap="previewImage"
+          data-url="{{messageVo.image}}"
+        />
         <van-cell title="无" wx:else="" />
       </view>
     </view>

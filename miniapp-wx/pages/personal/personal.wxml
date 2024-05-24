@@ -1,18 +1,21 @@
 <!--pages/personal/personal.wxml-->
-<view style="width: 100%;height: 70px;display: flex;align-items: center;justify-content: space-between;">
-<view style="display: flex;align-items: center;">  <view>
-    <image src="{{avatarUrl}}" style="width: 50px;height:50px;background-color:#DEF0FC;border-radius:30px;margin-left:20px" />
+<view style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: space-between">
+  <view style="display: flex; align-items: center">
+    <view>
+      <image
+        src="{{avatarUrl}}"
+        style="width: 50px; height: 50px; background-color: #def0fc; border-radius: 30px; margin-left: 20px"
+      />
+    </view>
+    <view style="margin-left: 20px">{{username}}</view>
   </view>
-  <view style="margin-left: 20px;">{{username}}</view></view>
-
 </view>
 
-<view style="margin-top: 10px;">
+<view style="margin-top: 10px">
   <van-grid column-num="2">
-    <van-grid-item icon="calendar-o" text="预约记录" bind:tap="gotoRecord"/>
-    <van-grid-item icon="records-o" text="问诊记录" bind:tap="gotoInquiryRecord"/>
-    <van-grid-item icon="contact-o" text="就诊人管理" bind:tap="gotoPatient"/>
-    <van-grid-item icon="setting-o" text="设置" bind:tap="gotoSetUp"/>
-
+    <van-grid-item icon="calendar-o" text="预约记录" bind:tap="gotoRecord" />
+    <van-grid-item icon="records-o" text="问诊记录" bind:tap="gotoInquiryRecord" />
+    <van-grid-item icon="contact-o" text="就诊人管理" bind:tap="gotoPatient" />
+    <van-grid-item icon="setting-o" text="设置" bind:tap="gotoSetUp" />
   </van-grid>
 </view>

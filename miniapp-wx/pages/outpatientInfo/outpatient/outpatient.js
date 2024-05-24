@@ -1,95 +1,85 @@
 // pages/outpatientInfo/outpatient/outpatient.js
-import {promiseRequest} from '../../../utils/service'
-import {store} from '../../../store/store'
-import{createStoreBindings} from 'mobx-miniprogram-bindings'
+import { promiseRequest } from "../../../utils/service";
+import { store } from "../../../store/store";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    letterList:[],
-    outpatientList:[]
+    letterList: [],
+    outpatientList: []
   },
-//获取所有门诊信息
-async getOutpatientInfo(){
-  const app = getApp()
-  await promiseRequest({
-    method:'GET',
-    url:app.globalData.hospitalUrl+"/outpatientInfo/order-letter-list?hospitalId="+store.outpatientInfoOfHospitalId
-  }).then((res)=>{
-    if(res.code==1){
-      this.setData({
-        letterList:res.data.letterList,
-        outpatientList:res.data.outpatientList
-      })
-    }
-  })
-},
+  //获取所有门诊信息
+  async getOutpatientInfo() {
+    const app = getApp();
+    await promiseRequest({
+      method: "GET",
+      url:
+        app.globalData.hospitalUrl + "/outpatientInfo/order-letter-list?hospitalId=" + store.outpatientInfoOfHospitalId
+    }).then(res => {
+      if (res.code == 1) {
+        this.setData({
+          letterList: res.data.letterList,
+          outpatientList: res.data.outpatientList
+        });
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.storeBindings=createStoreBindings(this,{
+    this.storeBindings = createStoreBindings(this, {
       store,
-      field:['outpatientInfoOfHospitalId'],
-      actions:['updateOutpatientInfoId']
-    })
-   this.getOutpatientInfo()
+      field: ["outpatientInfoOfHospitalId"],
+      actions: ["updateOutpatientInfoId"]
+    });
+    this.getOutpatientInfo();
   },
-  selectOutpatient(e){
+  selectOutpatient(e) {
     console.log(e);
-    this.updateOutpatientInfoId(e.target.dataset.outpatientid)
+    this.updateOutpatientInfoId(e.target.dataset.outpatientid);
     wx.navigateTo({
-      url: '/pages/outpatientInfo/detail/detail',
-    })
+      url: "/pages/outpatientInfo/detail/detail"
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    this.storeBindings.destroyStoreBindings()
+    this.storeBindings.destroyStoreBindings();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.getOutpatientInfo()
+    this.getOutpatientInfo();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

@@ -1,83 +1,67 @@
 // pages/inquiry/waiting/waiting.js
-import {
-  promiseRequest
-} from '../../../utils/service'
+import { promiseRequest } from "../../../utils/service";
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    inquiryApplicationDetail:{}
+    inquiryApplicationDetail: {}
   },
   async quiryWaitingInquiryApplicationDetail() {
-    const app = getApp()
+    const app = getApp();
     await promiseRequest({
       method: "GET",
       url: app.globalData.inquiryUrl + "/app/inquiry-application/query-waiting-inquiry-application-detail"
-    }).then((res) => {
+    }).then(res => {
       if (res.code == 1) {
         this.setData({
-          inquiryApplicationDetail:res.data
-        })
-        
+          inquiryApplicationDetail: res.data
+        });
       }
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.quiryWaitingInquiryApplicationDetail()
+    this.quiryWaitingInquiryApplicationDetail();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.onLoad()
+    this.onLoad();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

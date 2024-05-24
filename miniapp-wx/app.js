@@ -28,6 +28,6 @@ App({
     userUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/user`,
     inquiryUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/inquiry`,
     wsInquiryUrl: `ws://${ONLINE_HOSPITAL_GATEWAY_HOST}/inquiry/chat`,
-    systemUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/system`,
-  },
+    systemUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/system`
+  }
 });

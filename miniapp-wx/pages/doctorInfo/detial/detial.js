@@ -1,97 +1,84 @@
 // pages/doctorInfo/index/index.js
-import {
-  promiseRequest
-} from '../../../utils/service'
-import {store} from '../../../store/store'
-import{createStoreBindings} from 'mobx-miniprogram-bindings'
+import { promiseRequest } from "../../../utils/service";
+import { store } from "../../../store/store";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    doctorInfo:{},
-    activeNames: ['1']
+    doctorInfo: {},
+    activeNames: ["1"]
   },
-  previewImage: function(e) {
+  previewImage: function (e) {
     wx.previewImage({
-      urls: [e.target.dataset.url],
-    })
-    },
- async queryDoctorInfo(){
-   const app=getApp()
-  await promiseRequest({
-    url:app.globalData.hospitalUrl+'/app/doctorInfo/queryById?doctorId='+store.doctorInfoId,
-    method:'GET',
-  }).then((res)=>{
-    if(res.code==1){
+      urls: [e.target.dataset.url]
+    });
+  },
+  async queryDoctorInfo() {
+    const app = getApp();
+    await promiseRequest({
+      url: app.globalData.hospitalUrl + "/app/doctorInfo/queryById?doctorId=" + store.doctorInfoId,
+      method: "GET"
+    }).then(res => {
+      if (res.code == 1) {
         this.setData({
-          doctorInfo:res.data
-        })
-        
-    }
-  })
+          doctorInfo: res.data
+        });
+      }
+    });
   },
   Detail(event) {
     this.setData({
-      activeNames: event.detail,
+      activeNames: event.detail
     });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.storeBindings=createStoreBindings(this,{
+    this.storeBindings = createStoreBindings(this, {
       store,
-      filed:['doctorInfoId']
-    })
-    this.queryDoctorInfo()
+      filed: ["doctorInfoId"]
+    });
+    this.queryDoctorInfo();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    this.storeBindings.destroyStoreBindings()
+    this.storeBindings.destroyStoreBindings();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.queryDoctorInfo()
+    this.queryDoctorInfo();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

@@ -1,59 +1,89 @@
 <!--pages/patient/add/add.wxml-->
-<view style="margin-top:20px;margin-left:10px ;margin-bottom:20px">
-  <view class="item"> <text>姓名：</text>
+<view style="margin-top: 20px; margin-left: 10px; margin-bottom: 20px">
+  <view class="item">
+    <text>姓名：</text>
     <van-field model:value="{{ name }}" placeholder="请输入就诊人姓名" border="{{ false }}" />
   </view>
   <van-divider />
-  <view class="item"> <text>证件类型：</text>
+  <view class="item">
+    <text>证件类型：</text>
     <van-field model:value="{{ certificatesType }}" readonly border="{{ false }}" />
-
   </view>
   <van-divider />
-  <view class="item"> <text>证件号：</text>
+  <view class="item">
+    <text>证件号：</text>
     <van-field model:value="{{ certificatesNo }}" placeholder="请输入就诊人证件号" border="{{ false }}" />
-
   </view>
   <van-divider />
-  <view class="item"> <text>性别：</text>
+  <view class="item">
+    <text>性别：</text>
     <van-radio-group value="{{ sex }}" bind:change="changeSex" direction="horizontal">
       <van-radio name="1">男</van-radio>
       <van-radio name="0">女</van-radio>
     </van-radio-group>
-
   </view>
   <van-divider />
-  <view class="item"> <text>出生日期：</text>
-    <van-field value="{{formatBirthDate}}" placeholder="请选择出生日期" border="{{ false }}" bind:tap="selectBirthDate" readonly />
-
-
-
+  <view class="item">
+    <text>出生日期：</text>
+    <van-field
+      value="{{formatBirthDate}}"
+      placeholder="请选择出生日期"
+      border="{{ false }}"
+      bind:tap="selectBirthDate"
+      readonly
+    />
   </view>
-  <van-datetime-picker wx:if="{{birthDateDialogVisible}}" type="date" value="{{ birthDate }}" bind:input="changeBirthDate" min-date="{{minDate}}" max-date="{{maxDate}}" formatter="{{ formatter }}" bind:confirm="confirmBirthDate" bind:cancel="cancelBirthDate" />
+  <van-datetime-picker
+    wx:if="{{birthDateDialogVisible}}"
+    type="date"
+    value="{{ birthDate }}"
+    bind:input="changeBirthDate"
+    min-date="{{minDate}}"
+    max-date="{{maxDate}}"
+    formatter="{{ formatter }}"
+    bind:confirm="confirmBirthDate"
+    bind:cancel="cancelBirthDate"
+  />
   <van-divider />
-  <view class="item"> <text>手机号：</text>
+  <view class="item">
+    <text>手机号：</text>
     <van-field model:value="{{ phone }}" placeholder="请输入就诊人手机号" border="{{ false }}" />
-
   </view>
   <van-divider />
-  <view class="item"> <text>是否已婚：</text>
+  <view class="item">
+    <text>是否已婚：</text>
     <van-radio-group value="{{ isMarry }}" bind:change="changeIsMarry" direction="horizontal">
       <van-radio name="1">是</van-radio>
       <van-radio name="0">否</van-radio>
     </van-radio-group>
   </view>
   <van-divider />
-  <view class="item"> <text>住址：</text>
-    <van-field value="{{provinceName}}-{{cityName}}-{{districtName}}" placeholder="请选择住址" border="{{ false }}" bind:tap="selectDistract" readonly />
+  <view class="item">
+    <text>住址：</text>
+    <van-field
+      value="{{provinceName}}-{{cityName}}-{{districtName}}"
+      placeholder="请选择住址"
+      border="{{ false }}"
+      bind:tap="selectDistract"
+      readonly
+    />
   </view>
-  <van-area area-list="{{ areaList }}" value="{{areacode}}" bind:change="changeArea" wx:if="{{areaDialogVisible}}" bind:confirm="confirmArea" bind:cancel="cancelArea" />
+  <van-area
+    area-list="{{ areaList }}"
+    value="{{areacode}}"
+    bind:change="changeArea"
+    wx:if="{{areaDialogVisible}}"
+    bind:confirm="confirmArea"
+    bind:cancel="cancelArea"
+  />
 
   <van-divider />
-<view class="item"> <text>详细地址：</text>
+  <view class="item">
+    <text>详细地址：</text>
 
-  <van-field model:value="{{ areaDetail }}"  placeholder="请输入详细地址" autosize border="{{ false }}" />
-</view>
+    <van-field model:value="{{ areaDetail }}" placeholder="请输入详细地址" autosize border="{{ false }}" />
+  </view>
 </view>
 <van-notify id="van-notify" />
-
 
 <van-button type="primary" block bind:tap="submit">确定</van-button>

@@ -1,103 +1,103 @@
 {
-	"pages": [
-		"pages/login/index",
-		"pages/index/index",
-		"pages/personal/personal",
-		"pages/inquiryrecord/index/index",
-		"pages/inquiryrecord/detail/detail",
-		"pages/message/message/index",
-		"pages/message/detial/detial",
-		"pages/setting/index/index",
-		"pages/report/list/list",
-		"pages/registration/index/index",
-		"pages/registration/outpatient/outpatient",
-		"pages/registration/detail/detail",
-		"pages/registration/register/register",
-		"pages/inquiry/index/index",
-		"pages/inquiry/outpatient/outpatient",
-		"pages/inquiry/doctors/doctors",
-		"pages/inquiry/doctor/doctor",
-		"pages/inquiry/waiting/waiting",
-		"pages/inquiry/in-progress/in-progress",
-		"pages/patient/list/list",
-		"pages/patient/add/add",
-		"pages/patient/detail/detail",
-		"pages/patient/update/update",
-		"pages/registrationrecord/list/list",
-		"pages/registrationrecord/detail/detail",
-		"pages/hospitalInfo/index/index",
-		"pages/hospitalInfo/detail/detail",
-		"pages/outpatientInfo/hospital/hospital",
-		"pages/outpatientInfo/outpatient/outpatient",
-		"pages/outpatientInfo/detail/detail",
-		"pages/doctorInfo/index/index",
-		"pages/doctorInfo/detial/detial"
-	],
-	"window": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "市医院",
-		"navigationBarBackgroundColor": "#ffffff",
-		"backgroundTextStyle": "dark",
-		"enablePullDownRefresh": true
-	},
-	"componentFramework": "glass-easel",
-	"sitemapLocation": "sitemap.json",
-	"lazyCodeLoading": "requiredComponents",
-	"usingComponents": {
-		"van-index-bar": "@vant/weapp/index-bar/index",
-		"van-index-anchor": "@vant/weapp/index-anchor/index",
-		"van-action-sheet": "@vant/weapp/action-sheet/index",
-		"van-uploader": "@vant/weapp/uploader/index",
-		"van-icon": "@vant/weapp/icon/index",
-		"van-button": "@vant/weapp/button/index",
-		"van-grid": "@vant/weapp/grid/index",
-		"van-grid-item": "@vant/weapp/grid-item/index",
-		"van-cell": "@vant/weapp/cell/index",
-		"van-cell-group": "@vant/weapp/cell-group/index",
-		"van-tree-select": "@vant/weapp/tree-select/index",
-		"van-tag": "@vant/weapp/tag/index",
-		"van-collapse": "@vant/weapp/collapse/index",
-		"van-collapse-item": "@vant/weapp/collapse-item/index",
-		"van-radio": "@vant/weapp/radio/index",
-		"van-radio-group": "@vant/weapp/radio-group/index",
-		"van-toast": "@vant/weapp/toast/index",
-		"van-field": "@vant/weapp/field/index",
-		"van-divider": "@vant/weapp/divider/index",
-		"van-datetime-picker": "@vant/weapp/datetime-picker/index",
-		"van-area": "@vant/weapp/area/index",
-		"van-notify": "@vant/weapp/notify/index",
-		"van-notice-bar": "@vant/weapp/notice-bar/index",
-		"van-image": "@vant/weapp/image/index",
-		"van-steps": "@vant/weapp/steps/index",
-		"van-search": "@vant/weapp/search/index",
-		"van-card": "@vant/weapp/card/index",
-		"van-empty": "@vant/weapp/empty/index"
-	},
-	"tabBar": {
-		"selectedColor": "#1296DB",
-		"color": "#9C9C9C",
-		"list": [
-			{
-				"pagePath": "pages/index/index",
-				"text": "主页",
-				"iconPath": "images/底部导航_主页-未选中.png",
-				"selectedIconPath": "images/底部导航_主页-选中.png"
-			},
-			{
-				"pagePath": "pages/message/message/index",
-				"text": "消息",
-				"iconPath": "images/消息-未选中.png",
-				"selectedIconPath": "images/消息 -选中.png"
-			},
-			{
-				"pagePath": "pages/personal/personal",
-				"text": "我的",
-				"iconPath": "images/我的-未选中.png",
-				"selectedIconPath": "images/我的-选中.png"
-			}
-		]
-	},
-	"miniApp": {
-		"useAuthorizePage": true
-	}
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/personal/personal",
+    "pages/inquiryrecord/index/index",
+    "pages/inquiryrecord/detail/detail",
+    "pages/message/message/index",
+    "pages/message/detial/detial",
+    "pages/setting/index/index",
+    "pages/report/list/list",
+    "pages/registration/index/index",
+    "pages/registration/outpatient/outpatient",
+    "pages/registration/detail/detail",
+    "pages/registration/register/register",
+    "pages/inquiry/index/index",
+    "pages/inquiry/outpatient/outpatient",
+    "pages/inquiry/doctors/doctors",
+    "pages/inquiry/doctor/doctor",
+    "pages/inquiry/waiting/waiting",
+    "pages/inquiry/in-progress/in-progress",
+    "pages/patient/list/list",
+    "pages/patient/add/add",
+    "pages/patient/detail/detail",
+    "pages/patient/update/update",
+    "pages/registrationrecord/list/list",
+    "pages/registrationrecord/detail/detail",
+    "pages/hospitalInfo/index/index",
+    "pages/hospitalInfo/detail/detail",
+    "pages/outpatientInfo/hospital/hospital",
+    "pages/outpatientInfo/outpatient/outpatient",
+    "pages/outpatientInfo/detail/detail",
+    "pages/doctorInfo/index/index",
+    "pages/doctorInfo/detial/detial"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "市医院",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-index-bar": "@vant/weapp/index-bar/index",
+    "van-index-anchor": "@vant/weapp/index-anchor/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-tree-select": "@vant/weapp/tree-select/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-steps": "@vant/weapp/steps/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-empty": "@vant/weapp/empty/index"
+  },
+  "tabBar": {
+    "selectedColor": "#1296DB",
+    "color": "#9C9C9C",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "images/底部导航_主页-未选中.png",
+        "selectedIconPath": "images/底部导航_主页-选中.png"
+      },
+      {
+        "pagePath": "pages/message/message/index",
+        "text": "消息",
+        "iconPath": "images/消息-未选中.png",
+        "selectedIconPath": "images/消息 -选中.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "images/我的-未选中.png",
+        "selectedIconPath": "images/我的-选中.png"
+      }
+    ]
+  },
+  "miniApp": {
+    "useAuthorizePage": true
+  }
 }

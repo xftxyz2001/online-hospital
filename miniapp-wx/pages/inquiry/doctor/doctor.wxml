@@ -1,29 +1,45 @@
 <!--pages/inquiry/doctor/doctor.wxml-->
-<view style="min-height:700px;width:100%;background-color: #F7F8FA;">
-  <view style="width: 100%;height:20px;"></view>
+<view style="min-height: 700px; width: 100%; background-color: #f7f8fa">
+  <view style="width: 100%; height: 20px"></view>
   <view>
     <van-cell-group>
-      <van-field model:value="{{ description }}" label="病情描述" type="textarea" placeholder="请输入病情描述" autosize border="{{ false }}" />
-      <view style="width: 100%;height: 120px;background-color: white;margin-top:10px;display:flex;justify-items: center;flex-direction: column;padding: 10px 0;">
+      <van-field
+        model:value="{{ description }}"
+        label="病情描述"
+        type="textarea"
+        placeholder="请输入病情描述"
+        autosize
+        border="{{ false }}"
+      />
+      <view class="uploadimg">
         <van-cell title="请上传图片"></van-cell>
         <view>
-          <van-uploader file-list="{{ fileList }}" max-count="1" bind:after-read="afterRead" style="margin-left: 30rpx;" />
+          <van-uploader
+            file-list="{{ fileList }}"
+            max-count="1"
+            bind:after-read="afterRead"
+            style="margin-left: 30rpx"
+          />
         </view>
       </view>
-
-
     </van-cell-group>
   </view>
-  <view style="width: 96%;background-color: white;margin-top: 10px;padding: 5px;margin-bottom: 10px;">
-    <view style="margin:10px 0"> <text>请选择就诊人</text></view>
+  <view style="width: 96%; background-color: white; margin-top: 10px; padding: 5px; margin-bottom: 10px">
+    <view style="margin: 10px 0"><text>请选择就诊人</text></view>
 
     <van-radio-group value="{{ patientId }}" bind:change="changePatient">
       <van-cell-group>
-        <van-cell title="{{item.name +'     卡号:'+item.cardNo}}" clickable data-name="{{item.name}}" bind:click="onClick" wx:for="{{patientList}}">
+        <van-cell
+          title="{{item.name +'     卡号:'+item.cardNo}}"
+          clickable
+          data-name="{{item.name}}"
+          bind:click="onClick"
+          wx:for="{{patientList}}"
+        >
           <van-radio slot="right-icon" name="{{item.id}}" />
         </van-cell>
       </van-cell-group>
-      <view style="width:100%;margin-top:10px">
+      <view style="width: 100%; margin-top: 10px">
         <van-button type="primary" block bind:tap="submit">确定</van-button>
       </view>
     </van-radio-group>
@@ -31,7 +47,7 @@
   <van-notify id="van-notify" />
 
   <van-action-sheet show="{{ confirmShow }}" title="确认信息" bind:close="onClose">
-    <view style="display: flex;flex-direction: column;">
+    <view style="display: flex; flex-direction: column">
       <van-cell-group inset>
         <van-cell title="门诊" value="{{outpatientName}}" />
         <van-cell title="医生" value="{{doctorName}}" />
@@ -39,8 +55,7 @@
         <van-cell title="病情描述" value="{{description}}" />
         <van-cell title="问诊费用" value="10.0元" />
       </van-cell-group>
-      <van-button type="primary" style="margin:20rpx 20rpx 20rpx auto" bind:tap="confirmSubmit">确定并支付</van-button>
+      <van-button type="primary" style="margin: 20rpx 20rpx 20rpx auto" bind:tap="confirmSubmit">确定并支付</van-button>
     </view>
   </van-action-sheet>
-
 </view>

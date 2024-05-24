@@ -1,25 +1,22 @@
 <!--pages/patient/detail/detail.wxml-->
-<view style="width: 100%;display: flex;flex-direction: column;align-items: center;background-color: #EEE;min-height: 1500rpx;">
-  
-  <view style="width: 90%;margin-top: 30rpx;background-color: white;">
-  <van-cell title="姓名" value="{{patientInfo.name}}" />
-  <van-cell title="性别" value="{{patientInfo.sex==0?'女':'男'}}" />
-  <van-cell title="证件类型" value="{{patientInfo.certificatesType}}" />
-  <van-cell title="证件号" value="{{patientInfo.certificatesNo}}" />
-  <van-cell title="诊疗号" value="{{patientInfo.cardNo}}" />
-  <van-cell title="手机号" value="{{patientInfo.phone}}" />
-  <van-cell title="出生日期" value="{{patientInfo.birthdate}}" />、
-  <van-cell title="详细地址" value="{{patientInfo.addressDetail}}" />
+<view class="container">
+  <view style="width: 90%; margin-top: 30rpx; background-color: white">
+    <van-cell title="姓名" value="{{patientInfo.name}}" />
+    <van-cell title="性别" value="{{patientInfo.sex==0?'女':'男'}}" />
+    <van-cell title="证件类型" value="{{patientInfo.certificatesType}}" />
+    <van-cell title="证件号" value="{{patientInfo.certificatesNo}}" />
+    <van-cell title="诊疗号" value="{{patientInfo.cardNo}}" />
+    <van-cell title="手机号" value="{{patientInfo.phone}}" />
+    <van-cell title="出生日期" value="{{patientInfo.birthdate}}" />
+    、
+    <van-cell title="详细地址" value="{{patientInfo.addressDetail}}" />
+  </view>
 
-</view>
-
-<view style="margin-top:30rpx;width: 90%;"><van-button type="info" block bind:tap="goToUpdate">修改信息</van-button></view>
-<view style="margin-top:20rpx;width: 90%;"><van-button type="danger" block 
-bind:tap="clickDelete">删除就诊人</van-button></view>
+  <view style="margin-top: 30rpx; width: 90%">
+    <van-button type="info" block bind:tap="goToUpdate">修改信息</van-button>
+  </view>
+  <view style="margin-top: 20rpx; width: 90%">
+    <van-button type="danger" block bind:tap="clickDelete">删除就诊人</van-button>
+  </view>
 </view>
 <van-dialog id="van-dialog" />
-
-
-
-
-

@@ -1,98 +1,83 @@
-
-
 // pages/registration/index/index.js
-import {promiseRequest} from '../../../utils/service'
-import {store} from '../../../store/store'
-import{createStoreBindings} from 'mobx-miniprogram-bindings'
+import { promiseRequest } from "../../../utils/service";
+import { store } from "../../../store/store";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    hospitalList:[],
-
+    hospitalList: []
   },
-//获取所有医院信息
-async getHospitalInfo(){
-  const app = getApp()
-  await promiseRequest({
-    method:'GET',
-    url:app.globalData.hospitalUrl+"/hospital"
-  }).then((res)=>{
-    if(res.code==1){
-      this.setData({
-        hospitalList:res.data
-      })
-      
-    }
-  })
-},
-//选择医院
-selectHospital(e){
-  this.updateInquiryHospitalId(e.target.dataset.hospitalid)
-  wx.navigateTo({
-    url: '/pages/inquiry/outpatient/outpatient',
-  })
-},
+  //获取所有医院信息
+  async getHospitalInfo() {
+    const app = getApp();
+    await promiseRequest({
+      method: "GET",
+      url: app.globalData.hospitalUrl + "/hospital"
+    }).then(res => {
+      if (res.code == 1) {
+        this.setData({
+          hospitalList: res.data
+        });
+      }
+    });
+  },
+  //选择医院
+  selectHospital(e) {
+    this.updateInquiryHospitalId(e.target.dataset.hospitalid);
+    wx.navigateTo({
+      url: "/pages/inquiry/outpatient/outpatient"
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.storeBindings=createStoreBindings(this,{
+    this.storeBindings = createStoreBindings(this, {
       store,
-      
-      actions:['updateInquiryHospitalId']
-    })
-   this.getHospitalInfo()
+
+      actions: ["updateInquiryHospitalId"]
+    });
+    this.getHospitalInfo();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-this.storeBindings.destroyStoreBindings()
+    this.storeBindings.destroyStoreBindings();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.getHospitalInfo()
+    this.getHospitalInfo();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

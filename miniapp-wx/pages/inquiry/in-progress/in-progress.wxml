@@ -1,52 +1,55 @@
 <!--pages/inquiry/in-progress/in-progress.wxml-->
-<view style="width: 100%;min-height: 600rpx;background-color: #EEEEEE;padding: 20rpx 0 0 0;display: flex;flex-direction: column;">
+<view class="container">
   <view>
     <van-cell-group inset>
       <van-cell title="医生" value="{{messageVo.doctorName}}" />
       <van-cell title="职称" value="{{messageVo.professionalTitle}}" />
       <van-cell title="介绍" label="{{messageVo.introduce}}" />
-   
     </van-cell-group>
   </view>
-  <scroll-view class="chat" style="height:1000rpx;margin-bottom:120rpx" scroll-y="true">
+  <scroll-view class="chat" style="height: 1000rpx; margin-bottom: 120rpx" scroll-y="true">
     <!-- 对话内容 -->
     <view wx:for="{{messageVo.messageVos}}">
       <view class="dialog1" wx:if="{{item.identity==1}}">
-        <view >
-          <van-image round width="2rem" height="2rem" src="https://img.zcool.cn/community/0117825857a100a801219c778d2554.jpg@2o.jpg" />
+        <view>
+          <van-image
+            round
+            width="2rem"
+            height="2rem"
+            src="https://img.zcool.cn/community/0117825857a100a801219c778d2554.jpg@2o.jpg"
+          />
         </view>
         <view class="word1">
           {{item.content}}
-          <view style="font-weight: 100;font-size: small;margin:3rpx 0 0 2rpx">{{item.sendTime}}</view>
+          <view style="font-weight: 100; font-size: small; margin: 3rpx 0 0 2rpx">{{item.sendTime}}</view>
         </view>
-
       </view>
       <view class="dialog2" wx:if="{{item.identity==0}}">
         <view class="word2">
           {{item.content}}
-          
-          <view style="font-weight: 100;font-size: small;margin:3rpx 0 0 2rpx">{{item.sendTime}}</view>
+
+          <view style="font-weight: 100; font-size: small; margin: 3rpx 0 0 2rpx">{{item.sendTime}}</view>
         </view>
-        <view >
-          <van-image round width="2rem" height="2rem" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.S_y-YVQ4-EkpI46EGbKxAQAAAA?rs=1&pid=ImgDetMain" />
+        <view>
+          <van-image
+            round
+            width="2rem"
+            height="2rem"
+            src="https://tse2-mm.cn.bing.net/th/id/OIP-C.S_y-YVQ4-EkpI46EGbKxAQAAAA?rs=1&pid=ImgDetMain"
+          />
         </view>
       </view>
     </view>
-
-
   </scroll-view>
 
-  <view style="width:100%;display: flex;padding: 0 10rpx 0 0;justify-content: space-around;position: fixed;bottom: 0;height:110rpx;background-color: #EEEEEE;">
-    <view style="width:70%;">
+  <view class="input2">
+    <view style="width: 70%">
       <van-cell-group>
         <van-field model:value="{{ message }}" type="textarea" placeholder="请输入" autosize border="{{ false }}" />
       </van-cell-group>
     </view>
-    <view style="width: 20%;">
+    <view style="width: 20%">
       <van-button type="info" bind:tap="send">发送</van-button>
     </view>
   </view>
-
-
-
 </view>

@@ -1,11 +1,11 @@
 {
-	"ios": {
-		"name": "onlinehos"
-	},
-	"android": {
-		"name": "onlinehos"
-	},
-	"common": {
-		"name": "onlinehos"
-	}
+  "ios": {
+    "name": "onlinehos"
+  },
+  "android": {
+    "name": "onlinehos"
+  },
+  "common": {
+    "name": "onlinehos"
+  }
 }

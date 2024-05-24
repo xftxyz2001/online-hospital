@@ -1,5 +1,4 @@
 {
-  "usingComponents": {"van-divider": "@vant/weapp/divider/index",
-    "van-dialog": "@vant/weapp/dialog/index"},
+  "usingComponents": { "van-divider": "@vant/weapp/divider/index", "van-dialog": "@vant/weapp/dialog/index" },
   "navigationBarTitleText": "就诊人"
 }

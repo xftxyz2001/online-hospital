@@ -1,14 +1,19 @@
 <!--pages/inquiry/doctors/doctors.wxml-->
-<view class="item" wx:for="{{doctorList}}"  wx:key="{{item.id}}" bind:tap="selectDoctor" data-doctorId="{{item.id}}" >
-    <image src="{{item.picture}}" style="width: 50px;height:50px;background-color:#DEF0FC;border-radius:30px;margin-left:10px"></image>
-    <view style="margin-left:15px">
-      <view> <text style="font-weight: 700;">{{item.name}}</text> <text style="font-size: 14px;color: #82CDE4;margin-left:15px">{{item.professionalTitle}}</text></view>
-      
+<view class="item" wx:for="{{doctorList}}" wx:key="{{item.id}}" bind:tap="selectDoctor" data-doctorId="{{item.id}}">
+  <image
+    src="{{item.picture}}"
+    style="width: 50px; height: 50px; background-color: #def0fc; border-radius: 30px; margin-left: 10px"
+  ></image>
+  <view style="margin-left: 15px">
+    <view>
+      <text style="font-weight: 700">{{item.name}}</text>
+      <text style="font-size: 14px; color: #82cde4; margin-left: 15px">{{item.professionalTitle}}</text>
     </view>
-    <!-- <view style="margin-left: 60px;" wx:if="{{item.waitingNum<10}}">
+  </view>
+  <!-- <view style="margin-left: 60px;" wx:if="{{item.waitingNum<10}}">
       <van-tag round type="primary">排队人数：{{item.waitingNum}}</van-tag>
     </view>
     <view style="margin-left: 60px;" wx:else="">
       <van-tag round type="warning">排队人数：{{item.waitingNum}}</van-tag>
     </view> -->
-  </view>
+</view>

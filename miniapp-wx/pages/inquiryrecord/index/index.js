@@ -1,129 +1,115 @@
 // pages/inquiryrecord/index/index.js
-import {
-  promiseRequest
-} from '../../../utils/service'
-import {store} from '../../../store/store'
-import{createStoreBindings} from 'mobx-miniprogram-bindings'
-import Dialog from '@vant/weapp/dialog/dialog';
+import { promiseRequest } from "../../../utils/service";
+import { store } from "../../../store/store";
+import { createStoreBindings } from "mobx-miniprogram-bindings";
+import Dialog from "@vant/weapp/dialog/dialog";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    inquiryList:[],
+    inquiryList: []
   },
 
   //查询所有问诊记录
   async queryInquiryRecords() {
-    const app = getApp()
+    const app = getApp();
     let res = await promiseRequest({
-      url:app.globalData.inquiryUrl+'/app/inquiry-application/queryAll',
-      methed:'GET'
-    })
-    if(res.code==1){
+      url: app.globalData.inquiryUrl + "/app/inquiry-application/queryAll",
+      methed: "GET"
+    });
+    if (res.code == 1) {
       this.setData({
-        inquiryList:res.data
-      })
+        inquiryList: res.data
+      });
     }
   },
-  toDetail(e){
-    this.updateInquiryDetailId(e.target.dataset.id)
+  toDetail(e) {
+    this.updateInquiryDetailId(e.target.dataset.id);
     wx.navigateTo({
-      url: '/pages/inquiryrecord/detail/detail',
-    })
+      url: "/pages/inquiryrecord/detail/detail"
+    });
   },
-  cancel(e){
+  cancel(e) {
     Dialog.confirm({
-      title: '提示',
-      message: '确定要取消吗？',
+      title: "提示",
+      message: "确定要取消吗？"
     })
       .then(() => {
-        this.cancelInquiry(e.target.dataset.id)
+        this.cancelInquiry(e.target.dataset.id);
       })
       .catch(() => {
         // on cancel
       });
   },
-  async cancelInquiry(id){
-    const app=getApp()
-    let res=await promiseRequest({
-      method:'PUT',
-      url:app.globalData.inquiryUrl+'/app/inquiry-application/cancel?id='+id,
-    })
-    if(res.code==1){
+  async cancelInquiry(id) {
+    const app = getApp();
+    let res = await promiseRequest({
+      method: "PUT",
+      url: app.globalData.inquiryUrl + "/app/inquiry-application/cancel?id=" + id
+    });
+    if (res.code == 1) {
       wx.showToast({
-        title: '取消成功',
-        icon:'success',
-        duration:2000
-      })
-      this.queryInquiryRecords()
-    }
-    else{
+        title: "取消成功",
+        icon: "success",
+        duration: 2000
+      });
+      this.queryInquiryRecords();
+    } else {
       wx.showToast({
-        title: '操作失败',
-        icon:'error',
-        duration:2000
-      })
+        title: "操作失败",
+        icon: "error",
+        duration: 2000
+      });
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.storeBindings=createStoreBindings(this,{
+    this.storeBindings = createStoreBindings(this, {
       store,
-      actions:['updateInquiryDetailId']
-    })
-  this.queryInquiryRecords()
+      actions: ["updateInquiryDetailId"]
+    });
+    this.queryInquiryRecords();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    this.storeBindings.destroyStoreBindings()
+    this.storeBindings.destroyStoreBindings();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    this.queryInquiryRecords()
+    this.queryInquiryRecords();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

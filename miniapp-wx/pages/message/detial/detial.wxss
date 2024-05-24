@@ -1,4 +1,12 @@
 /* pages/inquiry/in-progress/in-progress.wxss */
+.container {
+  width: 100%;
+  min-height: 600rpx;
+  background-color: #eeeeee;
+  padding: 20rpx 0 0 0;
+  display: flex;
+  flex-direction: column;
+}
 .word1 {
   /* ref: https://blog.csdn.net/weixin_30379911/article/details/99922923 */
   left: 3px;
@@ -70,45 +78,45 @@
   background-color: rgb(236, 236, 236);
   min-height: 600px;
   padding: 5px 0 0 0;
-  margin-bottom:120rpx
+  margin-bottom: 120rpx;
 }
-.chat:after{/*伪元素是行内元素 正常浏览器清除浮动方法*/
+.chat:after {
+  /*伪元素是行内元素 正常浏览器清除浮动方法*/
   content: "";
   display: block;
   height: 0;
-  clear:both;
+  clear: both;
   visibility: hidden;
 }
 
 .button {
-	background-color: #1E90FF;
-	width: 60px;
-	height: 30px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	margin-left: 20rpx;
+  background-color: #1e90ff;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
 }
- 
+
 .buttonText {
-	font-size: 14px;
-	color: white;
+  font-size: 14px;
+  color: white;
 }
 
 .sendBar {
-	width: 100%;
-	height: 10vh;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
- 
+
 .input {
-	background-color: white;
-  border: 2px solid #1E90FF;
+  background-color: white;
+  border: 2px solid #1e90ff;
   width: 80%;
 }
 .avatar2 {
@@ -125,4 +133,16 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.input2 {
+  width: 100%;
+  display: flex;
+  padding: 0 10rpx 0 0;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  height: 110rpx;
+  background-color: #eeeeee;
 }

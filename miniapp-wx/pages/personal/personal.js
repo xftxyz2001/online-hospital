@@ -1,86 +1,74 @@
 // pages/personal/personal.js
-import {
-  promiseRequest
-} from '../../utils/service.js'
+import { promiseRequest } from "../../utils/service.js";
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-  username:"",
-  avatarUrl:""
+    username: "",
+    avatarUrl: ""
   },
 
-  async queryUserInfo(){
-    const app=getApp()
+  async queryUserInfo() {
+    const app = getApp();
     await promiseRequest({
-      method:'GET',
-      url:app.globalData.userUrl+'/app/user/queryUserInfo'
-      
-    }).then((res)=>{
-      if(res.code==1){
-       this.setData({
-         username:res.data.username,
-         avatarUrl:res.data.avatar
-       })
+      method: "GET",
+      url: app.globalData.userUrl + "/app/user/queryUserInfo"
+    }).then(res => {
+      if (res.code == 1) {
+        this.setData({
+          username: res.data.username,
+          avatarUrl: res.data.avatar
+        });
       }
-    })
+    });
   },
-  gotoPatient(){
+  gotoPatient() {
     wx.navigateTo({
-      url: '/pages/patient/list/list',
-    })
+      url: "/pages/patient/list/list"
+    });
   },
-  gotoRecord(){
-wx.navigateTo({
-  url: '/pages/registrationrecord/list/list',
-})
-  },
-  gotoSetUp(){
+  gotoRecord() {
     wx.navigateTo({
-      url: '/pages/setting/index/index',
-    })
+      url: "/pages/registrationrecord/list/list"
+    });
   },
-  gotoInquiryRecord(){
+  gotoSetUp() {
     wx.navigateTo({
-      url: '/pages/inquiryrecord/index/index',
-    })
+      url: "/pages/setting/index/index"
+    });
+  },
+  gotoInquiryRecord() {
+    wx.navigateTo({
+      url: "/pages/inquiryrecord/index/index"
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-this.queryUserInfo();
+    this.queryUserInfo();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
-  },
+  onShow() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide() {
-
-  },
+  onHide() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload() {
-
-  },
+  onUnload() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -92,14 +80,10 @@ this.queryUserInfo();
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
-  },
+  onReachBottom() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
-})
+  onShareAppMessage() {}
+});

@@ -1,30 +1,44 @@
 <!--pages/inquiryrecord/detail/detail.wxml-->
 <van-cell-group>
   <van-cell title="院区" value="{{inquiryInfo.hospitalName}}" />
-  <van-cell title="门诊" value="{{inquiryInfo.outpatientName}}"/>
-  <van-cell title="问诊医生" value="{{inquiryInfo.doctorName}}"/>
-  <van-cell title="就诊人" value="{{inquiryInfo.patientName}}"/>
+  <van-cell title="门诊" value="{{inquiryInfo.outpatientName}}" />
+  <van-cell title="问诊医生" value="{{inquiryInfo.doctorName}}" />
+  <van-cell title="就诊人" value="{{inquiryInfo.patientName}}" />
   <van-cell title="病情描述">
-        <van-button type="primary" size="mini" bind:tap="descriptionDetail">查看</van-button>
-      </van-cell>
-  <van-cell title="创建时间" value="{{inquiryInfo.createTime}}"/>
-  <van-cell title="取消时间" value="{{inquiryInfo.cancelTime}}" wx:if="{{inquiryInfo.status==3}}"/>
+    <van-button type="primary" size="mini" bind:tap="descriptionDetail">查看</van-button>
+  </van-cell>
+  <van-cell title="创建时间" value="{{inquiryInfo.createTime}}" />
+  <van-cell title="取消时间" value="{{inquiryInfo.cancelTime}}" wx:if="{{inquiryInfo.status==3}}" />
   <van-cell title="状态">
     <van-tag type="primary" wx:if="{{inquiryInfo.status==2}}">已完成</van-tag>
     <van-tag type="success" wx:if="{{inquiryInfo.status==1}}">进行中</van-tag>
     <van-tag type="danger" wx:if="{{inquiryInfo.status==3}}">已取消</van-tag>
     <van-tag type="warning" wx:if="{{inquiryInfo.status==0}}">排队中</van-tag>
   </van-cell>
-  <van-cell title="问诊详情" wx:if="{{inquiryInfo.status==1||inquiryInfo.status==2}}" is-link bind:tap="toMessageDetail"/>
+  <van-cell
+    title="问诊详情"
+    wx:if="{{inquiryInfo.status==1||inquiryInfo.status==2}}"
+    is-link
+    bind:tap="toMessageDetail"
+  />
 </van-cell-group>
 
 <van-action-sheet show="{{ show }}" title="病情描述" bind:close="onClose">
+  <view>
+    <van-cell title="病情描述" label="{{inquiryInfo.description}}" border="{{ false }}" />
     <view>
-      <van-cell title="病情描述" label="{{inquiryInfo.description}}" border="{{ false }}" />
-      <view>
-        <van-cell title="图片" />
-        <van-image width="10rem" height="10rem" fit="contain" src="{{inquiryInfo.image}}" style="margin-left:25rpx" wx:if="{{inquiryInfo.image!=null&&inquiryInfo.image!=''}}" bindtap="previewImage" data-url="{{inquiryInfo.image}}"/>
-        <van-cell title="无" wx:else=""/>
-      </view>
+      <van-cell title="图片" />
+      <van-image
+        width="10rem"
+        height="10rem"
+        fit="contain"
+        src="{{inquiryInfo.image}}"
+        style="margin-left: 25rpx"
+        wx:if="{{inquiryInfo.image!=null&&inquiryInfo.image!=''}}"
+        bindtap="previewImage"
+        data-url="{{inquiryInfo.image}}"
+      />
+      <van-cell title="无" wx:else="" />
     </view>
-  </van-action-sheet>
+  </view>
+</van-action-sheet>

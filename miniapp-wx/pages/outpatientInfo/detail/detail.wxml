@@ -1,9 +1,10 @@
 <!--pages/hospitalInfo/detail/detail.wxml-->
-<view style="width: 100%;min-height: 1500rpx;background-color: #EEE;overflow: hidden;display: flex;flex-direction: column;align-items: center;">
-  <view class="item" >
-  <van-cell title="院名"label="{{outpatientInfo.name}}" icon="home-o"  border="{{ false }}" /></view>
+<view class="content">
+  <view class="item">
+    <van-cell title="院名" label="{{outpatientInfo.name}}" icon="home-o" border="{{ false }}" />
+  </view>
 
-
-<view class="item">
-  <van-cell title="介绍"label="{{outpatientInfo.disc}}" icon="info-o" border="{{ false }}" /></view>
+  <view class="item">
+    <van-cell title="介绍" label="{{outpatientInfo.disc}}" icon="info-o" border="{{ false }}" />
+  </view>
 </view>

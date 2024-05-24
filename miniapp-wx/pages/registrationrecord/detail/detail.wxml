@@ -1,25 +1,52 @@
 <!--pages/registrationrecord/detail/detail.wxml-->
 <van-notice-bar text="注意：如取消预约，请在预约日期前取消。" />
-<view style="width: 100%;min-height: 600px;background-color:#EEEEEE ;display: flex;flex-direction: column;align-items: center;">
-  <view style="width:95%;margin:10px 0;background-color: white;display: flex;flex-direction: column;align-items: center;min-height: 200px;">
-    <view style="display: flex;flex-direction: column;margin:10px 0 10px 20px;width: 100%;">
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">订单编号:</text> <text>{{orderDetail.outTradeNo}}</text></view>
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">医院:</text> <text>{{orderDetail.hospitalName}}</text></view>
-      <view style="margin-bottom: 5px;"> <text style="color: #C9C9C9;margin-right: 5px;">门诊名称:</text> <text>{{orderDetail.outpatientName}}</text></view>
+<view class="container">
+  <view class="content">
+    <view style="display: flex; flex-direction: column; margin: 10px 0 10px 20px; width: 100%">
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">订单编号:</text>
+        <text>{{orderDetail.outTradeNo}}</text>
+      </view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">医院:</text>
+        <text>{{orderDetail.hospitalName}}</text>
+      </view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">门诊名称:</text>
+        <text>{{orderDetail.outpatientName}}</text>
+      </view>
 
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">医生姓名:</text> <text>{{orderDetail.doctorName}}</text></view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">医生姓名:</text>
+        <text>{{orderDetail.doctorName}}</text>
+      </view>
 
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">就诊人:</text> <text>{{orderDetail.patientName}}</text></view>
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">操作时间:</text> <text>{{orderDetail.createTime}}</text></view>
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">预约日期:</text> <text>{{orderDetail.reserveDate}}</text></view>
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">预约时间:</text> <text>{{orderDetail.reserveHalf==0?morningList[orderDetail.reserveTime-1]:afternoonList[orderDetail.reserveTime-1]}}</text></view>
-      <view style="margin-bottom: 5px;"><text style="color: #C9C9C9;margin-right: 5px;">状态:</text> <text>{{orderStatusList[orderDetail.orderStatus]}}</text></view>
-
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">就诊人:</text>
+        <text>{{orderDetail.patientName}}</text>
+      </view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">操作时间:</text>
+        <text>{{orderDetail.createTime}}</text>
+      </view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">预约日期:</text>
+        <text>{{orderDetail.reserveDate}}</text>
+      </view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">预约时间:</text>
+        <text>
+          {{orderDetail.reserveHalf==0?morningList[orderDetail.reserveTime-1]:afternoonList[orderDetail.reserveTime-1]}}
+        </text>
+      </view>
+      <view style="margin-bottom: 5px">
+        <text style="color: #c9c9c9; margin-right: 5px">状态:</text>
+        <text>{{orderStatusList[orderDetail.orderStatus]}}</text>
+      </view>
     </view>
-    <view style="width: 95%;margin-bottom: 10px;">
+    <view style="width: 95%; margin-bottom: 10px">
       <van-button plain type="danger" size="large" bind:tap="clickCancel" wx:if="{{canCancel}}">取消预约</van-button>
     </view>
-    
   </view>
 </view>
 <van-dialog id="van-dialog" />

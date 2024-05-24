@@ -1,5 +1,5 @@
 <!--pages/inquiry/in-progress/in-progress.wxml-->
-<view class="container">
+<view class="inquiryinprogresscontainer">
   <view>
     <van-cell-group inset>
       <van-cell title="医生" value="{{messageVo.doctorName}}" />

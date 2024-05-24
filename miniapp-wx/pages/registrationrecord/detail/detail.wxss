@@ -1,5 +1,5 @@
 /* pages/registrationrecord/detail/detail.wxss */
-.container {
+.registrationrecorddetailcontainer {
   width: 100%;
   min-height: 600px;
   background-color: #eeeeee;

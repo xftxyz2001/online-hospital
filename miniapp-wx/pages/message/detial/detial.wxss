@@ -1,5 +1,5 @@
 /* pages/inquiry/in-progress/in-progress.wxss */
-.container {
+.inquiryinprogresscontainer {
   width: 100%;
   min-height: 600rpx;
   background-color: #eeeeee;

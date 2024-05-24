@@ -1,6 +1,6 @@
 <!--pages/registrationrecord/list/list.wxml-->
 <van-empty description="暂无预约" wx:if="{{orderList.length==0}}" />
-<view class="container">
+<view class="registrationrecordlistcontainer">
   <view class="content" wx:for="{{orderList}}">
     <view style="display: flex; flex-direction: column; margin: 10px 0 10px 20px; width: 100%">
       <view style="margin-bottom: 5px">

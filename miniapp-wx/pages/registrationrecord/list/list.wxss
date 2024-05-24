@@ -1,5 +1,5 @@
 /* pages/registrationrecord/list/list.wxss */
-.container {
+.registrationrecordlistcontainer {
   width: 100%;
   min-height: 600px;
   background-color: #eeeeee;

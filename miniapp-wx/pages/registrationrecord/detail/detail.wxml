@@ -1,6 +1,6 @@
 <!--pages/registrationrecord/detail/detail.wxml-->
 <van-notice-bar text="注意：如取消预约，请在预约日期前取消。" />
-<view class="container">
+<view class="registrationrecorddetailcontainer">
   <view class="content">
     <view style="display: flex; flex-direction: column; margin: 10px 0 10px 20px; width: 100%">
       <view style="margin-bottom: 5px">

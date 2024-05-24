@@ -1,6 +1,6 @@
 <!--pages/patient/list/list.wxml-->
 
-<view class="container">
+<view class="patientlistcontainer">
   <van-empty description="暂无就诊人" wx:if="{{patientList.length==0}}" />
   <view style="width: 100%; margin-top: 20rpx" wx:else="">
     <van-cell-group>

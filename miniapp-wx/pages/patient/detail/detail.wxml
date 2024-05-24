@@ -1,5 +1,5 @@
 <!--pages/patient/detail/detail.wxml-->
-<view class="container">
+<view class="patientdetailcontainer">
   <view style="width: 90%; margin-top: 30rpx; background-color: white">
     <van-cell title="姓名" value="{{patientInfo.name}}" />
     <van-cell title="性别" value="{{patientInfo.sex==0?'女':'男'}}" />

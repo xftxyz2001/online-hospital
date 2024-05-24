@@ -1,4 +1,4 @@
-.container {
+.inquirywaitingcontainer {
   width: 100%;
   min-height: 600px;
   background-color: #f7f8fa;

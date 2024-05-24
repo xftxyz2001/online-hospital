@@ -1,33 +1,41 @@
-export const promiseRequest = parmas => {
-  // 返回一个promise对象
+export const promiseRequest = ({ method, url, data }) => {
+  return getStorage("token")
+    .then(token => {
+      return wxRequest({
+        method,
+        url,
+        data,
+        header: {
+          "content-type": "application/json",
+          token: token
+        }
+      });
+    })
+    .then(res => res.data)
+    .catch(err => {
+      wx.switchTab({
+        url: "/pages/login/index"
+      });
+      throw err;
+    });
+};
+
+function getStorage(key) {
   return new Promise((resolve, reject) => {
-    let token = "111";
     wx.getStorage({
-      key: "token",
-      success: function (res) {
-        token = res.data;
-        wx.request({
-          method: parmas.method,
-          url: parmas.url, //仅为示例，并非真实的接口地址
-          data: parmas.data,
-          header: {
-            "content-type": "application/json", // 默认值
-            token: token
-          },
-          success: res => {
-            // 请求成功，就将成功的数据返回出去
-            resolve(res.data);
-          },
-          fail: err => {
-            reject(err);
-          }
-        });
-      },
-      fail: function (res) {
-        wx.switchTab({
-          url: "/pages/login/index"
-        });
-      }
+      key: key,
+      success: res => resolve(res.data),
+      fail: reject
     });
   });
-};
+}
+
+function wxRequest(options) {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      ...options,
+      success: res => resolve(res),
+      fail: reject
+    });
+  });
+}

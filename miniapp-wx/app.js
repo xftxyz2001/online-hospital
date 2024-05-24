@@ -23,6 +23,7 @@ App({
   },
 
   globalData: {
+    ONLINE_HOSPITAL_GATEWAY_HOST,
     hospitalUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/hospital`,
     registrationUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/registration`,
     userUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/user`,

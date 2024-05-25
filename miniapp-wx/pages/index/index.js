@@ -36,7 +36,6 @@ Page({
   getHeartConnect() {
     var that = this;
     promiseWebsocket().then(task => {
-      that.wxHeadObj = task;
       task.onOpen = () => {
         //钩子函数
         console.log("open");
@@ -46,8 +45,6 @@ Page({
         console.log("close");
         //非正常关闭  提示网络异常并开始重新链接
         that.showWarn = true;
-        //清除物资倒计时
-        clearInterval(that.countTimer);
       };
       task.onError = e => {
         //钩子函数

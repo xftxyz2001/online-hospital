@@ -1,8 +1,7 @@
 // index.js
-import { promiseRequest } from "../../utils/service";
-
 import WebsocketHeartbeat from "websocket-heartbeat-miniprogram";
 import Toast from "@vant/weapp/toast/toast";
+import inquiryApi from "../../api/inquiryApi";
 
 Page({
   data: {
@@ -16,13 +15,8 @@ Page({
     closeTime: 3000, //自动关闭时间
     showWarn: false //是否展示网络不稳定警告
   },
-
-  async hasUnread() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.inquiryUrl + "/app/chat-list/allUnread"
-    }).then(res => {
+  hasUnread() {
+    inquiryApi.queryAllUnread().then(res => {
       if (res.code == 1) {
         this.setData({
           unread: res.data.unread

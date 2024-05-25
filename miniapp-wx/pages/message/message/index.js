@@ -1,7 +1,7 @@
 // pages/message/message/index.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import inquiryApi from "../../../api/inquiryApi";
 
 Page({
   /**
@@ -11,17 +11,14 @@ Page({
     chatList: []
   },
   //获取聊天列表
-  async queryChatList() {
-    const app = getApp();
-    let res = await promiseRequest({
-      url: app.globalData.inquiryUrl + "/app/chat-list/query-chat-list",
-      method: "GET"
+  queryChatList() {
+    inquiryApi.queryChatList().then(res => {
+      if (res.code == 1) {
+        this.setData({
+          chatList: res.data
+        });
+      }
     });
-    if (res.code == 1) {
-      this.setData({
-        chatList: res.data
-      });
-    }
   },
   toDetail(e) {
     this.updateInquiryLinkId(e.currentTarget.dataset.id);
@@ -48,12 +45,8 @@ Page({
     });
     console.log(2);
   },
-  async hasUnread() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.inquiryUrl + "/app/chat-list/allUnread"
-    }).then(res => {
+  hasUnread() {
+    inquiryApi.queryAllUnread().then(res => {
       if (res.code == 1) {
         this.setData({
           unread: res.data.unread

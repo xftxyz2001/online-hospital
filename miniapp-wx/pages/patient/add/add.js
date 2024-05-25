@@ -1,8 +1,8 @@
 // pages/patient/add/add.js
 import { formatDate } from "../../../utils/util.js";
-import { promiseRequest } from "../../../utils/service";
 import Notify from "@vant/weapp/notify/notify";
 import { areaList } from "@vant/area-data/index.js";
+import userApi from "../../../api/userApi.js";
 Page({
   /**
    * 页面的初始数据
@@ -89,12 +89,9 @@ Page({
       areaDialogVisible: false
     });
   },
-  async submit() {
-    const app = getApp();
-    await promiseRequest({
-      method: "POST",
-      url: app.globalData.userUrl + "/app/patient/add",
-      data: {
+  submit() {
+    userApi
+      .addPatient({
         name: this.data.name,
         certificatesType: this.data.certificatesType,
         certificatesNo: this.data.certificatesNo,
@@ -107,15 +104,15 @@ Page({
         districtName: this.data.districtName,
         address: this.data.areaDetail,
         areaCode: this.data.areacode
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        Notify({ type: "success", message: "添加成功" });
-        wx.navigateTo({
-          url: "/pages/patient/list/list"
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          Notify({ type: "success", message: "添加成功" });
+          wx.navigateTo({
+            url: "/pages/patient/list/list"
+          });
+        }
+      });
   },
   /**
    * 生命周期函数--监听页面加载

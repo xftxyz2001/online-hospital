@@ -1,7 +1,7 @@
 // pages/patient/list/list.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import userApi from "../../../api/userApi";
 Page({
   /**
    * 页面的初始数据
@@ -14,12 +14,8 @@ Page({
       url: "/pages/patient/add/add"
     });
   },
-  async queryAllPatient() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/patient/queryAll"
-    }).then(res => {
+  queryAllPatient() {
+    userApi.queryAllPatient().then(res => {
       if (res.code == 1) {
         this.setData({
           patientList: res.data

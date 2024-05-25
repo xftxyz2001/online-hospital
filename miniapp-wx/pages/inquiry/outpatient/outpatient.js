@@ -1,7 +1,7 @@
 // pages/registration/outpatient/outpatient.js
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { promiseRequest } from "../../../utils/service";
+import hospitalApi from "../../../api/hospitalApi";
 
 Page({
   /**
@@ -33,12 +33,8 @@ Page({
     });
   },
   //获取所有门诊树状信息
-  async getSpecialistTree() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.hospitalUrl + "/specialist/queryAppSpecialistTree?hospitalId=" + this.data.hospitalId
-    }).then(res => {
+  getSpecialistTree() {
+    hospitalApi.queryAppSpecialistTree(this.data.hospitalId).then(res => {
       if (res.code == 1) {
         this.setData({
           treeInfo: res.data

@@ -1,5 +1,5 @@
 // pages/personal/personal.js
-import { promiseRequest } from "../../utils/service.js";
+import userApi from "../../api/userApi.js";
 Page({
   /**
    * 页面的初始数据
@@ -9,12 +9,8 @@ Page({
     avatarUrl: ""
   },
 
-  async queryUserInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/user/queryUserInfo"
-    }).then(res => {
+  queryUserInfo() {
+    userApi.queryUserInfo().then(res => {
       if (res.code == 1) {
         this.setData({
           username: res.data.username,

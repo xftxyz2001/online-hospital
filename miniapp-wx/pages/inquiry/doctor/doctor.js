@@ -1,8 +1,10 @@
 // pages/inquiry/doctor/doctor.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import Notify from "@vant/weapp/notify/notify";
+import userApi from "../../../api/userApi";
+import inquiryApi from "../../../api/inquiryApi";
+import hospitalApi from "../../../api/hospitalApi";
 Page({
   /**
    * 页面的初始数据
@@ -20,12 +22,8 @@ Page({
     doctorName: "",
     selectPatientName: ""
   },
-  async queryAllPatient() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/patient/queryAll"
-    }).then(res => {
+  queryAllPatient() {
+    userApi.queryAllPatient().then(res => {
       if (res.code == 1) {
         this.setData({
           patientList: res.data
@@ -59,35 +57,32 @@ Page({
     }
     this.inquiry();
   },
-  async inquiry() {
-    const app = getApp();
-    await promiseRequest({
-      method: "POST",
-      url: app.globalData.inquiryUrl + "/app/inquiry-application/add",
-      data: {
+  inquiry() {
+    inquiryApi
+      .addInquiryApplication({
         doctorId: this.data.doctorId,
         hospitalId: this.data.hospitalId,
         outpatientId: this.data.outpatientId,
         patientId: this.data.patientId,
         image: this.data.fileList[0].url,
         description: this.data.description
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        wx.showToast({
-          title: "申请成功",
-          icon: "success",
-          duration: 2000,
-          success: function () {
-            setTimeout(function () {
-              wx.switchTab({
-                url: "/pages/index/index"
-              });
-            }, 2000);
-          }
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          wx.showToast({
+            title: "申请成功",
+            icon: "success",
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.switchTab({
+                  url: "/pages/index/index"
+                });
+              }, 2000);
+            }
+          });
+        }
+      });
   },
   changePatient(e) {
     this.setData({
@@ -120,26 +115,21 @@ Page({
     });
   },
   //获取门诊和医生名称
-  async inquiryDoctorAndOutpatientIOnfo() {
-    let app = getApp();
-    let result1 = await promiseRequest({
-      url: app.globalData.hospitalUrl + "/doctorInfo/queryById?doctorId=" + this.data.doctorId,
-      method: "GET"
+  inquiryDoctorAndOutpatientIOnfo() {
+    hospitalApi.queryDoctorInfoByDoctorId(this.data.doctorId).then(res => {
+      if (res.code == 1) {
+        this.setData({
+          doctorName: res.data.name
+        });
+      }
     });
-    if (result1.code == 1) {
-      this.setData({
-        doctorName: result1.data.name
-      });
-    }
-    let result2 = await promiseRequest({
-      url: app.globalData.hospitalUrl + "/outpatientInfo/queryById?id=" + this.data.outpatientId,
-      method: "GET"
+    hospitalApi.queryOutpatientInfoById(this.data.outpatientId).then(res => {
+      if (res.code == 1) {
+        this.setData({
+          outpatientName: res.data.name
+        });
+      }
     });
-    if (result2.code == 1) {
-      this.setData({
-        outpatientName: result2.data.name
-      });
-    }
   },
   onClick(e) {
     this.setData({

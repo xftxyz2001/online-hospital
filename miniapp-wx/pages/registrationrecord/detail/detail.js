@@ -1,8 +1,8 @@
 // pages/registrationrecord/detail/detail.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import Dialog from "@vant/weapp/dialog/dialog";
+import registrationApi from "../../../api/registrationApi";
 Page({
   /**
    * 页面的初始数据
@@ -24,12 +24,8 @@ Page({
     orderStatusList: ["未完成", "已完成", "已超时", "已取消"]
   },
   //获取单个订单信息
-  async getOneOrder() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.registrationUrl + "/orderInfo/app/queryOne?id=" + this.data.orderDetailId
-    }).then(res => {
+  getOneOrder() {
+    registrationApi.queryOneOrder(this.data.orderDetailId).then(res => {
       if (res.code == 1) {
         this.setData({
           orderDetail: res.data
@@ -57,24 +53,21 @@ Page({
       });
   },
   //取消预约
-  async cancelRegistration() {
-    const app = getApp();
-    await promiseRequest({
-      url: app.globalData.registrationUrl + "/orderInfo/app/update",
-      method: "PUT",
-      data: {
+  cancelRegistration() {
+    registrationApi
+      .cancelRegistration({
         id: this.data.orderDetailId,
         orderStatus: 3
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        wx.navigateBack(1);
-        wx.showToast({
-          title: "取消成功",
-          icon: "success"
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          wx.navigateBack(1);
+          wx.showToast({
+            title: "取消成功",
+            icon: "success"
+          });
+        }
+      });
   },
   /**
    * 生命周期函数--监听页面加载

@@ -1,7 +1,7 @@
 // pages/login/index.js
 import Toast from "@vant/weapp/toast/toast";
-import { promiseRequest } from "../../utils/service";
 import Notify from "@vant/weapp/notify/notify";
+import userApi from "../../api/userApi";
 // import { fail } from 'mobx-miniprogram/lib/internal';
 const defaultAvatarUrl =
   "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0";
@@ -52,28 +52,25 @@ Page({
     }
   },
   //修改昵称和昵称
-  async updateUserInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.userUrl + "/app/user/updateUserInfo",
-      data: {
+  updateUserInfo() {
+    userApi
+      .updateUserInfo({
         username: this.data.userName,
         avatar: this.data.avatarUrl
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        Toast.success({
-          message: "设置成功",
-          forbidClick: true
-        });
-        setTimeout(function () {
-          wx.switchTab({
-            url: "/pages/index/index"
+      })
+      .then(res => {
+        if (res.code == 1) {
+          Toast.success({
+            message: "设置成功",
+            forbidClick: true
           });
-        }, 1000);
-      }
-    });
+          setTimeout(function () {
+            wx.switchTab({
+              url: "/pages/index/index"
+            });
+          }, 1000);
+        }
+      });
   },
   login() {
     Toast.loading({
@@ -81,18 +78,11 @@ Page({
       forbidClick: true
     });
     wx.login({
-      success: async result => {
+      success: result => {
         this.setData({
           code: result.code
         });
-        const app = getApp();
-        await promiseRequest({
-          method: "POST",
-          url: app.globalData.userUrl + "/app/user/login",
-          data: {
-            code: this.data.code
-          }
-        }).then(res => {
+        userApi.login(this.data.code).then(res => {
           if (res.code == 1) {
             wx.setStorageSync("isLogin", 1);
             wx.setStorageSync("token", res.data.token);

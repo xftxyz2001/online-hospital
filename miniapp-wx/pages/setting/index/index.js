@@ -1,5 +1,5 @@
 // pages/setting/index/index.js
-import { promiseRequest } from "../../../utils/service";
+import userApi from "../../../api/userApi";
 Page({
   /**
    * 页面的初始数据
@@ -26,34 +26,35 @@ Page({
       header: {
         token: wx.getStorageSync("token")
       },
-      async success(res) {
+      success(res) {
         const data = JSON.parse(res.data);
         const app = getApp();
         if (data.code == 1) {
           that.setData({
             avatarUrl: data.data
           });
-          await promiseRequest({
-            method: "PUT",
-            url: app.globalData.userUrl + "/app/user/updateUserInfo",
-            data: {
+          userApi
+            .updateUserInfo({
               avatar: data.data
-            }
-          }).then(res => {
-            if (res.code == 1) {
-              wx.showToast({
-                title: "设置成功",
-                icon: "success",
-                duration: 2000
-              });
-            } else {
-              wx.showToast({
-                title: "设置失败",
-                icon: "error",
-                duration: 2000
-              });
-            }
-          });
+            })
+            .then(res => {
+              if (res.code == 1) {
+                wx.showToast({
+                  title: "设置成功",
+                  icon: "success",
+                  duration: 2000
+                });
+                that.setData({
+                  avatarUrl: data.data
+                });
+              } else {
+                wx.showToast({
+                  title: "设置失败",
+                  icon: "error",
+                  duration: 2000
+                });
+              }
+            });
         } else {
           wx.showToast({
             title: "上传失败",
@@ -75,36 +76,33 @@ Page({
     });
   },
   //修改用户名
-  async submitUsername() {
-    const app = getApp();
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.userUrl + "/app/user/updateUserInfo",
-      data: {
+  submitUsername() {
+    userApi
+      .updateUserInfo({
         username: this.data.newUsername
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        wx.showToast({
-          title: "设置成功",
-          icon: "success",
-          duration: 2000
-        });
-        this.setData({
-          setUsernameShow: false,
-          userName: this.data.newUsername
-        });
-      } else {
-        wx.showToast({
-          title: "设置失败",
-          icon: "error",
-          duration: 2000
-        });
-        this.setData({
-          setUsernameShow: false
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          wx.showToast({
+            title: "设置成功",
+            icon: "success",
+            duration: 2000
+          });
+          this.setData({
+            setUsernameShow: false,
+            userName: this.data.newUsername
+          });
+        } else {
+          wx.showToast({
+            title: "设置失败",
+            icon: "error",
+            duration: 2000
+          });
+          this.setData({
+            setUsernameShow: false
+          });
+        }
+      });
   },
   //点击手机号
   clickPhone() {
@@ -114,36 +112,33 @@ Page({
     });
   },
   //修改手机号
-  async submitPhone() {
-    const app = getApp();
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.userUrl + "/app/user/updateUserInfo",
-      data: {
+  submitPhone() {
+    userApi
+      .updateUserInfo({
         phone: this.data.newPhone
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        wx.showToast({
-          title: "设置成功",
-          icon: "success",
-          duration: 2000
-        });
-        this.setData({
-          setPhoneShow: false,
-          phone: this.data.newPhone
-        });
-      } else {
-        wx.showToast({
-          title: "设置失败",
-          icon: "error",
-          duration: 2000
-        });
-        this.setData({
-          setUsernameShow: false
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          wx.showToast({
+            title: "设置成功",
+            icon: "success",
+            duration: 2000
+          });
+          this.setData({
+            setPhoneShow: false,
+            phone: this.data.newPhone
+          });
+        } else {
+          wx.showToast({
+            title: "设置失败",
+            icon: "error",
+            duration: 2000
+          });
+          this.setData({
+            setUsernameShow: false
+          });
+        }
+      });
   },
   //关闭设置用户名
   closeSetUsername() {
@@ -158,12 +153,8 @@ Page({
     });
   },
   //获取用户信息
-  async getUserInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/user/queryUserInfo"
-    }).then(res => {
+  getUserInfo() {
+    userApi.queryUserInfo().then(res => {
       if (res.code == 1) {
         this.setData({
           avatarUrl: res.data.avatar,

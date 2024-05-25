@@ -1,5 +1,5 @@
 // pages/inquiry/waiting/waiting.js
-import { promiseRequest } from "../../../utils/service";
+import inquiryApi from "../../../api/inquiryApi";
 
 Page({
   /**
@@ -8,12 +8,8 @@ Page({
   data: {
     inquiryApplicationDetail: {}
   },
-  async quiryWaitingInquiryApplicationDetail() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.inquiryUrl + "/app/inquiry-application/query-waiting-inquiry-application-detail"
-    }).then(res => {
+  quiryWaitingInquiryApplicationDetail() {
+    inquiryApi.queryWaitingInquiryApplicationDetail().then(res => {
       if (res.code == 1) {
         this.setData({
           inquiryApplicationDetail: res.data

@@ -1,7 +1,7 @@
 // pages/inquiry/in-progress/in-progress.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import inquiryApi from "../../../api/inquiryApi";
 Page({
   /**
    * 页面的初始数据
@@ -11,12 +11,8 @@ Page({
     messageVo: {}
   },
 
-  async queryMessage() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.inquiryUrl + "/app/chat-message/query-chat-message?linkId=" + store.inquiryLinkId
-    }).then(res => {
+  queryMessage() {
+    inquiryApi.queryChatMessage(store.inquiryLinkId).then(res => {
       if (res.code == 1) {
         this.setData({
           messageVo: res.data
@@ -25,21 +21,14 @@ Page({
     });
   },
   //进入窗口初始化
-  async inWindowInitial() {
-    const app = getApp();
+  inWindowInitial() {
     //设置在窗口
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.inquiryUrl + "/app/chat-list/in-window?linkId=" + store.inquiryLinkId
-    });
+    inquiryApi.inWindow(store.inquiryLinkId);
     //清空未读数
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.inquiryUrl + "/app/chat-list/clear-unread?linkId=" + store.inquiryLinkId
-    });
+    inquiryApi.clearUnread(store.inquiryLinkId);
   },
   //发送消息
-  async send() {
+  send() {
     const addMessageDto = {
       linkId: this.data.messageVo.linkId,
       inquiryApplicationId: this.data.messageVo.inquiryApplicationId,
@@ -47,12 +36,7 @@ Page({
       content: this.data.message,
       type: 0
     };
-    const app = getApp();
-    await promiseRequest({
-      method: "POST",
-      url: app.globalData.inquiryUrl + "/app/chat-message/send-message",
-      data: addMessageDto
-    }).then(res => {
+    inquiryApi.sendMessage(addMessageDto).then(res => {
       if (res.code == 1) {
         this.setData({
           message: ""
@@ -71,12 +55,8 @@ Page({
     });
   },
   //离开页面
-  async outWindow() {
-    const app = getApp();
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.inquiryUrl + "/app/chat-list/out-window?linkId=" + store.inquiryLinkId
-    });
+  outWindow() {
+    inquiryApi.outWindow(store.inquiryLinkId);
   },
   /**
    * 生命周期函数--监听页面加载

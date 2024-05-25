@@ -1,7 +1,7 @@
 // pages/inquiryrecord/detail/detail.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import inquiryApi from "../../../api/inquiryApi";
 Page({
   /**
    * 页面的初始数据
@@ -16,17 +16,14 @@ Page({
     });
   },
   //查询单个问诊记录
-  async queryInquiryRecord() {
-    const app = getApp();
-    let res = await promiseRequest({
-      url: app.globalData.inquiryUrl + "/app/inquiry-application/queryById?id=" + store.inquiryDetailId,
-      methed: "GET"
+  queryInquiryRecord() {
+    inquiryApi.queryInquiryApplicationById(store.inquiryDetailId).then(res => {
+      if (res.code == 1) {
+        this.setData({
+          inquiryInfo: res.data
+        });
+      }
     });
-    if (res.code == 1) {
-      this.setData({
-        inquiryInfo: res.data
-      });
-    }
   },
   descriptionDetail() {
     this.setData({

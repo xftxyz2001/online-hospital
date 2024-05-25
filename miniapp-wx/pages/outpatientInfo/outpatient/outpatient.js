@@ -1,7 +1,7 @@
 // pages/outpatientInfo/outpatient/outpatient.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import hospitalApi from "../../../api/hospitalApi";
 Page({
   /**
    * 页面的初始数据
@@ -11,13 +11,8 @@ Page({
     outpatientList: []
   },
   //获取所有门诊信息
-  async getOutpatientInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url:
-        app.globalData.hospitalUrl + "/outpatientInfo/order-letter-list?hospitalId=" + store.outpatientInfoOfHospitalId
-    }).then(res => {
+  getOutpatientInfo() {
+    hospitalApi.queryOrderLetterList(store.outpatientInfoOfHospitalId).then(res => {
       if (res.code == 1) {
         this.setData({
           letterList: res.data.letterList,

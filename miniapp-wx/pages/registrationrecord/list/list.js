@@ -1,7 +1,7 @@
 // pages/registrationrecord/list/list.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import registrationApi from "../../../api/registrationApi";
 Page({
   /**
    * 页面的初始数据
@@ -27,12 +27,8 @@ Page({
     });
   },
   //获取所有的订单信息
-  async getAllOrder() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.registrationUrl + "/orderInfo/app/queryAll"
-    }).then(res => {
+  getAllOrder() {
+    registrationApi.queryAllOrder().then(res => {
       if (res.code == 1) {
         this.setData({
           orderList: res.data

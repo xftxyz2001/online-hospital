@@ -1,5 +1,5 @@
 // pages/hospitalInfo/detail/detail.js
-import { promiseRequest } from "../../../utils/service";
+import hospitalApi from "../../../api/hospitalApi";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
@@ -21,12 +21,8 @@ Page({
     this.getHospitalInfo();
   },
   //查询医院信息
-  async getHospitalInfo() {
-    const app = getApp();
-    await promiseRequest({
-      url: app.globalData.hospitalUrl + "/hospital/queryById?id=" + store.hospitalInfoId,
-      method: "GET"
-    }).then(res => {
+  getHospitalInfo() {
+    hospitalApi.queryHospitalInfoByHospitalId(store.hospitalInfoId).then(res => {
       if (res.code == 1) {
         this.setData({
           hospitalInfo: res.data

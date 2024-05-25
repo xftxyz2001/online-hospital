@@ -1,8 +1,8 @@
 // pages/inquiryrecord/index/index.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import Dialog from "@vant/weapp/dialog/dialog";
+import inquiryApi from "../../../api/inquiryApi";
 Page({
   /**
    * 页面的初始数据
@@ -12,17 +12,14 @@ Page({
   },
 
   //查询所有问诊记录
-  async queryInquiryRecords() {
-    const app = getApp();
-    let res = await promiseRequest({
-      url: app.globalData.inquiryUrl + "/app/inquiry-application/queryAll",
-      methed: "GET"
+  queryInquiryRecords() {
+    inquiryApi.queryAll().then(res => {
+      if (res.code == 1) {
+        this.setData({
+          inquiryList: res.data
+        });
+      }
     });
-    if (res.code == 1) {
-      this.setData({
-        inquiryList: res.data
-      });
-    }
   },
   toDetail(e) {
     this.updateInquiryDetailId(e.target.dataset.id);
@@ -42,26 +39,23 @@ Page({
         // on cancel
       });
   },
-  async cancelInquiry(id) {
-    const app = getApp();
-    let res = await promiseRequest({
-      method: "PUT",
-      url: app.globalData.inquiryUrl + "/app/inquiry-application/cancel?id=" + id
+  cancelInquiry(id) {
+    inquiryApi.cancel(id).then(res => {
+      if (res.code == 1) {
+        wx.showToast({
+          title: "取消成功",
+          icon: "success",
+          duration: 2000
+        });
+        this.queryInquiryRecords();
+      } else {
+        wx.showToast({
+          title: "操作失败",
+          icon: "error",
+          duration: 2000
+        });
+      }
     });
-    if (res.code == 1) {
-      wx.showToast({
-        title: "取消成功",
-        icon: "success",
-        duration: 2000
-      });
-      this.queryInquiryRecords();
-    } else {
-      wx.showToast({
-        title: "操作失败",
-        icon: "error",
-        duration: 2000
-      });
-    }
   },
   /**
    * 生命周期函数--监听页面加载

@@ -1,8 +1,10 @@
 // pages/registration/register/register.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import Notify from "@vant/weapp/notify/notify";
+import registrationApi from "../../../api/registrationApi";
+import hospitalApi from "../../../api/hospitalApi";
+import userApi from "../../../api/userApi";
 Page({
   /**
    * 页面的初始数据
@@ -56,29 +58,23 @@ Page({
     });
   },
   //获取挂号时间信息
-  async getTimeList() {
-    const app = getApp();
-    await promiseRequest({
-      method: "POST",
-      url: app.globalData.registrationUrl + "/schedule/app/doctor",
-      data: {
+  getTimeList() {
+    registrationApi
+      .queryDoctorSchedule({
         hospitalId: this.data.hospitalId,
         outpatientId: this.data.OutpatientId,
         workDate: this.data.date,
         workHalf: this.data.half,
         doctorId: this.data.doctorId
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        // this.setData({
-        //   hospitalList:res.data
-        // })
-        this.setData({
-          timeList: res.data
-        });
-        console.log(this.data.timeList);
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          this.setData({
+            timeList: res.data
+          });
+          console.log(this.data.timeList);
+        }
+      });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -108,12 +104,8 @@ Page({
     this.queryDoctorInfo();
   },
   //获取医生信息
-  async queryDoctorInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.hospitalUrl + "/doctorInfo/queryById?doctorId=" + this.data.doctorId
-    }).then(res => {
+  queryDoctorInfo() {
+    hospitalApi.queryDoctorInfoByDoctorId(this.data.doctorId).then(res => {
       if (res.code == 1) {
         this.setData({
           doctorInfo: res.data
@@ -121,12 +113,8 @@ Page({
       }
     });
   },
-  async queryAllPatient() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/patient/queryAll"
-    }).then(res => {
+  queryAllPatient() {
+    userApi.queryAllPatient().then(res => {
       if (res.code == 1) {
         this.setData({
           patientList: res.data
@@ -146,12 +134,9 @@ Page({
     this.register();
   },
 
-  async register() {
-    const app = getApp();
-    await promiseRequest({
-      method: "POST",
-      url: app.globalData.registrationUrl + "/orderInfo/app/add",
-      data: {
+  register() {
+    registrationApi
+      .addOrderInfo({
         amount: 0,
         doctorId: this.data.doctorId,
         hospitalId: this.data.hospitalId,
@@ -161,23 +146,23 @@ Page({
         reserveHalf: this.data.half,
         reserveTime: this.data.time,
         scheduleId: this.data.scheduleId
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        wx.showToast({
-          title: "预约成功",
-          icon: "success",
-          duration: 2000,
-          success: function () {
-            setTimeout(function () {
-              wx.switchTab({
-                url: "/pages/index/index"
-              });
-            }, 2000);
-          }
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          wx.showToast({
+            title: "预约成功",
+            icon: "success",
+            duration: 2000,
+            success: function () {
+              setTimeout(function () {
+                wx.switchTab({
+                  url: "/pages/index/index"
+                });
+              }, 2000);
+            }
+          });
+        }
+      });
   },
   changeTime(e) {
     this.setData({

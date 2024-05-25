@@ -1,7 +1,7 @@
 // pages/inquiry/doctors/doctors.js
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { promiseRequest } from "../../../utils/service";
+import hospitalApi from "../../../api/hospitalApi";
 Page({
   /**
    * 页面的初始数据
@@ -11,16 +11,8 @@ Page({
     outpatientId: 0,
     doctorList: []
   },
-  async getdoctorList() {
-    const app = getApp();
-    await promiseRequest({
-      method: "Post",
-      url: app.globalData.hospitalUrl + "/app/doctorInfo/queryInquiryDoctorList",
-      data: {
-        hospitalId: this.data.hospitalId,
-        outpatientId: this.data.outpatientId
-      }
-    }).then(res => {
+  getdoctorList() {
+    hospitalApi.queryInquiryDoctorList(this.data.hospitalId, this.data.outpatientId).then(res => {
       if (res.code == 1) {
         this.setData({
           doctorList: res.data

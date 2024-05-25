@@ -1,8 +1,8 @@
 // pages/patient/detail/detail.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import Dialog from "@vant/weapp/dialog/dialog";
+import userApi from "../../../api/userApi";
 Page({
   /**
    * 页面的初始数据
@@ -15,12 +15,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async getPatientInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/patient/queryOne?patientId=" + this.data.patientId
-    }).then(res => {
+  getPatientInfo() {
+    userApi.queryOnePatient(this.data.patientId).then(res => {
       if (res.code == 1) {
         this.setData({
           patientInfo: res.data
@@ -49,12 +45,8 @@ Page({
       });
   },
   //确认删除
-  async delete() {
-    const app = getApp();
-    await promiseRequest({
-      method: "DELETE",
-      url: app.globalData.userUrl + "/app/patient/delete?patientId=" + this.data.patientId
-    }).then(res => {
+  delete() {
+    userApi.deletePatient(this.data.patientId).then(res => {
       if (res.code == 1) {
         wx.navigateBack({
           url: "/pages/patient/list/list"

@@ -1,5 +1,5 @@
 // pages/doctorInfo/index/index.js
-import { promiseRequest } from "../../../utils/service";
+import hospitalApi from "../../../api/hospitalApi";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
@@ -13,20 +13,8 @@ Page({
     doctorList: [],
     isloading: false
   },
-  async queryDoctorList() {
-    const app = getApp();
-    await promiseRequest({
-      url:
-        app.globalData.hospitalUrl +
-        "/doctorInfo/queryPage?pageNo=" +
-        this.data.currentPage +
-        "&pageSize=" +
-        this.data.pageSize,
-      method: "POST",
-      data: {
-        name: this.data.name
-      }
-    }).then(res => {
+  queryDoctorList() {
+    hospitalApi.queryDoctorInfoPage(this.data.currentPage, this.data.pageSize, this.data.name).then(res => {
       if (res.code == 1) {
         this.setData({
           doctorList: this.data.doctorList.concat(res.data.items)

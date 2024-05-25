@@ -1,8 +1,8 @@
 // pages/patient/update/update.js
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
-import { promiseRequest } from "../../../utils/service";
 import { areaList } from "@vant/area-data/index.js";
+import userApi from "../../../api/userApi";
 Page({
   /**
    * 页面的初始数据
@@ -19,12 +19,8 @@ Page({
     newAreaDetail: "",
     newPhone: ""
   },
-  async getPatientInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.userUrl + "/app/patient/queryOne?patientId=" + this.data.patientId
-    }).then(res => {
+  getPatientInfo() {
+    userApi.queryOnePatient(this.data.patientId).then(res => {
       if (res.code == 1) {
         this.setData({
           patientInfo: res.data,
@@ -62,12 +58,9 @@ Page({
     });
   },
   //提交
-  async confirm() {
-    const app = getApp();
-    await promiseRequest({
-      method: "PUT",
-      url: app.globalData.userUrl + "/app/patient/update",
-      data: {
+  confirm() {
+    userApi
+      .updatePatient({
         id: this.data.patientId,
         phone: this.data.newPhone,
         provinceName: this.data.newProvinceName,
@@ -75,25 +68,25 @@ Page({
         districtName: this.data.newDistrictName,
         areaCode: this.data.newAreaCode,
         address: this.data.newAreaDetail
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        wx.navigateBack({
-          delta: 2
-        });
-        wx.showToast({
-          title: "修改成功",
-          icon: "success",
-          duration: 2000
-        });
-      } else {
-        wx.showToast({
-          title: "修改失败",
-          icon: "error",
-          duration: 2000
-        });
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          wx.navigateBack({
+            delta: 2
+          });
+          wx.showToast({
+            title: "修改成功",
+            icon: "success",
+            duration: 2000
+          });
+        } else {
+          wx.showToast({
+            title: "修改失败",
+            icon: "error",
+            duration: 2000
+          });
+        }
+      });
   },
   /**
    * 生命周期函数--监听页面加载

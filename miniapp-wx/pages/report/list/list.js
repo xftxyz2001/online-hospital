@@ -1,5 +1,5 @@
 // pages/report/list/list.js
-import { promiseRequest } from "../../../utils/service";
+import registrationApi from "../../../api/registrationApi";
 Page({
   /**
    * 页面的初始数据
@@ -60,12 +60,8 @@ Page({
       return path.substring(position + 1);
     }
   },
-  async getReportInfos() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.registrationUrl + "/reportInfo/app/queryAll"
-    }).then(res => {
+  getReportInfos() {
+    registrationApi.queryAllReport().then(res => {
       if (res.code == 1) {
         this.setData({
           reportList: res.data

@@ -1,5 +1,5 @@
 // pages/doctorInfo/index/index.js
-import { promiseRequest } from "../../../utils/service";
+import hospitalApi from "../../../api/hospitalApi";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 Page({
@@ -15,12 +15,8 @@ Page({
       urls: [e.target.dataset.url]
     });
   },
-  async queryDoctorInfo() {
-    const app = getApp();
-    await promiseRequest({
-      url: app.globalData.hospitalUrl + "/app/doctorInfo/queryById?doctorId=" + store.doctorInfoId,
-      method: "GET"
-    }).then(res => {
+  queryDoctorInfo() {
+    hospitalApi.queryDoctorInfoByDoctorId(store.doctorInfoId).then(res => {
       if (res.code == 1) {
         this.setData({
           doctorInfo: res.data

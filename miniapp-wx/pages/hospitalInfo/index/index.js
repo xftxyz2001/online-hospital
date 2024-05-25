@@ -1,7 +1,7 @@
 // pages/registration/index/index.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import hospitalApi from "../../../api/hospitalApi";
 Page({
   /**
    * 页面的初始数据
@@ -10,12 +10,8 @@ Page({
     hospitalList: []
   },
   //获取所有医院信息
-  async getHospitalInfo() {
-    const app = getApp();
-    await promiseRequest({
-      method: "GET",
-      url: app.globalData.hospitalUrl + "/hospital"
-    }).then(res => {
+  getHospitalInfo() {
+    hospitalApi.queryHospitalInfo().then(res => {
       if (res.code == 1) {
         this.setData({
           hospitalList: res.data

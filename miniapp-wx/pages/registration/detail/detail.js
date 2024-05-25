@@ -1,7 +1,7 @@
 // pages/registration/detail/detail.js
-import { promiseRequest } from "../../../utils/service";
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
+import registrationApi from "../../../api/registrationApi";
 Page({
   /**
    * 页面的初始数据
@@ -43,27 +43,21 @@ Page({
       url: "/pages/registration/register/register"
     });
   },
-  async getDoctorList() {
-    const app = getApp();
-    await promiseRequest({
-      method: "POST",
-      url: app.globalData.registrationUrl + "/schedule/app",
-      data: {
+  getDoctorList() {
+    registrationApi
+      .querySchedule({
         hospitalId: this.data.registrationHospitalId,
         outpatientId: this.data.registrationOutpatientId,
         workDate: this.data.selectedDate
-      }
-    }).then(res => {
-      if (res.code == 1) {
-        // this.setData({
-        //   hospitalList:res.data
-        // })
-        this.setData({
-          doctorList: res.data
-        });
-        this.doctorListHandle();
-      }
-    });
+      })
+      .then(res => {
+        if (res.code == 1) {
+          this.setData({
+            doctorList: res.data
+          });
+          this.doctorListHandle();
+        }
+      });
   },
   //将医生信息分类处理
   doctorListHandle() {
@@ -87,20 +81,6 @@ Page({
       }
     }
   },
-  // async getHospitalInfo(){
-  //   const app = getApp()
-  //   await promiseRequest({
-  //     method:'GET',
-  //     url:app.globalData.hospitalUrl+"/hospital"
-  //   }).then((res)=>{
-  //     if(res.code==1){
-  //       this.setData({
-  //         hospitalList:res.data
-  //       })
-
-  //     }
-  //   })
-  // },
   /**
    * 生命周期函数--监听页面加载
    */

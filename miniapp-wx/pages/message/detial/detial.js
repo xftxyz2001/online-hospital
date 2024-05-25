@@ -2,6 +2,7 @@
 import { store } from "../../../store/store";
 import { createStoreBindings } from "mobx-miniprogram-bindings";
 import inquiryApi from "../../../api/inquiryApi";
+import systemApi from "../../../api/systemApi";
 Page({
   /**
    * 页面的初始数据
@@ -61,21 +62,10 @@ Page({
   afterRead(event) {
     const { file } = event.detail;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    const app = getApp();
     const that = this;
-    wx.uploadFile({
-      url: app.globalData.systemUrl + "/upload", // 仅为示例，非真实的接口地址
-      filePath: file.url,
-      name: "image",
-      formData: { user: "test" },
-      header: {
-        token: wx.getStorageSync("token")
-      },
-      success(res) {
-        // 上传完成需要更新 fileList
-        let result = JSON.parse(res.data);
-        let url = result.data;
-        that.sendPicture(url);
+    systemApi.uploadImage(file.url).then(res => {
+      if (res.code == 1) {
+        that.sendPicture(res.data);
       }
     });
   },

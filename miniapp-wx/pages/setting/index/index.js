@@ -1,4 +1,5 @@
 // pages/setting/index/index.js
+import systemApi from "../../../api/systemApi";
 import userApi from "../../../api/userApi";
 Page({
   /**
@@ -17,54 +18,40 @@ Page({
   //修改头像
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail;
-    const app = getApp();
     let that = this;
-    wx.uploadFile({
-      filePath: avatarUrl,
-      name: "image",
-      url: app.globalData.systemUrl + "/upload",
-      header: {
-        token: wx.getStorageSync("token")
-      },
-      success(res) {
-        const data = JSON.parse(res.data);
-        const app = getApp();
-        if (data.code == 1) {
-          that.setData({
-            avatarUrl: data.data
+    systemApi.uploadImage(avatarUrl).then(res => {
+      if (res.code == 1) {
+        that.setData({
+          avatarUrl: res.data
+        });
+        userApi
+          .updateUserInfo({
+            avatar: res.data
+          })
+          .then(res => {
+            if (res.code == 1) {
+              wx.showToast({
+                title: "设置成功",
+                icon: "success",
+                duration: 2000
+              });
+              that.setData({
+                avatarUrl: res.data
+              });
+            } else {
+              wx.showToast({
+                title: "设置失败",
+                icon: "error",
+                duration: 2000
+              });
+            }
           });
-          userApi
-            .updateUserInfo({
-              avatar: data.data
-            })
-            .then(res => {
-              if (res.code == 1) {
-                wx.showToast({
-                  title: "设置成功",
-                  icon: "success",
-                  duration: 2000
-                });
-                that.setData({
-                  avatarUrl: data.data
-                });
-              } else {
-                wx.showToast({
-                  title: "设置失败",
-                  icon: "error",
-                  duration: 2000
-                });
-              }
-            });
-        } else {
-          wx.showToast({
-            title: "上传失败",
-            icon: "error",
-            duration: 2000
-          });
-        }
-      },
-      fail(res) {
-        console.log(res);
+      } else {
+        wx.showToast({
+          title: "上传失败",
+          icon: "error",
+          duration: 2000
+        });
       }
     });
   },

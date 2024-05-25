@@ -2,6 +2,7 @@
 import Toast from "@vant/weapp/toast/toast";
 import Notify from "@vant/weapp/notify/notify";
 import userApi from "../../api/userApi";
+import systemApi from "../../api/systemApi";
 // import { fail } from 'mobx-miniprogram/lib/internal';
 const defaultAvatarUrl =
   "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0";
@@ -27,27 +28,16 @@ Page({
     if (this.data.userName == "") {
       Notify({ type: "warning", message: "昵称不能为空" });
     } else {
-      const app = getApp();
       const that = this;
-      wx.uploadFile({
-        filePath: this.data.avatarUrl,
-        name: "image",
-        url: app.globalData.systemUrl + "/upload",
-        header: {
-          token: wx.getStorageSync("token")
-        },
-        success(res) {
-          const data = JSON.parse(res.data);
-          if (data.code == 1) {
-            that.setData({
-              avatarUrl: data.data
-            });
-            that.updateUserInfo();
-          } else {
-            console.log("请重试");
-          }
-        },
-        fail(res) {}
+      systemApi.uploadImage(this.data.avatarUrl).then(res => {
+        if (res.code == 1) {
+          that.setData({
+            avatarUrl: res.data
+          });
+          that.updateUserInfo();
+        } else {
+          console.log("请重试");
+        }
       });
     }
   },

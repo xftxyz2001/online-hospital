@@ -23,12 +23,6 @@ App({
   },
 
   globalData: {
-    ONLINE_HOSPITAL_GATEWAY_HOST,
-    hospitalUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/hospital`,
-    registrationUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/registration`,
-    userUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/user`,
-    inquiryUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/inquiry`,
-    wsInquiryUrl: `ws://${ONLINE_HOSPITAL_GATEWAY_HOST}/inquiry/chat`,
-    systemUrl: `http://${ONLINE_HOSPITAL_GATEWAY_HOST}/system`
+    ONLINE_HOSPITAL_GATEWAY_HOST
   }
 });
